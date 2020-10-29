@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
+import database.DataExchangeLogin;
 import database.DatabaseConnection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -31,7 +32,7 @@ public class PasswordResetController implements Initializable {
 	    
 
 	    @FXML
-	    private TextField textFieldPersonnelNumber;
+	    private TextField textFieldStaffID;
 	    @FXML
 	    private TextField textFieldUsernamePasswordGenerator;
 	    @FXML
@@ -44,6 +45,8 @@ public class PasswordResetController implements Initializable {
 	    private Label labelPassword;
 	    
 	    boolean checkExistance;
+	    
+	    DataExchangeLogin exchangeLogin_PasswordReset = new DataExchangeLogin();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -57,34 +60,57 @@ public class PasswordResetController implements Initializable {
       }
 	
 	public void checkData(){ 
-        int staffNumber = Integer.parseInt(textFieldPersonnelNumber.getText());
-       String username = textFieldUsernamePasswordGenerator.getText();         
-       String checkData = "SELECT IDStaff,Username from staffaccounts where IDStaff="+staffNumber+" && "+" Username='"+username+"'";
-                  
-       try {
-           Statement statement = connectDB.createStatement();
-           Statement statement2 = connectDB.createStatement();
-           ResultSet queryResultCheckData = statement.executeQuery(checkData);
-           
-            checkExistance = queryResultCheckData.next();
-           
-          
-           if (checkExistance == true){
-               String newGeneratedPassword = generateRandomString(5);   
-               String setNewPassword  ="Update staffaccounts SET Password='"+newGeneratedPassword+"' WHERE IDStaff="+staffNumber+" && Username='"+username+"'";
-               
-               statement2.executeUpdate(setNewPassword);
-               labelShowNewPassword.setText("Your password has been changed. New Password: "+newGeneratedPassword);
-               valueToClipboard(newGeneratedPassword);              
-               }
-               else {
-                   labelShowNewPassword.setText("Couldn't find the combination of StaffId and Username. Please try again or contact IT-Support!"); 
-               }     
-       } catch (Exception e) {
-           e.printStackTrace();
+		
+		
+		if(textFieldStaffID.getText().isEmpty() == false && textFieldUsernamePasswordGenerator.getText().isEmpty() == false && textFieldStaffID.getText().matches("[0-9]*")) {
+			  			
+						int staffNumber = Integer.parseInt(textFieldStaffID.getText());
+					    String username = textFieldUsernamePasswordGenerator.getText(); 		
+			   //int staffNumber = Integer.parseInt(textFieldStaffID.getText());
+		   // String username = textFieldUsernamePasswordGenerator.getText();       
+		    
+		    if(exchangeLogin_PasswordReset.checkDataCombination(staffNumber,username) == true) {
+		 	   String newGeneratedPassword = generateRandomString(5);
+		 	   exchangeLogin_PasswordReset.changePassword(staffNumber,username,newGeneratedPassword);
+		 	   labelShowNewPassword.setText("Your password has been changed. New Password: "+newGeneratedPassword);
+		        valueToClipboard(newGeneratedPassword);
+		    }else {
+		 	   labelShowNewPassword.setText("No Combination of StaffID and Username found. Try again!"); 
+		    }     
+		}else {
+			   labelShowNewPassword.setText("Something went wrong. Please fil out the form correctly!"); 
+		}
+				}
+	
+				
+		/*if(textFieldStaffID.getText().isEmpty() == false && textFieldUsernamePasswordGenerator.getText().isEmpty() == false)
+		{
+			 if(textFieldStaffID.getText().matches("[0-9]")) {
+				 String staffNumberValidation=textFieldStaffID.getText();
+					int staffNumber = Integer.parseInt(staffNumberValidation);
+				    String username = textFieldUsernamePasswordGenerator.getText(); 		
+		   //int staffNumber = Integer.parseInt(textFieldStaffID.getText());
+	      // String username = textFieldUsernamePasswordGenerator.getText();       
+	       
+	       if(exchangeLogin_PasswordReset.checkDataCombination(staffNumber,username) == true) {
+	    	   String newGeneratedPassword = generateRandomString(5);
+	    	   exchangeLogin_PasswordReset.changePassword(staffNumber,username,newGeneratedPassword);
+	    	   labelShowNewPassword.setText("Your password has been changed. New Password: "+newGeneratedPassword);
+	           valueToClipboard(newGeneratedPassword);
+	       }else {
+	    	   labelShowNewPassword.setText("Couldn't find the combination of StaffId and Username. Please try again!"); 
+	       }     
+       }else {
+    	   labelShowNewPassword.setText("Zahlen in StaffID"); 
        }
-          
-   }
+			} else {
+		    	   labelShowNewPassword.setText("Please fil out all fields."); 
+		       }
+	   */
+	   
+	    	
+		
+   
    
    public static String generateRandomString(int length) {
        if (length < 1) throw new IllegalArgumentException();

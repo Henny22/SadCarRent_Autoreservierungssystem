@@ -30,7 +30,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="76.0" layoutY="14.0" prefHeight="19.0" prefWidth="274.0" text="Your diffend staff number:">
+            <Label layoutX="76.0" layoutY="14.0" prefHeight="19.0" prefWidth="274.0" text="Your staff number:">
                <font>
                   <Font size="13.0" />
                </font>

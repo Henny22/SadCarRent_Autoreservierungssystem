@@ -10,6 +10,7 @@ import java.net.URL;
 
 import java.security.SecureRandom;
 
+import database.DataExchangeLogin;
 import database.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -55,6 +56,7 @@ public class LoginSystemController implements Initializable {
      DatabaseConnection connectNow = new DatabaseConnection();
      Connection connectDB = connectNow.getConnection();
 
+     DataExchangeLogin exchangeLogin = new DataExchangeLogin();
     /**
      * Initializes the controller class.
      */
@@ -63,37 +65,18 @@ public class LoginSystemController implements Initializable {
         // TODO
     }    
     
-    public void loginButtonOnAction(ActionEvent event){
-        
-        if(textFieldUsername.getText().isEmpty() == false && textFieldPassword.getText().isEmpty() == false){
-            validateLogin();
-        }else {
-            labelStatus.setText("Please enter username and password!");
-        }
-    }
     
-    
-    public void validateLogin(){
-   
-        String verifyLogin = "SELECT count(1) FROM staffaccounts WHERE Username ='" + textFieldUsername.getText() +"' AND Password ='"+ textFieldPassword.getText()+ "'";
-  
-        try{
-           Statement statement = connectDB.createStatement(); 
-           ResultSet queryResult = statement.executeQuery(verifyLogin);
-           
-           while (queryResult.next()){
-               if (queryResult.getInt(1)==1){
-
+    public void validateLogin(){	
+    	if(textFieldUsername.getText().isEmpty() == false && textFieldPassword.getText().isEmpty() == false){
+    		if (exchangeLogin.validateLogin(textFieldUsername.getText(),textFieldPassword.getText()) == true){
                    loginMainMenu();
-               }else {
+            }else {
                    labelStatus.setText("Invalid login. Please try again");
-               }
-           }
-           
-        }catch (Exception e){
-            e.printStackTrace();
-            e.getCause();
-        }
+               } 
+    	}
+    	else {
+    		labelStatus.setText("Please enter username and password!");
+    	}
     }
     
     

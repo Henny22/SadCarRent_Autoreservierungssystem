@@ -212,6 +212,7 @@
                         <Image url="@../Images/icons8_Search_52px.png" />
                      </image>
                   </ImageView>
+                  <Label layoutX="291.0" layoutY="334.0" text="Labeadsdaujidashuijasdhjkdas+l" textFill="WHITE" />
                </children>
             </Pane>
          </children>
