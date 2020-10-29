@@ -74,7 +74,8 @@ public class RegisterController  implements Initializable  {
     	
     		 if(textFieldPasswordRegister.getText().equals(textFieldConfirmPassword.getText())){
     			 if (textFieldStaffNumber.getText().equals("") || textFieldUsernameRegister.getText().equals("") || textFieldPasswordRegister.getText().equals("") || textFieldConfirmPassword.getText().equals("")) {
-    				 labelAlreadyRegistered.setText("Please fil out this form");	  
+    				 labelAlreadyRegistered.setText("Please fil out this form");
+    				 labelPasswordNotMatch.setText("");
     			 }else {
     				 labelAlreadyRegistered.setText(""); 
     				 labelPasswordNotMatch.setText("");
@@ -98,9 +99,11 @@ public class RegisterController  implements Initializable  {
     	 
     	
     	 if (dataCase == 2) {
+    		 labelPasswordNotMatch.setText("");
              labelAlreadyRegistered.setText("You are already registered. Please try to login!");
          }else if (dataCase == 1){
         	 exchangeLogin_Register.registerUser(staffNumber,username,password,jobInt);
+        	 
         	 labelAlreadyRegistered.setText("User has been registered successfully. Try to login now!");
          }else if (dataCase == 0){
              labelAlreadyRegistered.setText("We couldn't find this Staff Number. Please try to conntact HR!");

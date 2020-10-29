@@ -59,19 +59,15 @@ public class PasswordResetController implements Initializable {
          stage.close();
       }
 	
+	 
 	public void checkData(){ 
-		
-		
 		if(textFieldStaffID.getText().isEmpty() == false && textFieldUsernamePasswordGenerator.getText().isEmpty() == false && textFieldStaffID.getText().matches("[0-9]*")) {
 			  			
-						int staffNumber = Integer.parseInt(textFieldStaffID.getText());
-					    String username = textFieldUsernamePasswordGenerator.getText(); 		
-			   //int staffNumber = Integer.parseInt(textFieldStaffID.getText());
-		   // String username = textFieldUsernamePasswordGenerator.getText();       
-		    
-		    if(exchangeLogin_PasswordReset.checkDataCombination(staffNumber,username) == true) {
-		 	   String newGeneratedPassword = generateRandomString(5);
-		 	   exchangeLogin_PasswordReset.changePassword(staffNumber,username,newGeneratedPassword);
+			int staffNumber = Integer.parseInt(textFieldStaffID.getText());
+			String username = textFieldUsernamePasswordGenerator.getText(); 				    
+		    	if(exchangeLogin_PasswordReset.checkDataCombination(staffNumber,username) == true) {
+		    		String newGeneratedPassword = generateRandomString(5);
+		    		exchangeLogin_PasswordReset.changePassword(staffNumber,username,newGeneratedPassword);
 		 	   labelShowNewPassword.setText("Your password has been changed. New Password: "+newGeneratedPassword);
 		        valueToClipboard(newGeneratedPassword);
 		    }else {
@@ -82,32 +78,6 @@ public class PasswordResetController implements Initializable {
 		}
 				}
 	
-				
-		/*if(textFieldStaffID.getText().isEmpty() == false && textFieldUsernamePasswordGenerator.getText().isEmpty() == false)
-		{
-			 if(textFieldStaffID.getText().matches("[0-9]")) {
-				 String staffNumberValidation=textFieldStaffID.getText();
-					int staffNumber = Integer.parseInt(staffNumberValidation);
-				    String username = textFieldUsernamePasswordGenerator.getText(); 		
-		   //int staffNumber = Integer.parseInt(textFieldStaffID.getText());
-	      // String username = textFieldUsernamePasswordGenerator.getText();       
-	       
-	       if(exchangeLogin_PasswordReset.checkDataCombination(staffNumber,username) == true) {
-	    	   String newGeneratedPassword = generateRandomString(5);
-	    	   exchangeLogin_PasswordReset.changePassword(staffNumber,username,newGeneratedPassword);
-	    	   labelShowNewPassword.setText("Your password has been changed. New Password: "+newGeneratedPassword);
-	           valueToClipboard(newGeneratedPassword);
-	       }else {
-	    	   labelShowNewPassword.setText("Couldn't find the combination of StaffId and Username. Please try again!"); 
-	       }     
-       }else {
-    	   labelShowNewPassword.setText("Zahlen in StaffID"); 
-       }
-			} else {
-		    	   labelShowNewPassword.setText("Please fil out all fields."); 
-		       }
-	   */
-	   
 	    	
 		
    

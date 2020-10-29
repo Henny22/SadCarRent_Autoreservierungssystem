@@ -132,7 +132,7 @@ public class DataExchangeLogin {
 	}
 	
 	public void registerUser(int staffNumber, String username, String password, int jobint) {
-		//System.out.println(staffNumber + " "+ username +" "+ password +" "+ jobint);
+		
 		String insertFields ="INSERT INTO staffaccounts( IDStaff, Username, Password,Administrator) VALUES ('";
         String insertValues =staffNumber + "','"+ username +"','"+ password +"','"+ jobint +"')";
         String insertToRegister = insertFields + insertValues;
