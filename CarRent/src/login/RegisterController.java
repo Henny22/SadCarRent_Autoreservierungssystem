@@ -57,8 +57,6 @@ public class RegisterController  implements Initializable  {
 		
 	}
 	
-	
-	
 	  
     public void backToMainMenuOnActionFromRegister(){
         try{
@@ -72,7 +70,7 @@ public class RegisterController  implements Initializable  {
      
      public void registerButtonOnAction(ActionEvent e){
     	
-    		 if(textFieldPasswordRegister.getText().equals(textFieldConfirmPassword.getText())){
+         if(textFieldPasswordRegister.getText().equals(textFieldConfirmPassword.getText())){
     			 if (textFieldStaffNumber.getText().equals("") || textFieldUsernameRegister.getText().equals("") || textFieldPasswordRegister.getText().equals("") || textFieldConfirmPassword.getText().equals("")) {
     				 labelAlreadyRegistered.setText("Please fil out this form");
     				 labelPasswordNotMatch.setText("");
@@ -80,7 +78,7 @@ public class RegisterController  implements Initializable  {
     				 labelAlreadyRegistered.setText(""); 
     				 labelPasswordNotMatch.setText("");
     				 registerUser(); 
-         } 
+    			 } 
     	 }else {
     		 labelAlreadyRegistered.setText("");	
     		 labelPasswordNotMatch.setText("Password does not match"); 

@@ -267,7 +267,7 @@
                         </AnchorPane>
                      </children>
                   </GridPane>
-                  <Button fx:id="btnReset" layoutX="136.0" layoutY="504.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="130.0" text="Reset" />
+                  <Button fx:id="btnReset" layoutX="136.0" layoutY="504.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="58.0" prefWidth="130.0" text="Reset" />
                   <Button fx:id="btnConfirm" layoutX="397.0" layoutY="504.0" mnemonicParsing="false" onAction="#sendData" prefHeight="58.0" prefWidth="130.0" text="Confirm Order" />
                   <Button fx:id="btnRegister" layoutX="596.0" layoutY="198.0" mnemonicParsing="false" onAction="#openRegisterForm" prefHeight="35.0" prefWidth="143.0" text="Register new Customer" />
                   <Label layoutX="130.0" layoutY="441.0" text="Total amount:" textFill="WHITE">

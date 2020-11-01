@@ -122,7 +122,7 @@ public class OrdersController implements Initializable {
 	}
 	
 	public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnOrders) {
+		if (actionEvent.getSource() == btnOrders) {
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -133,8 +133,15 @@ public class OrdersController implements Initializable {
             
         }
         if (actionEvent.getSource() == btnCustomers) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
+        	try{
+                Parent root = FXMLLoader.load(getClass().getResource("Customers.fxml"));       
+                Main.getStage().setScene(new Scene(root,1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        	// pnlMenus.setStyle("-fx-background-color : #53639F");
+            //pnlMenus.toFront();
         }
         if (actionEvent.getSource() == btnOverview) {
             try{
@@ -181,7 +188,7 @@ public class OrdersController implements Initializable {
 	
 	public void loadTotalAmount(){
 		String c = ComboBoxCar.getValue();
-		int IDCar = Integer.parseInt(String.valueOf(c.charAt(0)));
+		
 		
 		LocalDate dateFrom = datePickerFrom.getValue();
 		LocalDate dateTo = datePickerTo.getValue();
@@ -192,7 +199,7 @@ public class OrdersController implements Initializable {
 		int  rentDuration  = (int) Math.abs(daysFrom-daysTo)+1;
 		
 		if(ComboBoxCar.getValue() != null && dateFrom.compareTo(dateTo)<=0)  {
-			double amount = exchange.getSelectedCarRate(IDCar);
+			double amount = exchange.getSelectedCarRate(Integer.parseInt(String.valueOf(c.charAt(0))));
 			amount = amount *rentDuration;
 			lblAmount.setText(amount+"€");
 			
@@ -217,25 +224,23 @@ public class OrdersController implements Initializable {
 			
 			int  rentDuration  = (int) Math.abs(daysFrom-daysTo)+1;
 			if (dateFrom.compareTo(dateTo)<=0) {	
-	
+				
 				double amount = exchange.getSelectedCarRate(IDCar);
 				amount = amount *rentDuration;
 				lblAmount.setText(amount+"€");
-	
+				
 				exchange.setDataInOrders(IDCar,IDCust,amount,IDLoc,dateFrom,dateTo);
-		         
+		        labelTotalOrders.setText(exchange.setHeaderData());
 		        lblErrorText.setText("Order was succesful!");
 		        lblErrorText.setVisible(true);
 			} else {
 				lblErrorText.setText("Not a valid Date!");
 			}
-			
 			}
 		else {
 			lblErrorText.setText("Please select products before submitting!");
+			}
 		}
-
-	}
 	
 	public int getIDFromComboBox(ComboBox cb) {
 		String a = (String) cb.getValue();
@@ -254,9 +259,20 @@ public class OrdersController implements Initializable {
 	        }catch(Exception e){
 	          e.printStackTrace();
 	          e.getCause();
-	        }
+	        } 
 	}
 	
+	public void resetForm() {
+		 ComboBoxCustomer.getSelectionModel().clearSelection();
+		 //ComboBoxCategory.getSelectionModel().clearSelection();
+		 ComboBoxCar.getSelectionModel().clearSelection();	
+		 ComboBoxLocation.getSelectionModel().clearSelection();
+		 datePickerTo.getEditor().clear();
+		 lblAmount.setText("");
+		 lblErrorText.setText("");
+		 
+		
+	 }
 	
 
 }

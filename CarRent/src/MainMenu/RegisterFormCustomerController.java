@@ -76,6 +76,7 @@ public class RegisterFormCustomerController implements Initializable{
 		 txtfieldPostalcode.clear();
 		 txtfieldState.clear();
 		 txtfieldCountry.clear();
-		 txtfieldMobilephone.clear();	 
+		 txtfieldMobilephone.clear();	
+		 
 	 }
 }

@@ -80,8 +80,15 @@ public class MenuController implements Initializable {
             
         }
         if (actionEvent.getSource() == btnCustomers) {
-            pnlMenus.setStyle("-fx-background-color : #53639F");
-            pnlMenus.toFront();
+        	try{
+                Parent root = FXMLLoader.load(getClass().getResource("Customers.fxml"));       
+                Main.getStage().setScene(new Scene(root,1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        	// pnlMenus.setStyle("-fx-background-color : #53639F");
+            //pnlMenus.toFront();
         }
         if (actionEvent.getSource() == btnOverview) {
             try{

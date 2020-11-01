@@ -94,7 +94,7 @@ public class LoginSystemController implements Initializable {
         try{   
             Parent root = FXMLLoader.load(getClass().getResource("PasswordReset.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
+            stage.setTitle("Password reset");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, 400, 310));
             stage.show();
@@ -119,12 +119,5 @@ public class LoginSystemController implements Initializable {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
-     
-     
-     
-     
-
-     
-    
-     
+          
 }

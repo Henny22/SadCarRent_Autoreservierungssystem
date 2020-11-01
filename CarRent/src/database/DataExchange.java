@@ -43,7 +43,7 @@ public class DataExchange {
 	//
 	//
 	
-	public ComboBox loadDataComboBoxCar(ComboBox comboBoxCar, ComboBox comboBoxCategory){
+	public ComboBox<String> loadDataComboBoxCar(ComboBox<String> comboBoxCar, ComboBox<String> comboBoxCategory){
 		comboBoxCar.getItems().clear();
 		String ja = (String) comboBoxCategory.getValue();
 		int i = Integer.parseInt(String.valueOf(ja.charAt(0)));
@@ -66,9 +66,9 @@ public class DataExchange {
         String insertValues =IDCar + "','"+ IDCust +"','"+ amount +"','"+ IDLoc +"','"+ LocalDate.now() +"','"+ dateFrom +"','"+ dateTo +"')";
         String insertToOrders = insertFields + insertValues;
 		try {
-			 //Statement statement = connectDB.createStatement();
-			 // statement.executeUpdate(insertToOrders);
-			System.out.println("Daten erfolgreich verschickt!");
+			 Statement statement = connectDB.createStatement();
+			 statement.executeUpdate(insertToOrders);
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
