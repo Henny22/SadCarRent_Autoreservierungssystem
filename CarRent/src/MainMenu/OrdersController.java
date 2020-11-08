@@ -9,8 +9,11 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+
 import database.DataExchange;
 import database.DatabaseConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.Main;
@@ -88,6 +92,9 @@ public class OrdersController implements Initializable {
     @FXML
     private Button btnSignOut;
 
+    ObservableList<String> oblist = FXCollections.observableArrayList();
+    
+  
     
     DataExchange exchange = new DataExchange();
     
@@ -96,6 +103,8 @@ public class OrdersController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		labelTotalOrders.setText(exchange.setHeaderData());
+		//exchange.loadDataComboBoxes("select IDCus,Firstname,Lastname,Postalcode,Birthdate from customers",ComboBoxCustomer,oblist.add("IDCus","Firstname"));
+		// TODO Code in DataExchange verallgemeinern
 		try {
 			ResultSet rsCustomer = connectDB.createStatement().executeQuery("select IDCus,Firstname,Lastname,Postalcode,Birthdate from customers");
 			ResultSet rsCategory = connectDB.createStatement().executeQuery("Select IDCat,Label,Cat_Description from category");
@@ -118,9 +127,9 @@ public class OrdersController implements Initializable {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}	
 	}
-	
+
 	public void handleClicks(ActionEvent actionEvent) {
 		if (actionEvent.getSource() == btnOrders) {
             try{
@@ -187,9 +196,8 @@ public class OrdersController implements Initializable {
 	}
 	
 	public void loadTotalAmount(){
-		String c = ComboBoxCar.getValue();
-		
-		
+		String firstCharComboBoxComboBoxCar = ComboBoxCar.getValue();
+			
 		LocalDate dateFrom = datePickerFrom.getValue();
 		LocalDate dateTo = datePickerTo.getValue();
 		
@@ -199,10 +207,9 @@ public class OrdersController implements Initializable {
 		int  rentDuration  = (int) Math.abs(daysFrom-daysTo)+1;
 		
 		if(ComboBoxCar.getValue() != null && dateFrom.compareTo(dateTo)<=0)  {
-			double amount = exchange.getSelectedCarRate(Integer.parseInt(String.valueOf(c.charAt(0))));
+			double amount = exchange.getSelectedCarRate(Integer.parseInt(String.valueOf(firstCharComboBoxComboBoxCar.charAt(0))));
 			amount = amount *rentDuration;
 			lblAmount.setText(amount+"€");
-			
 		}else {
 			lblAmount.setText("Car not selected or wrong date!");
 		}
@@ -243,8 +250,8 @@ public class OrdersController implements Initializable {
 		}
 	
 	public int getIDFromComboBox(ComboBox cb) {
-		String a = (String) cb.getValue();
-		int value = Integer.parseInt(String.valueOf(a.charAt(0)));
+		String firstCharComboBox = (String) cb.getValue();
+		int value = Integer.parseInt(String.valueOf(firstCharComboBox.charAt(0)));
 		return value;
 	}
 	
@@ -255,6 +262,7 @@ public class OrdersController implements Initializable {
 	            stage.setTitle("Register form customer");
 	            stage.initStyle(StageStyle.UNDECORATED);
 	            stage.setScene(new Scene(root, 520, 627));
+	            stage.initModality(Modality.APPLICATION_MODAL);
 	            stage.show();
 	        }catch(Exception e){
 	          e.printStackTrace();
@@ -264,15 +272,11 @@ public class OrdersController implements Initializable {
 	
 	public void resetForm() {
 		 ComboBoxCustomer.getSelectionModel().clearSelection();
-		 //ComboBoxCategory.getSelectionModel().clearSelection();
+		 //: TODO ComboBoxCategory.getSelectionModel().clearSelection();
 		 ComboBoxCar.getSelectionModel().clearSelection();	
 		 ComboBoxLocation.getSelectionModel().clearSelection();
 		 datePickerTo.getEditor().clear();
 		 lblAmount.setText("");
-		 lblErrorText.setText("");
-		 
-		
+		 lblErrorText.setText("");	
 	 }
-	
-
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
+import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
 public class DataExchange {
@@ -42,6 +43,21 @@ public class DataExchange {
 	//********************************************************** Orders Controller **************************************************************************************
 	//
 	//
+	
+	
+	public ComboBox<String> loadDataComboBoxes(String queryCommand, ComboBox<String> comboBox, ObservableList <String> liste){
+		// TODO Code in DataExchange verallgemeinern
+		try {
+			ResultSet rs = connectDB.createStatement().executeQuery(queryCommand);
+			
+			while (rs.next()) {  // loop
+				comboBox.getItems().addAll(rs.getInt("IDCus")+ " | "+ rs.getString("Firstname")+ " | " +rs.getString("Lastname")+ " | " +rs.getInt("Postalcode")+" | "+rs.getDate("Birthdate")); 
+			       }
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return comboBox;
+	}
 	
 	public ComboBox<String> loadDataComboBoxCar(ComboBox<String> comboBoxCar, ComboBox<String> comboBoxCategory){
 		comboBoxCar.getItems().clear();

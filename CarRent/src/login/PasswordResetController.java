@@ -77,11 +77,7 @@ public class PasswordResetController implements Initializable {
 			   labelShowNewPassword.setText("Something went wrong. Please fil out the form correctly!"); 
 		}
 				}
-	
-	    	
-		
-   
-   
+
    public static String generateRandomString(int length) {
        if (length < 1) throw new IllegalArgumentException();
 

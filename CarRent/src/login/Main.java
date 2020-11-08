@@ -27,7 +27,7 @@ public class Main extends Application {
         guiStage = stage;
         Parent root = FXMLLoader.load(getClass().getResource("LoginSystem.fxml"));   
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Sad Rent Car");
+        stage.setTitle("Sad Rent Car Login");
         stage.centerOnScreen();
         stage.setScene(new Scene(root, 520, 400));
         stage.show();

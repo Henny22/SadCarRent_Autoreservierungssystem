@@ -8,9 +8,18 @@ import java.time.LocalDate;
 
 public class DataExchangeLogin {
 
-	DatabaseConnection connectNow = new DatabaseConnection();
-    Connection connectDB = connectNow.getConnection();
+	static DatabaseConnection connectNow = new DatabaseConnection();
+   static Connection connectDB = connectNow.getConnection();
+    
+    public enum enumEmployeeInDatabase{
+		foundNotInStaffAndFoundUserData,
+		foundInStaffAndNotFoundInUserData,
+		foundInStaffAndUserData,
+		foundNotInStaffAndFoundNotInUserData
+	}
+    static enumEmployeeInDatabase EmployeeInDatabase = enumEmployeeInDatabase.foundNotInStaffAndFoundNotInUserData;
 	
+    
     
     //
 	//********************************************************** LoginSystem Controller **************************************************************************************

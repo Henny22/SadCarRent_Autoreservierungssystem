@@ -141,11 +141,11 @@
                   <DatePicker fx:id="txtfieldBirthdate" prefHeight="25.0" prefWidth="294.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button fx:id="btnSubmit" layoutX="333.0" layoutY="489.0" mnemonicParsing="false" onAction="#createCustomer" prefHeight="37.0" prefWidth="149.0" text="Submit" />
+            <Button fx:id="btnSubmit" layoutX="333.0" layoutY="489.0" mnemonicParsing="false" onAction="#createCustomerAndbackToOrders" prefHeight="37.0" prefWidth="149.0" text="Submit" />
             <Button fx:id="btnReset" layoutX="194.0" layoutY="489.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="37.0" prefWidth="104.0" text="Reset" />
-            <Label fx:id="lblMessage" layoutX="218.0" layoutY="465.0" prefHeight="17.0" prefWidth="257.0" textFill="WHITE">
+            <Label fx:id="lblMessage" layoutX="218.0" layoutY="465.0" prefHeight="17.0" prefWidth="257.0" textFill="RED">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="11.0" />
                </font>
             </Label>
             <Button fx:id="btnClose" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#backToOrders" prefHeight="37.0" prefWidth="149.0" text="Close" />

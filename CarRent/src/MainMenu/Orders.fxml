@@ -289,7 +289,6 @@
             </Pane>
          </children>
       </StackPane>
-      <Label text="Label" />
    </children>
    <effect>
       <DropShadow color="#1b1eeb" />

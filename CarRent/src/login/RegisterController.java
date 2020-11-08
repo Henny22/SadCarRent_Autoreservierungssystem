@@ -23,8 +23,15 @@ import javafx.scene.control.TextField;
 
 public class RegisterController  implements Initializable  {
 
-	
-	
+	// int case :
+		// case= 0 not found in Stuff & UserData
+		// case= 1 found in Staff & not in UserData
+		// case= 2 found in Staff & UserData
+	enum EmployeeInDatabase{
+		foundNotInStaffAndFoundUserData,
+		foundInStaffAndNotFoundInUserData,
+		foundInStaffAndUserData
+	}
 	
 	 @FXML
      private TextField textFieldStaffNumber;

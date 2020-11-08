@@ -30,6 +30,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -97,6 +98,7 @@ public class LoginSystemController implements Initializable {
             stage.setTitle("Password reset");
             stage.initStyle(StageStyle.UNDECORATED);
             stage.setScene(new Scene(root, 400, 310));
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
 
         }catch(Exception e){
