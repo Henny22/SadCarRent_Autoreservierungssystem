@@ -18,7 +18,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.CustomersController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="130.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -36,7 +36,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Documents/worki/AutoReservierungsSystem/src/Images/icons8_Home_32px.png" />
+                        <Image url="@../images/icons8_Home_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -54,7 +54,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/icons8_order_history_64px.png" />
+                        <Image url="@../images/icons8_order_history_64px_2.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -66,7 +66,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Documents/worki/AutoReservierungsSystem/src/Images/icons8_Person_32px.png" />
+                        <Image url="@../images/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -78,7 +78,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Documents/worki/AutoReservierungsSystem/src/Images/icons8_Xbox_Menu_32px.png" />
+                        <Image url="@../images/icons8_traffic_jam_64px_1.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -90,7 +90,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Documents/worki/AutoReservierungsSystem/src/Images/icons8_inspection_240px.png" />
+                        <Image url="@../images/icons8_inspection_240px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -126,7 +126,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Documents/worki/AutoReservierungsSystem/src/Images/icons8_Sign_Out_32px.png" />
+                        <Image url="@../images/icons8_Sign_Out_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -141,7 +141,7 @@
             <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
+            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" stylesheets="@style.css">
                <children>
                   <TextField fx:id="filterField" layoutX="590.0" layoutY="47.0" onAction="#searchBarOnAction" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #e7e5e5;" />
                   <Label layoutX="57.0" layoutY="25.0" text="Car rents Customer list" textFill="#e7e5e5">
@@ -165,10 +165,13 @@
                   </ScrollPane>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Documents/worki/AutoReservierungsSystem/src/Images/icons8_Search_52px.png" />
+                        <Image url="@../images/icons8_Search_52px.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnAddCar" layoutX="590.0" layoutY="103.0" mnemonicParsing="false" onAction="#openRegisterForm" prefHeight="25.0" prefWidth="151.0" text="Add new car" />
+                  <Button fx:id="btnAddCar" layoutX="590.0" layoutY="93.0" mnemonicParsing="false" onAction="#openRegisterForm" prefHeight="35.0" prefWidth="176.0" text="Add new car">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font></Button>
                </children>
             </Pane>
          </children>

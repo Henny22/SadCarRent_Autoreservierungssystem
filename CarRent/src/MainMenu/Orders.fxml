@@ -21,7 +21,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.OrdersController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="130.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -39,7 +39,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/icons8_Home_32px.png" />
+                        <Image url="@../images/icons8_Home_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -69,7 +69,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/icons8_Person_32px.png" />
+                        <Image url="@../images/icons8_Person_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -81,7 +81,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/icons8_Xbox_Menu_32px.png" />
+                        <Image url="@../images/icons8_traffic_jam_64px_1.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -93,7 +93,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/icons8_inspection_240px.png" />
+                        <Image url="@../images/icons8_inspection_240px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -129,7 +129,7 @@
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/icons8_Sign_Out_32px.png" />
+                        <Image url="@../images/icons8_Sign_Out_32px.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -214,7 +214,7 @@
                   </HBox>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Images/icons8_Search_52px.png" />
+                        <Image url="@../images/icons8_Search_52px.png" />
                      </image>
                   </ImageView>
                   <GridPane layoutX="52.0" layoutY="180.0" prefHeight="248.0" prefWidth="519.0">
@@ -230,46 +230,55 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="214.0" text="Choose Customer:" textFill="WHITE">
+                        <Label alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="188.0" text="Choose Customer:" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="40.0" prefHeight="30.0" prefWidth="211.0" text="Choose Category:" textFill="WHITE" GridPane.rowIndex="1">
+                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="40.0" prefHeight="30.0" prefWidth="188.0" text="Choose Category:" textFill="WHITE" GridPane.rowIndex="1">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="95.0" prefHeight="17.0" prefWidth="214.0" text="Choose Car:" textFill="WHITE" GridPane.rowIndex="2">
+                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="95.0" prefHeight="30.0" prefWidth="188.0" text="Choose Car:" textFill="WHITE" GridPane.rowIndex="2">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="161.0" prefHeight="17.0" prefWidth="214.0" text="Choose Location:" textFill="WHITE" GridPane.rowIndex="3">
+                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="161.0" prefHeight="30.0" prefWidth="188.0" text="Choose Location:" textFill="WHITE" GridPane.rowIndex="3">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="ComboBoxCustomer" prefHeight="25.0" prefWidth="303.0" GridPane.columnIndex="1" />
-                        <ComboBox fx:id="ComboBoxCategory" layoutX="228.0" layoutY="31.0" onAction="#loadDataComboBoxCar" prefHeight="25.0" prefWidth="302.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ComboBox fx:id="ComboBoxCar" layoutX="228.0" layoutY="98.0" prefHeight="25.0" prefWidth="303.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <ComboBox fx:id="ComboBoxLocation" layoutX="228.0" layoutY="164.0" prefHeight="25.0" prefWidth="304.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="170.0" prefHeight="17.0" prefWidth="214.0" text="Date:" textFill="WHITE" GridPane.rowIndex="4">
+                        <ComboBox fx:id="ComboBoxCustomer" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="1" />
+                        <ComboBox fx:id="ComboBoxCategory" layoutX="228.0" layoutY="31.0" onAction="#loadDataComboBoxCar" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ComboBox fx:id="ComboBoxCar" layoutX="228.0" layoutY="98.0" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ComboBox fx:id="ComboBoxLocation" layoutX="228.0" layoutY="164.0" prefHeight="25.0" prefWidth="318.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER_RIGHT" layoutX="10.0" layoutY="170.0" prefHeight="30.0" prefWidth="188.0" text="Date:" textFill="WHITE" GridPane.rowIndex="4">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
-                              <DatePicker fx:id="datePickerFrom" layoutX="7.0" layoutY="12.0" prefHeight="25.0" prefWidth="143.0" promptText="From" />
-                              <DatePicker fx:id="datePickerTo" layoutX="160.0" layoutY="12.0" onAction="#loadTotalAmount" prefHeight="25.0" prefWidth="143.0" promptText="To" />
+                              <DatePicker fx:id="datePickerFrom" layoutX="1.0" layoutY="12.0" prefHeight="25.0" prefWidth="143.0" promptText="From" />
+                              <DatePicker fx:id="datePickerTo" layoutX="177.0" layoutY="12.0" onAction="#loadTotalAmount" prefHeight="25.0" prefWidth="143.0" promptText="To" />
                            </children>
                         </AnchorPane>
                      </children>
                   </GridPane>
-                  <Button fx:id="btnReset" layoutX="136.0" layoutY="504.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="58.0" prefWidth="130.0" text="Reset" />
-                  <Button fx:id="btnConfirm" layoutX="397.0" layoutY="504.0" mnemonicParsing="false" onAction="#sendData" prefHeight="58.0" prefWidth="130.0" text="Confirm Order" />
-                  <Button fx:id="btnRegister" layoutX="596.0" layoutY="198.0" mnemonicParsing="false" onAction="#openRegisterForm" prefHeight="35.0" prefWidth="143.0" text="Register new Customer" />
+                  <Button fx:id="btnReset" layoutX="139.0" layoutY="496.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="58.0" prefWidth="130.0" text="Reset">
+                     <font>
+                        <Font size="17.0" />
+                     </font></Button>
+                  <Button fx:id="btnConfirm" layoutX="421.0" layoutY="496.0" mnemonicParsing="false" onAction="#sendData" prefHeight="58.0" prefWidth="150.0" text="Confirm Order">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font></Button>
+                  <Button fx:id="btnRegister" layoutX="590.0" layoutY="188.0" mnemonicParsing="false" onAction="#openRegisterForm" prefHeight="35.0" prefWidth="183.0" text="Register new Customer">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
                   <Label layoutX="130.0" layoutY="441.0" text="Total amount:" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
