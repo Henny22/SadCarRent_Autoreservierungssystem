@@ -12,6 +12,7 @@ public class ModelTable {
 			this.Street = Street;
 	}
 	
+	
 	public String getIDCus () {
 		return IDCus;
 	}

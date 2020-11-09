@@ -26,7 +26,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.Main;
-import javafx.scene.control.TableView;
 
 public class CustomersController implements Initializable{
 
@@ -38,9 +37,9 @@ public class CustomersController implements Initializable{
 		@FXML
 		private Button btnCustomers;
 		@FXML
-		private Button btnMenus;
+		private Button btnCars;
 		@FXML
-		private Button btnPackages;
+		private Button btnFeedback;
 		@FXML
 		private Button btnSettings;
 		@FXML
@@ -49,6 +48,9 @@ public class CustomersController implements Initializable{
 		private Button btnSignout;
 		@FXML
 		private Button btnRegister;
+		@FXML
+		private Button btnDataEvualations;
+		
 		
 		@FXML
 	    private Pane pnlMenus;
@@ -133,12 +135,19 @@ public class CustomersController implements Initializable{
                   e.getCause();
                 }
         }
-        if(actionEvent.getSource()==btnPackages)
+        if(actionEvent.getSource()==btnCars)
         {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
-            pnlOrders.toFront();
+            //pnlOrders.setStyle("-fx-background-color : #464F67");
+            //pnlOrders.toFront();
+        	try{
+                Parent root = FXMLLoader.load(getClass().getResource("Cars.fxml"));       
+                Main.getStage().setScene(new Scene(root,1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
         }
-        if (actionEvent.getSource() == btnSignOut) {
+        if (actionEvent.getSource() == btnSignout) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
                 Main.getStage().setScene(new Scene(root, 520, 400));
@@ -147,6 +156,7 @@ public class CustomersController implements Initializable{
                   e.getCause();
                 }
         }
+        
     }
 	
 	public void searchBarOnAction(ActionEvent e){    
@@ -190,16 +200,7 @@ public class CustomersController implements Initializable{
 				// Füge die Sortierte (und gefilterte) liste zur Tabelle hinzu
 				tableTableview.setItems(sortedData);
 		    }
-	
-	public void backToLoginOnAction(){
-        try{
-        Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
-        Main.getStage().setScene(new Scene(root, 520, 400));
-        }catch(Exception e){
-          e.printStackTrace();
-          e.getCause();
-        }
-    }
+
 	
 	public void openRegisterForm() {
 		 try{   
