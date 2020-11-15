@@ -76,7 +76,7 @@ public class RegisterController  implements Initializable  {
     }
      
      public void registerButtonOnAction(ActionEvent e){
-    	
+     if(exchangeLogin_Register.checkIfUsernameIsTaken(textFieldUsernameRegister.getText())==false) {
          if(textFieldPasswordRegister.getText().equals(textFieldConfirmPassword.getText())){
     			 if (textFieldStaffNumber.getText().equals("") || textFieldUsernameRegister.getText().equals("") || textFieldPasswordRegister.getText().equals("") || textFieldConfirmPassword.getText().equals("")) {
     				 labelAlreadyRegistered.setText("Please fil out this form");
@@ -90,6 +90,9 @@ public class RegisterController  implements Initializable  {
     		 labelAlreadyRegistered.setText("");	
     		 labelPasswordNotMatch.setText("Password does not match"); 
          }
+    }else {
+    	labelAlreadyRegistered.setText("Username is already taken! Please choose another one");	
+    }
      }
      
      public void registerUser(){

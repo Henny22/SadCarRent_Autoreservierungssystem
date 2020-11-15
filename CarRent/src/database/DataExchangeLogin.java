@@ -163,6 +163,28 @@ public class DataExchangeLogin {
 		return jobint;
 	}
 	
+	public boolean checkIfUsernameIsTaken(String Username) {
+		boolean usernameIsTaken= false;
+		
+		String checkIfUsername ="SELECT Username from staffaccounts where username='"+Username+"'";		
+		try {
+			Statement statement = connectDB.createStatement();  
+			ResultSet queryResultIfUsernameIsTaken = statement.executeQuery(checkIfUsername);
+	                
+	         if(queryResultIfUsernameIsTaken.next() == true) {
+	        	 usernameIsTaken= true;
+	         }
+	         else {
+	        	 usernameIsTaken  = false;
+	         }
+	         
+			} catch (Exception e){
+	            e.printStackTrace();
+	            e.getCause();
+	        }
+			return usernameIsTaken;
+	}
+	
 	public void registerUser(int staffNumber, String username, String password, int jobint) {
 		
 		String insertFields ="INSERT INTO staffaccounts( IDStaff, Username, Password,Administrator) VALUES ('";
