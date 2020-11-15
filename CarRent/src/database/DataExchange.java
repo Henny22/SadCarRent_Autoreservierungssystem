@@ -133,4 +133,41 @@ public class DataExchange {
 			e.printStackTrace();
 		}   
 	}
-}
+	// 
+	//
+	//********************************************************** AddNewCarController Controller **************************************************************************************
+	//
+	//
+	
+	public int getHighestIDCar() {
+		String getHighesIDCar = "SELECT IDCar FROM cars ORDER BY IDCar DESC LIMIT 0, 1";
+		int highestIDCar = 0; 
+		try {
+			Statement statement = connectDB.createStatement();
+			ResultSet queryResult = statement.executeQuery(getHighesIDCar);
+	           
+	           while (queryResult.next()){
+	        	   highestIDCar = queryResult.getInt(1) + 1;  
+	           }
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return highestIDCar;
+	}
+	
+	public void addNewCar(int highestIDCar, String textAreaCarDescription,  String txtfieldBrand, String txtfieldModel, int IDCat , String txtfieldRate , String txtfieldNoOfSeats , String txtfieldAvailability) {
+		String insertFields ="INSERT INTO cars(`IDCar`,`car_description`, `brand`, `model`, `IDCat`, `rate`, `no_of_seats`, `Availability`) VALUES ('";
+        String insertValues =highestIDCar + "','"+textAreaCarDescription + "','"+ txtfieldBrand +"','"+ txtfieldModel +"','"+ IDCat +"','"+ txtfieldRate +"','"+ txtfieldNoOfSeats +"','"+ txtfieldAvailability +"')";
+        String insertToCars = insertFields + insertValues;
+		try {
+			 Statement statement = connectDB.createStatement();
+			 //statement.executeUpdate(insertToCars);
+			 System.out.println("worked");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
+		}
+	}
+

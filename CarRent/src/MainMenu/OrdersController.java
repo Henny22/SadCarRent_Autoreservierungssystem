@@ -103,11 +103,7 @@ public class OrdersController implements Initializable {
 
     ObservableList<String> oblist = FXCollections.observableArrayList();
     
-  
-    
     DataExchange exchange = new DataExchange();
-    
-
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -120,16 +116,16 @@ public class OrdersController implements Initializable {
 			ResultSet rsCar = connectDB.createStatement().executeQuery("select IDCar,brand,model from cars");
 			//
 			ResultSet rsLocation = connectDB.createStatement().executeQuery("select IDLoc,Street,City from locations");
-			while (rsCustomer.next()) {  // loop
+			while (rsCustomer.next()) {  
 				ComboBoxCustomer.getItems().addAll(rsCustomer.getInt("IDCus")+ " | "+ rsCustomer.getString("Firstname")+ " | " +rsCustomer.getString("Lastname")+ " | " +rsCustomer.getInt("Postalcode")+" | "+rsCustomer.getDate("Birthdate")); 
 			       }
-			while (rsCategory.next()) {  // loop
+			while (rsCategory.next()) {  
 				ComboBoxCategory.getItems().addAll(rsCategory.getInt("IDCat")+ " | "+ rsCategory.getString("Label")+ " | " +rsCategory.getString("Cat_Description")); 
 			       }
-			while (rsCar.next()) {  // loop
+			while (rsCar.next()) {  
 				ComboBoxCar.getItems().addAll(rsCar.getInt("IDCar")+ " | "+ rsCar.getString("brand")+ " | " +rsCar.getString("model")); 
 			       }
-			while (rsLocation.next()) {  // loop
+			while (rsLocation.next()) {  
 				ComboBoxLocation.getItems().addAll(rsLocation.getInt("IDLoc")+ " | "+ rsLocation.getString("City")+ " | " +rsLocation.getString("Street")); 
 			       }		
 			datePickerFrom.setValue(LocalDate.now());
@@ -197,18 +193,6 @@ public class OrdersController implements Initializable {
 	
 	public void loadDataComboBoxCar() {
 		ComboBoxCar = exchange.loadDataComboBoxCar(ComboBoxCar,ComboBoxCategory);
-		/*ComboBoxCar.getItems().clear();
-		String ja = ComboBoxCategory.getValue();
-		int i = Integer.parseInt(String.valueOf(ja.charAt(0)));
-		try {
-			ResultSet rsCarUpdated = connectDB.createStatement().executeQuery("select IDCar,brand,model from cars where IDCat="+i);
-			while (rsCarUpdated.next()) {  // loop
-				ComboBoxCar.getItems().addAll(rsCarUpdated.getInt("IDCar")+ " | "+ rsCarUpdated.getString("brand")+ " | " +rsCarUpdated.getString("model")); 
-			       }
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	}
 	
 	public void loadTotalAmount(){

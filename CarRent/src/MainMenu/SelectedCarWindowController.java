@@ -8,10 +8,15 @@ import java.util.ResourceBundle;
 
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import login.Main;
+import database.DataExchangeLogin;
 import database.DatabaseConnection;
 
 public class SelectedCarWindowController implements Initializable{
@@ -38,6 +43,10 @@ public class SelectedCarWindowController implements Initializable{
     private Label labelICategorySize;
     @FXML
     private Label labelCategoryDescription;
+    @FXML
+    private Button btnDeleteCar;
+    @FXML
+    private Label labelError;
 	
 	
 	DatabaseConnection connectNow = new DatabaseConnection();
@@ -77,9 +86,36 @@ public class SelectedCarWindowController implements Initializable{
 	        }
 	}
 	
+	public void deleteCar() {
+		String deleteCar = "DELETE FROM cars WHERE IDCar ="+ CarsController.getIDCar();
+		if(DataExchangeLogin.getIsAdministrator() == true) {
+		try {		
+			Statement statement = connectDB.createStatement();       
+	        statement.executeUpdate(deleteCar);
+	        labelError.setText("Car has been deleted");
+			}catch (Exception e){
+	            e.printStackTrace();
+	            e.getCause();
+	        }
+		}
+		else {
+			labelError.setText("You are not authorized to do this action!");
+		}
+	}
+	
 	public void backToCarsMenuOnAction(){
-        Stage stage = (Stage) btnBack.getScene().getWindow();
+		Stage stage = (Stage) btnBack.getScene().getWindow();
         stage.close();
+        try {
+			Parent root = FXMLLoader.load(getClass().getResource("Cars.fxml"));
+			Main.getStage().setScene(new Scene(root, 1050, 576));
+		} catch (Exception e) {
+			e.printStackTrace();
+			e.getCause();
+		}
      }
+	
+	
+
 
 }

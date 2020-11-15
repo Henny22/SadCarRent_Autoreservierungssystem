@@ -16,7 +16,7 @@
          </font>
       </Label>
       <Label layoutX="126.0" layoutY="299.0" prefHeight="17.0" prefWidth="179.0" />
-      <Button fx:id="btnBack" layoutX="161.0" layoutY="442.0" mnemonicParsing="false" onAction="#backToCarsMenuOnAction" prefHeight="31.0" prefWidth="164.0" style="-fx-background-color: #525252;" text="Back" textFill="WHITE">
+      <Button fx:id="btnBack" layoutX="264.0" layoutY="443.0" mnemonicParsing="false" onAction="#backToCarsMenuOnAction" prefHeight="31.0" prefWidth="164.0" style="-fx-background-color: #525252;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
@@ -109,5 +109,15 @@
             </Label>
          </children>
       </GridPane>
+      <Button fx:id="btnDeleteCar" layoutX="72.0" layoutY="443.0" mnemonicParsing="false" onAction="#deleteCar" prefHeight="31.0" prefWidth="164.0" style="-fx-background-color: #525252;" text="Delete Car" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="labelError" alignment="CENTER" layoutX="129.0" layoutY="426.0" prefHeight="17.0" prefWidth="248.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

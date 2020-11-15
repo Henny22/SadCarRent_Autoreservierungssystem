@@ -18,9 +18,11 @@ public class DataExchangeLogin {
 		foundNotInStaffAndFoundNotInUserData
 	}
     static enumEmployeeInDatabase EmployeeInDatabase = enumEmployeeInDatabase.foundNotInStaffAndFoundNotInUserData;
-	
+    static boolean isAdministrator = false;
     
-    
+    public static boolean getIsAdministrator() {
+    	return isAdministrator;
+    }
     //
 	//********************************************************** LoginSystem Controller **************************************************************************************
 	//
@@ -47,6 +49,27 @@ public class DataExchangeLogin {
             e.getCause();
         }
         return validLogin;
+	}
+	
+	public void getIsAdministrator(String Username, String Password) {
+		
+				String checkIsAdministrator = "select Administrator from staffaccounts where Username='"+Username+"' and Password='"+Password+"'";
+				
+				try{
+			           Statement statement = connectDB.createStatement(); 
+			           ResultSet queryResult = statement.executeQuery(checkIsAdministrator);
+			           
+			           while (queryResult.next()){
+			               if (queryResult.getBoolean(1)==true){
+			            	   isAdministrator =true;
+			               }else {
+			            	   isAdministrator=false;
+			               }
+			           }
+			        }catch (Exception e){
+			            e.printStackTrace();
+			            e.getCause();
+			        }
 	}
 	
 	//

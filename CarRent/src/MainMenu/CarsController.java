@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
-
+import database.DataExchange;
 import database.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,10 +73,10 @@ public class CarsController implements Initializable{
     private Button btnDataEvaulations;
     @FXML
     private TextField filterField;
-    
-    
     @FXML
     private Pane pnlOrders;
+    
+    DataExchange exchange = new DataExchange();
     
     ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
     
@@ -159,6 +159,7 @@ public class CarsController implements Initializable{
                   e.getCause();
                 }
         }
+        
     }
 	
 
@@ -201,27 +202,41 @@ public class CarsController implements Initializable{
 
 	 public void checkTableClick(MouseEvent event){
 
-         ObservableList<ModelTable> tableList;
-         tableList = tableTableview.getSelectionModel().getSelectedItems();
-         IDCar =  Integer.parseInt(tableList.get(0).getIDCar());
-        
-         try{
-         Parent root = FXMLLoader.load(getClass().getResource("selectedCarWindow.fxml"));
-     
-         Stage stage = new Stage();
-	     stage.initStyle(StageStyle.UNDECORATED);
-	     stage.setTitle("Order View");
-	     //stage.setAlwaysOnTop(true);
-	     
-	     stage.initOwner(Main.getStage());
-	     stage.initModality(Modality.WINDOW_MODAL);
-	     stage.setScene(new Scene(root, 500, 485));
-	     stage.setX(1150);
-	     stage.setY(300);
-	     stage.show();
- }catch(Exception e){
-   e.printStackTrace();
-   e.getCause();
- }
-}
+	         ObservableList<ModelTable> tableList;
+	         tableList = tableTableview.getSelectionModel().getSelectedItems();
+	         IDCar =  Integer.parseInt(tableList.get(0).getIDCar());
+	        
+	         try{
+		         Parent root = FXMLLoader.load(getClass().getResource("selectedCarWindow.fxml"));
+		     
+		         Stage stage = new Stage();
+			     stage.initStyle(StageStyle.UNDECORATED);
+			     stage.setTitle("Order View");
+			     //stage.setAlwaysOnTop(true);
+			     
+			     stage.initOwner(Main.getStage());
+			     stage.initModality(Modality.WINDOW_MODAL);
+			     stage.setScene(new Scene(root, 500, 485));
+			     stage.setX(1150);
+			     stage.setY(300);
+			     stage.show();
+	         }catch(Exception e){
+	        	 e.printStackTrace();
+	        	 e.getCause();
+	         }
+	}
+	 public void openCarRegisterForm() {
+		 try{   
+	            Parent root = FXMLLoader.load(getClass().getResource("AddNewCar.fxml"));
+	            Stage stage = new Stage();
+	            stage.setTitle("Register a new car");
+	            stage.initStyle(StageStyle.UNDECORATED);
+	            stage.setScene(new Scene(root, 520, 549));
+	            stage.initModality(Modality.APPLICATION_MODAL);
+	            stage.show();
+	        }catch(Exception e){
+	          e.printStackTrace();
+	          e.getCause();
+	        } 
+	}
 }

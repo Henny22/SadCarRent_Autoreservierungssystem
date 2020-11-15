@@ -53,6 +53,8 @@ public class LoginSystemController implements Initializable {
     private Label labelStatus;
     @FXML
     private Button buttonCancel;
+    
+    
       
      DatabaseConnection connectNow = new DatabaseConnection();
      Connection connectDB = connectNow.getConnection();
@@ -70,7 +72,8 @@ public class LoginSystemController implements Initializable {
     public void validateLogin(){	
     	if(textFieldUsername.getText().isEmpty() == false && textFieldPassword.getText().isEmpty() == false){
     		if (exchangeLogin.validateLogin(textFieldUsername.getText(),textFieldPassword.getText()) == true){
-                   loginMainMenu();
+                    exchangeLogin.getIsAdministrator(textFieldUsername.getText(),textFieldPassword.getText());
+    				loginMainMenu();
             }else {
                    labelStatus.setText("Invalid login. Please try again");
                } 
