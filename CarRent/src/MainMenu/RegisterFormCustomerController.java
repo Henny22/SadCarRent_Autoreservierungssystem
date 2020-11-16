@@ -80,7 +80,6 @@ public class RegisterFormCustomerController implements Initializable {
 		}else {
 			lblMessage.setText("Please fil out this form correctly!");
 		}
-		
 	}
 
 	public void createCustomerAndbackToOrders() {
@@ -91,7 +90,7 @@ public class RegisterFormCustomerController implements Initializable {
 				&& txtfieldCity.getText().isEmpty() == false && txtfieldPostalcode.getText().isEmpty() == false
 				&& txtfieldState.getText().isEmpty() == false && txtfieldCountry.getText().isEmpty() == false
 				&& txtfieldMobilephone.getText().isEmpty() == false && txtfieldPostalcode.getText().matches("[0-9]*") && txtfieldMobilephone.getText().matches("[0-9]*")) {
-
+					
 					exchange.setDataInCustomer(txtfieldFirstname.getText(), txtfieldLastname.getText(), txtfieldEmail.getText(),
 					txtfieldBirthdate.getValue(), txtfieldStreet.getText(), txtfieldStreetNo.getText(),
 					txtfieldCity.getText(), txtfieldPostalcode.getText(), txtfieldState.getText(),
