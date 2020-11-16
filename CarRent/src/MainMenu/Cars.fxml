@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -22,7 +23,7 @@
          <children>
             <ImageView fitHeight="130.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../Documents/worki/AutoReservierungsSystem/src/Images/icons8_user_male_100px.png" />
+                  <Image url="@../images/icons8_user_male_100px.png" />
                </image>
                <VBox.margin>
                   <Insets bottom="10.0" top="50.0" />
@@ -141,7 +142,7 @@
             <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" stylesheets="@style.css">
+            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
                <children>
                   <TextField fx:id="filterField" layoutX="590.0" layoutY="47.0" onAction="#searchBarOnAction" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #e7e5e5;" />
                   <Label layoutX="57.0" layoutY="25.0" text="Car rents Car list" textFill="#e7e5e5">
@@ -149,9 +150,9 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="14.0" layoutY="142.0" prefHeight="423.0" prefWidth="772.0" style="-fx-background-color: #02030A;" stylesheets="@../../../../../Documents/worki/AutoReservierungsSystem/src/GUI/style.css">
+                  <ScrollPane layoutX="14.0" layoutY="142.0" prefHeight="423.0" prefWidth="772.0" style="-fx-background-color: #02030A;">
                      <content>
-                        <TableView fx:id="tableTableview" onMouseClicked="#checkTableClick" prefHeight="418.0" prefWidth="771.0" style="-fx-background-color: #02030A;" stylesheets="@../../../../../Documents/worki/AutoReservierungsSystem/src/GUI/style.css">
+                        <TableView fx:id="tableTableview" onMouseClicked="#checkTableClick" prefHeight="418.0" prefWidth="771.0" style="-fx-background-color: #02030A;" stylesheets="@style.css">
                           <columns>
                             <TableColumn fx:id="tableColumnIDCar" prefWidth="77.0" text="IDCar" />
                             <TableColumn fx:id="tableColumnBrand" minWidth="0.0" prefWidth="174.0" text="Brand" />
@@ -162,6 +163,10 @@
                           </columns>
                         </TableView>
                      </content>
+                     <stylesheets>
+                        <URL value="@../../../../../Documents/worki/AutoReservierungsSystem/src/GUI/style.css" />
+                        <URL value="@style.css" />
+                     </stylesheets>
                   </ScrollPane>
                   <ImageView fitHeight="17.0" fitWidth="16.0" layoutX="749.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -173,6 +178,10 @@
                         <Font name="System Bold" size="17.0" />
                      </font></Button>
                </children>
+               <stylesheets>
+                  <URL value="@style.css" />
+                  <URL value="@style.css" />
+               </stylesheets>
             </Pane>
          </children>
       </StackPane>
