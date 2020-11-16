@@ -1,4 +1,4 @@
-package MainMenu;
+package menuOrders;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -71,7 +71,7 @@ public class RegisterFormCustomerController implements Initializable {
 		Stage stage = (Stage) btnClose.getScene().getWindow();
 		stage.close();
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("Customers.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));
 			Main.getStage().setScene(new Scene(root, 1050, 576));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class RegisterFormCustomerController implements Initializable {
 			Stage stage = (Stage) btnClose.getScene().getWindow();
 			stage.close();
 			try {
-				Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));
+				Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));
 				Main.getStage().setScene(new Scene(root, 1050, 576));
 			} catch (Exception e) {
 				e.printStackTrace();

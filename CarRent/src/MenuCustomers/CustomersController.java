@@ -1,4 +1,4 @@
-package MainMenu;
+package MenuCustomers;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -26,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.Main;
+import universal.ModelTable;
 
 public class CustomersController implements Initializable{
 
@@ -105,29 +106,29 @@ public class CustomersController implements Initializable{
 	}
 	
 	public void handleClicks(ActionEvent actionEvent) {
-		if (actionEvent.getSource() == btnOrders) {
+        if (actionEvent.getSource() == btnOrders) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
-                }
-            
+                }     
         }
         if (actionEvent.getSource() == btnCustomers) {
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Customers.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
                 }
- 
+        	// pnlMenus.setStyle("-fx-background-color : #53639F");
+            //pnlMenus.toFront();
         }
         if (actionEvent.getSource() == btnOverview) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/Menu.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -139,13 +140,19 @@ public class CustomersController implements Initializable{
             //pnlOrders.setStyle("-fx-background-color : #464F67");
             //pnlOrders.toFront();
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Cars.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
                 }
         }
+        if(actionEvent.getSource()==btnFeedback)
+        {
+            pnlOrders.setStyle("-fx-background-color : #464F67");
+            pnlOrders.toFront();
+        }
+        
         if (actionEvent.getSource() == btnSignout) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
@@ -154,7 +161,7 @@ public class CustomersController implements Initializable{
                   e.printStackTrace();
                   e.getCause();
                 }
-        }        
+        }
     }
 	
 	public void searchBarOnAction(ActionEvent e){    

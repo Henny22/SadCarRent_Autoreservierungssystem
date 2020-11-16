@@ -1,4 +1,4 @@
-package MainMenu;
+ package menuCars;
 
 
 import java.net.URL;
@@ -29,6 +29,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.Main;
+import universal.ModelTable;
 
 public class CarsController implements Initializable{
 
@@ -108,28 +109,29 @@ public class CarsController implements Initializable{
 	}
 	
 	public void handleClicks(ActionEvent actionEvent) {
-		if (actionEvent.getSource() == btnOrders) {
+        if (actionEvent.getSource() == btnOrders) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
-                }
+                }     
         }
         if (actionEvent.getSource() == btnCustomers) {
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Customers.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
                 }
- 
+        	// pnlMenus.setStyle("-fx-background-color : #53639F");
+            //pnlMenus.toFront();
         }
         if (actionEvent.getSource() == btnOverview) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/Menu.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -141,13 +143,19 @@ public class CarsController implements Initializable{
             //pnlOrders.setStyle("-fx-background-color : #464F67");
             //pnlOrders.toFront();
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Cars.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
                 }
         }
+        if(actionEvent.getSource()==btnFeedback)
+        {
+            pnlOrders.setStyle("-fx-background-color : #464F67");
+            pnlOrders.toFront();
+        }
+        
         if (actionEvent.getSource() == btnSignout) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
@@ -156,7 +164,7 @@ public class CarsController implements Initializable{
                   e.printStackTrace();
                   e.getCause();
                 }
-        }       
+        }
     }
 	
 
@@ -196,13 +204,14 @@ public class CarsController implements Initializable{
 		    }
 
 	 public void checkTableClick(MouseEvent event){
-
+	
 	         //ObservableList<ModelTable> tableList;
 	         //tableList = tableTableview.getSelectionModel().getSelectedItems();
-	         IDCar =  Integer.parseInt(tableTableview.getSelectionModel().getSelectedItems().get(0).getIDCar());
+	         // Lesen der IDCar aus der ausgewählten Zeile in Tableview, zur Nutzung der Anzeige der Daten in "SelectedCarWindow"
+		 	 IDCar =  Integer.parseInt(tableTableview.getSelectionModel().getSelectedItems().get(0).getIDCar());
 	        
 	         try{
-		         Parent root = FXMLLoader.load(getClass().getResource("selectedCarWindow.fxml"));
+		         Parent root = FXMLLoader.load(getClass().getResource("/menuCars/selectedCarWindow.fxml"));
 		     
 		         Stage stage = new Stage();
 			     stage.initStyle(StageStyle.UNDECORATED);
@@ -222,7 +231,7 @@ public class CarsController implements Initializable{
 	}
 	 public void openCarRegisterForm() {
 		 try{   
-	            Parent root = FXMLLoader.load(getClass().getResource("AddNewCar.fxml"));
+	            Parent root = FXMLLoader.load(getClass().getResource("/menuCars/AddNewCar.fxml"));
 	            Stage stage = new Stage();
 	            stage.setTitle("Register a new car");
 	            stage.initStyle(StageStyle.UNDECORATED);

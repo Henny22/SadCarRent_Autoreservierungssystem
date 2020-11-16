@@ -1,10 +1,14 @@
 package database;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+
+
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -20,23 +24,35 @@ public class DataExchange {
 	
 	
 		//
-		//********************************************************** Orders Controller **************************************************************************************
+		//********************************************************** General **************************************************************************************
 		//
 		//
 	
-	public String setHeaderData(){
-        String numberOrders="";
-        try {
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT COUNT(*) FROM orders");
-            while(rs.next()){
-                numberOrders = rs.getString("COUNT(*)");
-            }
-            
-        } catch (Exception e) {
-           e.printStackTrace();
-        }
-        return numberOrders;
-    }
+	public List<String> getHeaderData() {
+		List<String> dataHeaderList = new ArrayList<String>();
+		try {
+			
+			
+			ResultSet queryResultTotalOrders = connectDB.createStatement().executeQuery("SELECT COUNT(*) FROM orders");
+			ResultSet queryResultTotalDelivered = connectDB.createStatement().executeQuery("select count(*) from orders where completed=1");
+			ResultSet queryResultTotalPending = connectDB.createStatement().executeQuery("select count(*) from orders where completed=0");
+			
+			while (queryResultTotalOrders.next()) {  // loop
+				dataHeaderList.add(queryResultTotalOrders.getString("COUNT(*)"));
+			       }	
+			while (queryResultTotalDelivered.next()) {  // loop
+				dataHeaderList.add(queryResultTotalDelivered.getString("COUNT(*)"));
+			       }
+			while (queryResultTotalPending.next()) {  // loop
+				dataHeaderList.add(queryResultTotalPending.getString("COUNT(*)"));
+			       }
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dataHeaderList;
+	}
 	
 	// 
 	//
@@ -113,6 +129,37 @@ public class DataExchange {
 		
 	}
 	
+	public void setOrderOnComplete(int IDReservation) {
+		String updateOrderCompleted ="update orders set completed=1 where IDReservation="+IDReservation;
+		try {
+			 Statement statement = connectDB.createStatement();
+			 statement.executeUpdate(updateOrderCompleted);	
+		} catch (Exception e) {	
+			e.printStackTrace();
+		}   
+	}
+	
+	public List<String> getOrderData(int IDReservation) {
+		String getSelectedOrderData ="select t1.IDReservation, t2.Lastname, t3.Brand, t4.City,t1.Amount,t1.IDCar,t1.IDCus,t1.IDLoc from orders t1 left join customers t2 on t1.IDCus = t2.IDCus left join cars t3 on t1.IDCar = t3.IDCar left join locations t4 on t1.IDLoc = t4.IDLoc where IDReservation="+IDReservation;
+		List<String> selectedOrderDataList = new ArrayList<String>();
+		try {
+			Statement statement = connectDB.createStatement();
+			
+			ResultSet queryResultOrderData = statement.executeQuery(getSelectedOrderData);
+			
+			while (queryResultOrderData.next()) {  // loop
+				selectedOrderDataList.add(queryResultOrderData.getString("Lastname"));
+				selectedOrderDataList.add(queryResultOrderData.getString("Brand"));
+				selectedOrderDataList.add(queryResultOrderData.getString("City"));
+				selectedOrderDataList.add(queryResultOrderData.getString("Amount"));
+			       }		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return selectedOrderDataList;
+	}
+	
 	
 
 	// 
@@ -162,8 +209,7 @@ public class DataExchange {
         String insertToCars = insertFields + insertValues;
 		try {
 			 Statement statement = connectDB.createStatement();
-			 //statement.executeUpdate(insertToCars);
-			 System.out.println("worked");
+			 statement.executeUpdate(insertToCars);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

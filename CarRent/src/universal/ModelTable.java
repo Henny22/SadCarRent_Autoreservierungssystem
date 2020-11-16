@@ -1,9 +1,10 @@
-package MainMenu;
+package universal;
 
 public class ModelTable {
 
 	private String IDCus, Firstname, Lastname, Email, Street;
 	private String IDCar, Brand, Model, Seats, Rate, Availability;
+	private String IDReservation, Date, startDate, endDate;
 	public ModelTable(String IDCus, String Firstname, String Lastname, String Email, String Street) {
 			this.IDCus = IDCus;
 			this.Firstname = Firstname;
@@ -20,6 +21,13 @@ public class ModelTable {
 		this.Rate = Rate;
 		this.Availability = Availability;
 	}
+	
+	public ModelTable(String IDReservation, String Date, String startDate, String endDate) {
+		this.IDReservation = IDReservation;
+		this.Date = Date;
+		this.startDate= startDate;
+		this.endDate = endDate;
+		}
 	
 	public String getIDCus () {
 		return IDCus;
@@ -111,5 +119,37 @@ public class ModelTable {
 		this.Availability =Availability;
 	}
 	
+	// ****************************************OrdersController********************************************************************
 	
+	public String getstartDate () {
+		return startDate;
+	}
+	
+	public void setstartDate(String startDate) {
+		this.startDate =startDate;
+	}
+	
+	public String getendDate () {
+		return endDate;
+	}
+	
+	public void setendDate(String endDate) {
+		this.endDate =endDate;
+	}
+	
+	public String getIDReservation () {
+		return IDReservation;
+	}
+	
+	public void setIDReservation(String IDReservation) {
+		this.IDReservation =IDReservation;
+	}
+	
+	public String getDate () {
+		return Date;
+	}
+	
+	public void setDate(String Date) {
+		this.Date =Date;
+	}
 }

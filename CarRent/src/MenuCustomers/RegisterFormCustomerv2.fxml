@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.RegisterFormCustomerController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="627.0" prefWidth="520.0" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuOrders.RegisterFormCustomerController">
    <top>
       <AnchorPane prefHeight="80.0" prefWidth="520.0" style="-fx-background-color: #242840;" BorderPane.alignment="CENTER">
          <children>
@@ -141,11 +141,11 @@
                   <DatePicker fx:id="txtfieldBirthdate" prefHeight="25.0" prefWidth="294.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button fx:id="btnSubmit" layoutX="333.0" layoutY="489.0" mnemonicParsing="false" onAction="#createCustomerAndbackToCustomers" prefHeight="37.0" prefWidth="149.0" stylesheets="@style.css" text="Submit">
+            <Button fx:id="btnSubmit" layoutX="333.0" layoutY="489.0" mnemonicParsing="false" onAction="#createCustomerAndbackToCustomers" prefHeight="37.0" prefWidth="149.0" text="Submit">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button fx:id="btnReset" layoutX="194.0" layoutY="489.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="37.0" prefWidth="104.0" stylesheets="@style.css" text="Reset">
+            <Button fx:id="btnReset" layoutX="194.0" layoutY="489.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="37.0" prefWidth="104.0" text="Reset">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -154,7 +154,7 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </Label>
-            <Button fx:id="btnClose" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#backToOrders" prefHeight="37.0" prefWidth="149.0" stylesheets="@style.css" text="Close">
+            <Button fx:id="btnClose" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#backToOrders" prefHeight="37.0" prefWidth="149.0" text="Close">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>

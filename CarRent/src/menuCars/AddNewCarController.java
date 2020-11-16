@@ -1,4 +1,4 @@
-package MainMenu;
+package menuCars;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -85,7 +85,7 @@ public class AddNewCarController implements Initializable {
 	
 	public void backToCarsMenuOnAction(){
 		try{
-            Parent root = FXMLLoader.load(getClass().getResource("Cars.fxml"));       
+            Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
             Main.getStage().setScene(new Scene(root,1050,576));
             }catch(Exception e){
               e.printStackTrace();

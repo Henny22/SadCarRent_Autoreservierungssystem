@@ -1,5 +1,6 @@
 package MainMenu;
 
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -73,10 +74,11 @@ public class MenuController implements Initializable {
 		setHeaderData();
 	}
 	
+	//Dokumentation genau erklären warum wir das so gemacht haben
 	public void handleClicks(ActionEvent actionEvent) {
         if (actionEvent.getSource() == btnOrders) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -85,7 +87,7 @@ public class MenuController implements Initializable {
         }
         if (actionEvent.getSource() == btnCustomers) {
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Customers.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -96,7 +98,7 @@ public class MenuController implements Initializable {
         }
         if (actionEvent.getSource() == btnOverview) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/Menu.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -108,7 +110,7 @@ public class MenuController implements Initializable {
             //pnlOrders.setStyle("-fx-background-color : #464F67");
             //pnlOrders.toFront();
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Cars.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();

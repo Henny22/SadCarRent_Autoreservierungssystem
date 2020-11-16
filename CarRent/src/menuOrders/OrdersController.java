@@ -1,4 +1,4 @@
-package MainMenu;
+package menuOrders;
 
 
 import java.net.URL;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -24,6 +26,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -70,6 +73,8 @@ public class OrdersController implements Initializable {
     
     @FXML
     private Label labelTotalOrders;
+    @FXML
+    private Label labelTotalOrders1;
     
     @FXML
     private Button btnOrders;
@@ -90,32 +95,71 @@ public class OrdersController implements Initializable {
     private Button btnSettings;
     
     @FXML
-    private Pane pnlMenus;
+    private Pane pnlOrderCreate;
     
     @FXML
-    private Pane pnlOrders;
+    private Pane pnlOrderCheck;
     
     @FXML
     private Button btnSignout;
     
     @FXML
     private Button btnCars;
+    
+    @FXML
+    private Button btnOrderWrite;
+    
+    @FXML
+    private Button btnOrderConfirm;
 
+    @FXML
+    private ComboBox<String> comboBoxListOrders;
+    
+    @FXML
+    private Button btnConclude;
+    
+    @FXML
+    private Label lblErrorTextConclude;
+    
+    @FXML
+    private Label lblLastname;
+    @FXML
+    private Label lblBrand;
+    @FXML
+    private Label lblCity;
+    @FXML
+    private Label lblAmountConfirm;
+    
+    @FXML
+    private Label labelDelivered;
+    @FXML
+    private Label labelDelivered1;
+    @FXML
+    private Label labelPending;
+    @FXML
+    private Label labelPending1;
+    @FXML
+    private Label labelHold;
+    @FXML
+    private Label labelHold1;
+    
     ObservableList<String> oblist = FXCollections.observableArrayList();
     
     DataExchange exchange = new DataExchange();
+	private List<String> selectedOrderDataList;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		labelTotalOrders.setText(exchange.setHeaderData());
+		
+		setHeaderData();
 		//exchange.loadDataComboBoxes("select IDCus,Firstname,Lastname,Postalcode,Birthdate from customers",ComboBoxCustomer,oblist.add("IDCus","Firstname"));
 		// TODO Code in DataExchange verallgemeinern
 		try {
 			ResultSet rsCustomer = connectDB.createStatement().executeQuery("select IDCus,Firstname,Lastname,Postalcode,Birthdate from customers");
 			ResultSet rsCategory = connectDB.createStatement().executeQuery("Select IDCat,Label,Cat_Description from category");
 			ResultSet rsCar = connectDB.createStatement().executeQuery("select IDCar,brand,model from cars");
-			//
 			ResultSet rsLocation = connectDB.createStatement().executeQuery("select IDLoc,Street,City from locations");
+			
 			while (rsCustomer.next()) {  
 				ComboBoxCustomer.getItems().addAll(rsCustomer.getInt("IDCus")+ " | "+ rsCustomer.getString("Firstname")+ " | " +rsCustomer.getString("Lastname")+ " | " +rsCustomer.getInt("Postalcode")+" | "+rsCustomer.getDate("Birthdate")); 
 			       }
@@ -127,28 +171,43 @@ public class OrdersController implements Initializable {
 			       }
 			while (rsLocation.next()) {  
 				ComboBoxLocation.getItems().addAll(rsLocation.getInt("IDLoc")+ " | "+ rsLocation.getString("City")+ " | " +rsLocation.getString("Street")); 
-			       }		
+			       }
+			loadComboBoxOrder();
 			datePickerFrom.setValue(LocalDate.now());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
-
+	
+	public void setHeaderData() {
+		
+		ArrayList<String> headerDataList = new ArrayList<String>();
+		headerDataList = (ArrayList<String>) exchange.getHeaderData();
+		
+		labelTotalOrders.setText(headerDataList.get(0));
+		labelTotalOrders1.setText(headerDataList.get(0));
+	
+		labelDelivered.setText(headerDataList.get(1));
+		labelDelivered1.setText(headerDataList.get(1));
+		
+		labelPending.setText(headerDataList.get(2));
+		labelPending1.setText(headerDataList.get(2));
+	}
+	
 	public void handleClicks(ActionEvent actionEvent) {
-		if (actionEvent.getSource() == btnOrders) {
+        if (actionEvent.getSource() == btnOrders) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Orders.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
-                }
-            
+                }     
         }
         if (actionEvent.getSource() == btnCustomers) {
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Customers.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -159,7 +218,7 @@ public class OrdersController implements Initializable {
         }
         if (actionEvent.getSource() == btnOverview) {
             try{
-                Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/Menu.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -171,13 +230,18 @@ public class OrdersController implements Initializable {
             //pnlOrders.setStyle("-fx-background-color : #464F67");
             //pnlOrders.toFront();
         	try{
-                Parent root = FXMLLoader.load(getClass().getResource("Cars.fxml"));       
+                Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();
                 }
         }
+        if(actionEvent.getSource()==btnFeedback)
+        {
+            
+        }
+        
         if (actionEvent.getSource() == btnSignout) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
@@ -237,7 +301,7 @@ public class OrdersController implements Initializable {
 				lblAmount.setText(amount+"€");
 				
 				exchange.setDataInOrders(IDCar,IDCust,amount,IDLoc,dateFrom,dateTo);
-		        labelTotalOrders.setText(exchange.setHeaderData());
+				setHeaderData();
 		        lblErrorText.setText("Order was succesful!");
 		        lblErrorText.setVisible(true);
 			} else {
@@ -249,9 +313,13 @@ public class OrdersController implements Initializable {
 			}
 		}
 	
-	public int getIDFromComboBox(ComboBox cb) {
-		String firstCharComboBox = (String) cb.getValue();
-		int value = Integer.parseInt(String.valueOf(firstCharComboBox.charAt(0)));
+	public int getIDFromComboBox(ComboBox<String> cb) {
+		String selectedValues = (String) cb.getValue();
+		String stringValue  = selectedValues.substring( 0, selectedValues.indexOf("|"));
+		stringValue = stringValue.trim();
+		int value = Integer.parseInt(stringValue);
+		
+		
 		return value;
 	}
 	
@@ -269,7 +337,7 @@ public class OrdersController implements Initializable {
 	          e.getCause();
 	        } 
 	}
-	
+		
 	public void resetForm() {
 		 ComboBoxCustomer.getSelectionModel().clearSelection();
 		 //: TODO ComboBoxCategory.getSelectionModel().clearSelection();
@@ -279,4 +347,60 @@ public class OrdersController implements Initializable {
 		 lblAmount.setText("");
 		 lblErrorText.setText("");	
 	 }
+	
+	
+	
+	public void changeTOpnlOrderCreate(ActionEvent actionEvent) {		
+        	pnlOrderCreate.setVisible(true);
+			pnlOrderCheck.setVisible(false);    
+	}
+
+	public void changeTOpnlOrderCheck(ActionEvent actionEvent) {
+		pnlOrderCreate.setVisible(false);
+		pnlOrderCheck.setVisible(true);
+	}
+	
+	public void loadComboBoxOrder() {
+		comboBoxListOrders.getItems().clear();
+		try {
+			ResultSet rsOrders = connectDB.createStatement().executeQuery("SELECT IDReservation,Date, startDate, endDate from orders where completed=0");
+			while (rsOrders.next()) {  
+				comboBoxListOrders.getItems().addAll(rsOrders.getInt("IDReservation")+ " | Order Date: "+ rsOrders.getString("Date")+ " | Rent start: " +rsOrders.getString("startDate")+ " | Rent end: " +rsOrders.getString("endDate")); 
+			       }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void setConcludeDataOrder() {
+		if(comboBoxListOrders.getValue() != null) {
+		selectedOrderDataList = new ArrayList<String>();
+		int IDReservation = getIDFromComboBox(comboBoxListOrders);
+		
+		selectedOrderDataList = exchange.getOrderData(IDReservation);
+		
+		lblLastname.setText(selectedOrderDataList.get(0));
+		lblBrand.setText(selectedOrderDataList.get(1));
+		lblCity.setText(selectedOrderDataList.get(2));
+		lblAmountConfirm.setText(selectedOrderDataList.get(3));
+		}
+		}
+	
+	public void concludeDataOrder() {
+		if(comboBoxListOrders.getValue() != null) {
+			int IDReservation = getIDFromComboBox(comboBoxListOrders);
+			exchange.setOrderOnComplete(IDReservation);
+			lblErrorTextConclude.setText("Order has been signed as completed!");
+			lblLastname.setText("");
+			lblBrand.setText("");
+			lblCity.setText("");
+			lblAmountConfirm.setText("");
+			loadComboBoxOrder();
+		}else {
+			lblErrorTextConclude.setText("Please select a not completed Order before submitting!");
+		}
+			
+	}	
 }

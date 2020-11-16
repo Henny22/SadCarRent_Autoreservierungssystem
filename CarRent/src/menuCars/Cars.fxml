@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.CustomersController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuCars.CarsController">
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" stylesheets="@style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="130.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -98,7 +98,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnDataEvualations" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" text="Data evaulations">
+            <Button fx:id="btnDataEvaulations" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" text="Data evaulations">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -136,28 +136,29 @@
             </Button>
          </children>
       </VBox>
-      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;" stylesheets="@style.css">
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
          <children>
             <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0" stylesheets="@style.css">
+            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
                <children>
                   <TextField fx:id="filterField" layoutX="590.0" layoutY="47.0" onAction="#searchBarOnAction" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #e7e5e5;" />
-                  <Label layoutX="57.0" layoutY="25.0" text="Car rents Customer list" textFill="#e7e5e5">
+                  <Label layoutX="57.0" layoutY="25.0" text="Car rents Car list" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="14.0" layoutY="178.0" prefHeight="374.0" prefWidth="746.0" style="-fx-background-color: #02030A;" stylesheets="@style.css">
+                  <ScrollPane layoutX="14.0" layoutY="142.0" prefHeight="423.0" prefWidth="772.0" style="-fx-background-color: #02030A;">
                      <content>
-                        <TableView fx:id="tableTableview" prefHeight="374.0" prefWidth="730.0" style="-fx-background-color: #02030A;" stylesheets="@style.css">
+                        <TableView fx:id="tableTableview" onMouseClicked="#checkTableClick" prefHeight="418.0" prefWidth="771.0" style="-fx-background-color: #02030A;">
                           <columns>
-                            <TableColumn fx:id="tableColumnCustomerID" prefWidth="111.0" text="CustomerID" />
-                            <TableColumn fx:id="tableColumnFirstname" minWidth="0.0" prefWidth="168.0" text="Firstname" />
-                              <TableColumn fx:id="tableColumnLastname" prefWidth="153.0" text="Lastname" />
-                              <TableColumn fx:id="tableColumnEmail" minWidth="0.0" prefWidth="149.0" text="Email" />
-                              <TableColumn fx:id="tableColumnStreet" prefWidth="149.0" text="Street" />
+                            <TableColumn fx:id="tableColumnIDCar" prefWidth="77.0" text="IDCar" />
+                            <TableColumn fx:id="tableColumnBrand" minWidth="0.0" prefWidth="174.0" text="Brand" />
+                              <TableColumn fx:id="tableColumnModel" prefWidth="164.0" text="Model" />
+                              <TableColumn fx:id="tableColumnSeats" minWidth="0.0" prefWidth="103.0" text="seats" />
+                              <TableColumn fx:id="tableColumnRate" prefWidth="110.0" text="rate" />
+                              <TableColumn fx:id="tableColumnAvailability" prefWidth="130.0" text="availability" />
                           </columns>
                         </TableView>
                      </content>
@@ -167,7 +168,7 @@
                         <Image url="@../images/icons8_Search_52px.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnRegister" layoutX="546.0" layoutY="115.0" mnemonicParsing="false" onAction="#openRegisterForm" prefHeight="42.0" prefWidth="222.0" text="Register new Customer">
+                  <Button fx:id="btnAddCar" layoutX="590.0" layoutY="93.0" mnemonicParsing="false" onAction="#openCarRegisterForm" prefHeight="35.0" prefWidth="176.0" text="Add new car">
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font></Button>
