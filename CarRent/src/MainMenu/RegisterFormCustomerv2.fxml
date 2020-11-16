@@ -141,14 +141,23 @@
                   <DatePicker fx:id="txtfieldBirthdate" prefHeight="25.0" prefWidth="294.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
-            <Button fx:id="btnSubmit" layoutX="333.0" layoutY="489.0" mnemonicParsing="false" onAction="#createCustomerAndbackToCustomers" prefHeight="37.0" prefWidth="149.0" text="Submit" />
-            <Button fx:id="btnReset" layoutX="194.0" layoutY="489.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="37.0" prefWidth="104.0" text="Reset" />
+            <Button fx:id="btnSubmit" layoutX="333.0" layoutY="489.0" mnemonicParsing="false" onAction="#createCustomerAndbackToCustomers" prefHeight="37.0" prefWidth="149.0" stylesheets="@style.css" text="Submit">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnReset" layoutX="194.0" layoutY="489.0" mnemonicParsing="false" onAction="#resetForm" prefHeight="37.0" prefWidth="104.0" stylesheets="@style.css" text="Reset">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
             <Label fx:id="lblMessage" layoutX="218.0" layoutY="465.0" prefHeight="17.0" prefWidth="257.0" textFill="#f50000">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>
             </Label>
-            <Button fx:id="btnClose" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#backToOrders" prefHeight="37.0" prefWidth="149.0" text="Close" />
+            <Button fx:id="btnClose" layoutX="14.0" layoutY="489.0" mnemonicParsing="false" onAction="#backToOrders" prefHeight="37.0" prefWidth="149.0" stylesheets="@style.css" text="Close">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </center>

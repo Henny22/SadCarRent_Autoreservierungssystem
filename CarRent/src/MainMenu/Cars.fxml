@@ -149,16 +149,16 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <ScrollPane layoutX="14.0" layoutY="142.0" prefHeight="375.0" prefWidth="728.0" style="-fx-background-color: #02030A;" stylesheets="@../../../../../Documents/worki/AutoReservierungsSystem/src/GUI/style.css">
+                  <ScrollPane layoutX="14.0" layoutY="142.0" prefHeight="423.0" prefWidth="772.0" style="-fx-background-color: #02030A;" stylesheets="@../../../../../Documents/worki/AutoReservierungsSystem/src/GUI/style.css">
                      <content>
-                        <TableView fx:id="tableTableview" onMouseClicked="#checkTableClick" onSort="#checkTableClick" prefHeight="373.0" prefWidth="727.0" style="-fx-background-color: #02030A;" stylesheets="@../../../../../Documents/worki/AutoReservierungsSystem/src/GUI/style.css">
+                        <TableView fx:id="tableTableview" onMouseClicked="#checkTableClick" prefHeight="418.0" prefWidth="771.0" style="-fx-background-color: #02030A;" stylesheets="@../../../../../Documents/worki/AutoReservierungsSystem/src/GUI/style.css">
                           <columns>
                             <TableColumn fx:id="tableColumnIDCar" prefWidth="77.0" text="IDCar" />
-                            <TableColumn fx:id="tableColumnBrand" minWidth="0.0" prefWidth="164.0" text="Brand" />
-                              <TableColumn fx:id="tableColumnModel" prefWidth="165.0" text="Model" />
-                              <TableColumn fx:id="tableColumnSeats" minWidth="0.0" prefWidth="99.0" text="seats" />
-                              <TableColumn fx:id="tableColumnRate" prefWidth="96.0" text="rate" />
-                              <TableColumn fx:id="tableColumnAvailability" prefWidth="111.0" text="availability" />
+                            <TableColumn fx:id="tableColumnBrand" minWidth="0.0" prefWidth="174.0" text="Brand" />
+                              <TableColumn fx:id="tableColumnModel" prefWidth="164.0" text="Model" />
+                              <TableColumn fx:id="tableColumnSeats" minWidth="0.0" prefWidth="103.0" text="seats" />
+                              <TableColumn fx:id="tableColumnRate" prefWidth="110.0" text="rate" />
+                              <TableColumn fx:id="tableColumnAvailability" prefWidth="130.0" text="availability" />
                           </columns>
                         </TableView>
                      </content>

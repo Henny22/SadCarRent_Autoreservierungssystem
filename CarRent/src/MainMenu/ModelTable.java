@@ -2,8 +2,8 @@ package MainMenu;
 
 public class ModelTable {
 
-	String IDCus, Firstname, Lastname, Email, Street;
-	String IDCar, Brand, Model, Seats, Rate, Availability;
+	private String IDCus, Firstname, Lastname, Email, Street;
+	private String IDCar, Brand, Model, Seats, Rate, Availability;
 	public ModelTable(String IDCus, String Firstname, String Lastname, String Email, String Street) {
 			this.IDCus = IDCus;
 			this.Firstname = Firstname;

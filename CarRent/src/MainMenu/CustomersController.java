@@ -97,8 +97,7 @@ public class CustomersController implements Initializable{
             
             while (rs.next()){
                 oblist.add(new ModelTable(rs.getString("IDCus"),rs.getString("Firstname"),rs.getString("Lastname"),rs.getString("Email"), rs.getString("Street")));
-            }
-            
+            }       
         } catch (Exception e) {
            e.printStackTrace();
         }
@@ -155,8 +154,7 @@ public class CustomersController implements Initializable{
                   e.printStackTrace();
                   e.getCause();
                 }
-        }
-        
+        }        
     }
 	
 	public void searchBarOnAction(ActionEvent e){    

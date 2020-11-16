@@ -82,6 +82,7 @@ public class CarsController implements Initializable{
     
     DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
+    
 	static int IDCar;
     public static int getIDCar(){
         return IDCar;
@@ -97,11 +98,9 @@ public class CarsController implements Initializable{
 		tableColumnAvailability.setCellValueFactory(new PropertyValueFactory<>("Availability"));
         try {
             ResultSet rs = connectDB.createStatement().executeQuery("select IDCar,brand,model,no_of_seats,rate,Availability from cars");
-            
             while (rs.next()){
                 oblist.add(new ModelTable(rs.getString("IDCar"),rs.getString("brand"),rs.getString("model"),rs.getString("no_of_seats"), rs.getString("rate"), rs.getString("Availability")));
-            }
-            
+            }  
         } catch (Exception e) {
            e.printStackTrace();
         }
@@ -117,7 +116,6 @@ public class CarsController implements Initializable{
                   e.printStackTrace();
                   e.getCause();
                 }
-            
         }
         if (actionEvent.getSource() == btnCustomers) {
         	try{
@@ -158,8 +156,7 @@ public class CarsController implements Initializable{
                   e.printStackTrace();
                   e.getCause();
                 }
-        }
-        
+        }       
     }
 	
 
@@ -167,8 +164,7 @@ public class CarsController implements Initializable{
 		FilteredList<ModelTable> filteredData = new FilteredList<>(oblist, b-> true);
 		       filterField.textProperty().addListener((observable, oldValue, newValue) -> {
 					filteredData.setPredicate(ModelTable -> {
-						// Wenn der Filter leer ist, dann  zeige alle Customers.
-										
+						// Wenn der Filter leer ist, dann  zeige alle Customers.				
 						if (newValue == null || newValue.isEmpty()) {
 							return true;
 						}
@@ -193,7 +189,6 @@ public class CarsController implements Initializable{
 				SortedList<ModelTable> sortedData = new SortedList<>(filteredData);
 				
 				// Verbinde die SortedList mit der TablewView. Sonst sortieren nicht möglich
-				// 	  Otherwise, sorting the TableView would have no effect.
 				sortedData.comparatorProperty().bind(tableTableview.comparatorProperty());
 				
 				// Füge die Sortierte (und gefilterte) liste zur Tabelle hinzu
@@ -202,9 +197,9 @@ public class CarsController implements Initializable{
 
 	 public void checkTableClick(MouseEvent event){
 
-	         ObservableList<ModelTable> tableList;
-	         tableList = tableTableview.getSelectionModel().getSelectedItems();
-	         IDCar =  Integer.parseInt(tableList.get(0).getIDCar());
+	         //ObservableList<ModelTable> tableList;
+	         //tableList = tableTableview.getSelectionModel().getSelectedItems();
+	         IDCar =  Integer.parseInt(tableTableview.getSelectionModel().getSelectedItems().get(0).getIDCar());
 	        
 	         try{
 		         Parent root = FXMLLoader.load(getClass().getResource("selectedCarWindow.fxml"));
