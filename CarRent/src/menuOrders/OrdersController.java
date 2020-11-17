@@ -411,7 +411,8 @@ public class OrdersController implements Initializable {
 	public void concludeDataOrder() {
 		if(comboBoxListOrders.getValue() != null) {
 			int IDReservation = getIDFromComboBox(comboBoxListOrders);
-			exchange.setOrderOnComplete(IDReservation);
+			int IDCar = getIDFromComboBox(ComboBoxCar);
+			exchange.setOrderOnComplete(IDReservation, IDCar );
 			lblErrorTextConclude.setText("Order has been signed as completed!");
 			lblLastname.setText("");
 			lblBrand.setText("");
@@ -420,7 +421,8 @@ public class OrdersController implements Initializable {
 			loadComboBoxOrder();
 		}else {
 			lblErrorTextConclude.setText("Please select a not completed Order before submitting!");
-		}
-			
+		}			
 	}	
+	
+	
 }

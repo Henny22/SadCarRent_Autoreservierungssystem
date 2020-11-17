@@ -80,10 +80,12 @@ public class DataExchange {
 		String ja = (String) comboBoxCategory.getValue();
 		int i = Integer.parseInt(String.valueOf(ja.charAt(0)));
 		try {
-			ResultSet rsCarUpdated = connectDB.createStatement().executeQuery("select IDCar,brand,model from cars where IDCat="+i);
+			ResultSet rsCarUpdated = connectDB.createStatement().executeQuery("select IDCar,brand,model from cars where IDCat="+i+" and Availability=1");
+			
 			while (rsCarUpdated.next()) {  // loop
 				comboBoxCar.getItems().addAll(rsCarUpdated.getInt("IDCar")+ " | "+ rsCarUpdated.getString("brand")+ " | " +rsCarUpdated.getString("model")); 
 			       }
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,10 +99,11 @@ public class DataExchange {
 		String insertFields ="INSERT INTO orders(`IDCar`, `IDCus`, `Amount`, `IDLoc`, `Date`, `startDate`, `endDate`) VALUES ('";
         String insertValues =IDCar + "','"+ IDCust +"','"+ amount +"','"+ IDLoc +"','"+ LocalDate.now() +"','"+ dateFrom +"','"+ dateTo +"')";
         String insertToOrders = insertFields + insertValues;
+        String setCarAvailability = "update cars set Availability=0 where IDCar="+IDCar;
 		try {
 			 Statement statement = connectDB.createStatement();
 			 statement.executeUpdate(insertToOrders);
-		
+			 statement.executeUpdate(setCarAvailability);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -162,11 +165,13 @@ public class DataExchange {
 		}   
 	}
 	
-	public void setOrderOnComplete(int IDReservation) {
+	public void setOrderOnComplete(int IDReservation, int IDCar) {
 		String updateOrderCompleted ="update orders set completed=1 where IDReservation="+IDReservation;
+		String setCarAvailability = "update cars set Availability=0 where IDCar="+IDCar;
 		try {
 			 Statement statement = connectDB.createStatement();
 			 statement.executeUpdate(updateOrderCompleted);	
+			 statement.executeUpdate(setCarAvailability);	
 		} catch (Exception e) {	
 			e.printStackTrace();
 		}   
@@ -249,7 +254,26 @@ public class DataExchange {
 		}   
 		}
 
-
+	// 
+	//
+	//********************************************************** MaintenanceController Controller **************************************************************************************
+	//
+	//
 	
+	public void createMaintenanceContract(int IDCar, String company, String service, LocalDate startDate, LocalDate endDate, double total_amt) {
+		String insertFields ="INSERT INTO maintenance_contracts(`IDCar`,`maintenanceCompany`, `service`, `date`, `periodOfTime`, `total_amt`) VALUES ('";
+        String insertValues =IDCar + "','"+company + "','"+ service +"','"+ startDate +"','"+ endDate +"','"+ total_amt +"')";
+        String insertToMaintenance_contracts = insertFields + insertValues;
+        String updateAvailabilityCar = "update cars set Availability=0, inMaintenance=1 where IDCar="+IDCar;
+        try {
+			 Statement statement = connectDB.createStatement();
+			 statement.executeUpdate(insertToMaintenance_contracts);
+			 statement.executeUpdate(updateAvailabilityCar);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+        
 	}
+}
 
