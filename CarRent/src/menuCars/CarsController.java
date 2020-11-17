@@ -76,6 +76,8 @@ public class CarsController implements Initializable{
     private TextField filterField;
     @FXML
     private Pane pnlOrders;
+    @FXML
+    private Button btnMaintenance;
     
     DataExchange exchange = new DataExchange();
     
@@ -144,6 +146,18 @@ public class CarsController implements Initializable{
             //pnlOrders.toFront();
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
+                Main.getStage().setScene(new Scene(root,1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
+        if(actionEvent.getSource()==btnMaintenance)
+        {
+            //pnlOrders.setStyle("-fx-background-color : #464F67");
+            //pnlOrders.toFront();
+        	try{
+                Parent root = FXMLLoader.load(getClass().getResource("/menuMaintenance/Maintenance.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
                 }catch(Exception e){
                   e.printStackTrace();

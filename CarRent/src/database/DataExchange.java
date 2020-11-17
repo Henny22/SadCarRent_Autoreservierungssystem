@@ -94,7 +94,7 @@ public class DataExchange {
 	
 	public void setDataInOrders(int IDCar, int IDCust, double amount, int IDLoc, LocalDate dateFrom, LocalDate dateTo ) {
 
-		String insertFields ="INSERT INTO orders(`IDCar`, `IDCus`, `Amount`, `IDLoc`, `Date`, `from`, `to`) VALUES ('";
+		String insertFields ="INSERT INTO orders(`IDCar`, `IDCus`, `Amount`, `IDLoc`, `Date`, `startDate`, `endDate`) VALUES ('";
         String insertValues =IDCar + "','"+ IDCust +"','"+ amount +"','"+ IDLoc +"','"+ LocalDate.now() +"','"+ dateFrom +"','"+ dateTo +"')";
         String insertToOrders = insertFields + insertValues;
 		try {
@@ -127,6 +127,39 @@ public class DataExchange {
 		
 		return amount;
 		
+	}
+	
+	public int getHightestID() {
+		int maxIDReservation=0;
+		try {
+			Statement statement = connectDB.createStatement();
+			
+			ResultSet queryResultMaxIDReservation = statement.executeQuery("select max(IDReservation) from orders");
+			
+			while (queryResultMaxIDReservation.next()) {  // loop
+				maxIDReservation = queryResultMaxIDReservation.getInt("max(IDReservation)");
+				
+			       }		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return maxIDReservation;
+	}
+	
+	public void createBill(double amount, int IDOrder, LocalDate date) {
+
+		String insertFields ="INSERT INTO bills(`Total_amt`, `ID_order`, `BillDate`) VALUES ('";
+        String insertValues =amount + "','"+ IDOrder +"','"+ date +"')";
+        String insertToBils = insertFields + insertValues;
+		try {
+			 Statement statement = connectDB.createStatement();
+			 statement.executeUpdate(insertToBils);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
 	}
 	
 	public void setOrderOnComplete(int IDReservation) {
@@ -215,5 +248,8 @@ public class DataExchange {
 			e.printStackTrace();
 		}   
 		}
+
+
+	
 	}
 

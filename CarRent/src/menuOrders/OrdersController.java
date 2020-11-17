@@ -142,6 +142,8 @@ public class OrdersController implements Initializable {
     private Label labelHold;
     @FXML
     private Label labelHold1;
+    @FXML
+    private Button btnMaintenance;
     
     ObservableList<String> oblist = FXCollections.observableArrayList();
     
@@ -237,6 +239,18 @@ public class OrdersController implements Initializable {
                   e.getCause();
                 }
         }
+        if(actionEvent.getSource()==btnMaintenance)
+        {
+            //pnlOrders.setStyle("-fx-background-color : #464F67");
+            //pnlOrders.toFront();
+        	try{
+                Parent root = FXMLLoader.load(getClass().getResource("/menuMaintenance/Maintenance.fxml"));       
+                Main.getStage().setScene(new Scene(root,1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
         if(actionEvent.getSource()==btnFeedback)
         {
             
@@ -301,8 +315,9 @@ public class OrdersController implements Initializable {
 				lblAmount.setText(amount+"€");
 				
 				exchange.setDataInOrders(IDCar,IDCust,amount,IDLoc,dateFrom,dateTo);
+				exchange.createBill(amount,exchange.getHightestID(),LocalDate.now());
 				setHeaderData();
-		        lblErrorText.setText("Order was succesful!");
+		        lblErrorText.setText("Order was succesful and bill has been created!");
 		        lblErrorText.setVisible(true);
 			} else {
 				lblErrorText.setText("Not a valid Date!");
@@ -357,6 +372,13 @@ public class OrdersController implements Initializable {
 		pnlOrderCreate.setVisible(false);
 		pnlOrderCheck.setVisible(true);
 	}
+	
+	
+	
+	
+	//-------------> Panel CompleteOrder
+	
+	
 	
 	public void loadComboBoxOrder() {
 		comboBoxListOrders.getItems().clear();
