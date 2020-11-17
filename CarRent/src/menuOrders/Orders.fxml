@@ -21,7 +21,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuOrders.OrdersController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="6.0" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="-6.0" AnchorPane.topAnchor="6.0">
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="-1.0">
          <children>
             <ImageView fitHeight="130.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
                <image>

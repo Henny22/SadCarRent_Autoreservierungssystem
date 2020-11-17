@@ -318,8 +318,6 @@ public class OrdersController implements Initializable {
 		String stringValue  = selectedValues.substring( 0, selectedValues.indexOf("|"));
 		stringValue = stringValue.trim();
 		int value = Integer.parseInt(stringValue);
-		
-		
 		return value;
 	}
 	

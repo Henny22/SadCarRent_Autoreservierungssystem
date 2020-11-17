@@ -4,8 +4,10 @@ package MainMenu;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import database.DataExchange;
 import database.DatabaseConnection;
 import login.Main;
 import javafx.event.ActionEvent;
@@ -68,6 +70,14 @@ public class MenuController implements Initializable {
 	    
 	    @FXML
 	    private Label labelTotalOrders;
+	    
+		@FXML
+		private Label labelDelivered;
+		
+		@FXML
+		private Label labelPending;
+		
+		DataExchange exchange = new DataExchange();
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -134,19 +144,20 @@ public class MenuController implements Initializable {
         }
     }
 	
-	public void setHeaderData(){
-        String numberOrders="";
-        try {
-            ResultSet rs = connectDB.createStatement().executeQuery("SELECT COUNT(*) FROM orders");
-            while(rs.next()){
-                numberOrders = rs.getString("COUNT(*)");
-            }
-            
-        } catch (Exception e) {
-           e.printStackTrace();
-        }
-        labelTotalOrders.setText(numberOrders);
-    }
+	public void setHeaderData() {
+		
+		ArrayList<String> headerDataList = new ArrayList<String>();
+		headerDataList = (ArrayList<String>) exchange.getHeaderData();
+		
+		labelTotalOrders.setText(headerDataList.get(0));
+		
+	
+		labelDelivered.setText(headerDataList.get(1));
+	
+		
+		labelPending.setText(headerDataList.get(2));
+		
+	}
 	
 	
 	public void backToLoginOnAction(){
