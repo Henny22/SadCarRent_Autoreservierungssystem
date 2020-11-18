@@ -5,7 +5,8 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import database.DataExchange;
@@ -23,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import login.Main;
 
 public class MaintenanceController implements Initializable {
@@ -62,13 +64,40 @@ public class MaintenanceController implements Initializable {
 	private TextField txtFieldAmount;
 	@FXML
 	private Label lblErrorTextDate;
+	@FXML
+	private Pane pnlMaintenanceCheck;
+	@FXML
+	private Pane pnlMaintenanceCreate;
+	@FXML
+	private Button btnMaintenanceWrite;
+	@FXML
+	private Button btnMaintenanceConfirm;
+	@FXML
+	private Label lblCarBrandConfirm;
+	@FXML
+	private Label lblCarModelConfirm;
+	@FXML
+	private Label lblDateFromConfirm;
+	@FXML
+	private Label lblDateToConfirm;
+	@FXML
+	private Label lblAmountConfirm;
+	@FXML
+	private Button btnConcludeConfirm;
+	@FXML
+	private ComboBox<String> comboBoxListMaintenance;
+	@FXML
+	private Label lblErrorTextConclude;
+	
 	ObservableList<String> oblist = FXCollections.observableArrayList();
 	
 	 DataExchange exchange = new DataExchange();
+	 private List<String> selectedMaintenanceDataList;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		loadComboBoxCars();
+		loadComboMaintenance();		
 		comboBoxCompany.setItems(FXCollections.observableArrayList("Sternpark Lippstadt","Autofit Linde Salzkotten","Autoservice Leitwolf UG München"));
 		comboBoxService.setItems(FXCollections.observableArrayList("Yearly check up","Engine & Exhaust","Exterior","Tire change","Other"));
 	}
@@ -212,7 +241,7 @@ public class MaintenanceController implements Initializable {
 		}	
 			
 		}
-		
+	
 	
 	public void resetForm() {
 		ComboBoxCars.getSelectionModel().clearSelection();
@@ -225,4 +254,68 @@ public class MaintenanceController implements Initializable {
 		lblErrorText.setText("");
 		lblErrorTextDate.setText("");
 		}
+	
+	public void changeTOpnlMaintenanceCreate(ActionEvent actionEvent) {		
+		pnlMaintenanceCreate.setVisible(true);
+		pnlMaintenanceCheck.setVisible(false);   
+}
+
+	public void changeTOpnlMaintenanceCheck(ActionEvent actionEvent) {
+		pnlMaintenanceCreate.setVisible(false);
+		pnlMaintenanceCheck.setVisible(true);
+		
+	}
+	
+	
+	//-------------> Panel pnlMaintenanceCheck
+	
+	
+	
+		public void loadComboMaintenance() {
+			
+			comboBoxListMaintenance.getItems().clear();
+			try {
+				ResultSet rsOrders = connectDB.createStatement().executeQuery("select IDMaintenance, maintenanceCompany,service from maintenance_contracts where completed=0");
+				while (rsOrders.next()) {  
+					comboBoxListMaintenance.getItems().addAll(rsOrders.getInt("IDMaintenance")+ " | Maintenance Company: "+ rsOrders.getString("maintenanceCompany")+ " | Service: " +rsOrders.getString("service")); 
+				       }
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+
+		public void setConcludeMaintenanceOrder() {
+			
+			if(comboBoxListMaintenance.getValue() != null) {
+			selectedMaintenanceDataList = new ArrayList<String>();
+			int IDMaintenance = getIDFromComboBox(comboBoxListMaintenance);
+			
+			selectedMaintenanceDataList = exchange.getCarAndMaintenance(IDMaintenance);
+	
+			lblDateFromConfirm.setText(selectedMaintenanceDataList.get(0));
+			lblDateToConfirm.setText(selectedMaintenanceDataList.get(1));
+			lblAmountConfirm.setText(selectedMaintenanceDataList.get(2));
+			lblCarBrandConfirm.setText(selectedMaintenanceDataList.get(3));
+			lblCarModelConfirm.setText(selectedMaintenanceDataList.get(4));
+			lblErrorTextConclude.setText("");
+			}	
+		}
+		
+		public void concludeMaintenenceContract() {
+			if(comboBoxListMaintenance.getValue() != null) {
+				int IDMaintenance = getIDFromComboBox(comboBoxListMaintenance);
+				exchange.setMainteneneOnComplete(IDMaintenance);
+				lblErrorTextConclude.setText("Maintenance contract has been signed as completed!");
+				lblDateFromConfirm.setText("");
+				lblDateToConfirm.setText("");
+				lblAmountConfirm.setText("");
+				lblCarBrandConfirm.setText("");
+				lblCarModelConfirm.setText("");
+				comboBoxListMaintenance.getSelectionModel().clearSelection();
+				loadComboMaintenance();
+			}else {
+				lblErrorTextConclude.setText("Please select a not completed Maintenance contract before submitting!");
+			}	
+		}		
 }

@@ -165,13 +165,20 @@ public class DataExchange {
 		}   
 	}
 	
-	public void setOrderOnComplete(int IDReservation, int IDCar) {
+	public void setOrderOnComplete(int IDReservation) {
+		int IDCar = 0;
 		String updateOrderCompleted ="update orders set completed=1 where IDReservation="+IDReservation;
-		String setCarAvailability = "update cars set Availability=0 where IDCar="+IDCar;
+		String getIDCar = "select IDCar from orders where IDReservation="+IDReservation;
+		
 		try {
 			 Statement statement = connectDB.createStatement();
+			 
+			 ResultSet queryIDCar = statement.executeQuery(getIDCar);
+			 while (queryIDCar.next()) {  // loop
+					IDCar = queryIDCar.getInt("IDCar");
+			 }
 			 statement.executeUpdate(updateOrderCompleted);	
-			 statement.executeUpdate(setCarAvailability);	
+			 statement.executeUpdate("update cars set Availability=1 where IDCar="+IDCar);	
 		} catch (Exception e) {	
 			e.printStackTrace();
 		}   
@@ -272,8 +279,48 @@ public class DataExchange {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}  
-        
+		}     
 	}
+	public List<String> getCarAndMaintenance(int IDMaintenance) {
+		String getSelectedOrderData ="select t1.IDMaintenance, t1.date, t1.periodOfTime, t1.total_amt, t2.brand, t2.model from maintenance_contracts t1 left join cars t2 on t1.IDCar=t2.IDCar where IDMaintenance="+IDMaintenance;
+		List<String> selectedCarAndMaintenanceList = new ArrayList<String>();
+		try {
+			Statement statement = connectDB.createStatement();
+			
+			ResultSet queryResultOrderData = statement.executeQuery(getSelectedOrderData);
+			
+			while (queryResultOrderData.next()) {  // loop
+				selectedCarAndMaintenanceList.add(queryResultOrderData.getString("date"));
+				selectedCarAndMaintenanceList.add(queryResultOrderData.getString("periodOfTime"));
+				selectedCarAndMaintenanceList.add(queryResultOrderData.getString("total_amt"));
+				selectedCarAndMaintenanceList.add(queryResultOrderData.getString("brand"));
+				selectedCarAndMaintenanceList.add(queryResultOrderData.getString("model"));
+			       }		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return selectedCarAndMaintenanceList;
+	}
+	
+	public void setMainteneneOnComplete(int IDMaintenance) {
+		int IDCar = 0;
+		String updateOrderCompleted ="update maintenance_contracts set completed=1 where IDMaintenance="+IDMaintenance;
+		String getIDCar = "select IDCar from maintenance_contracts where IDMaintenance="+IDMaintenance;
+				
+		try {
+			 Statement statement = connectDB.createStatement();
+			 statement.executeUpdate(updateOrderCompleted);
+			 
+			 ResultSet queryIDCar = statement.executeQuery(getIDCar);
+			 while (queryIDCar.next()) {  // loop
+					IDCar = queryIDCar.getInt("IDCar");
+			 }	 
+			 statement.executeUpdate("update cars set Availability=1, inMaintenance=0 where IDCar="+IDCar);	
+		} catch (Exception e) {	
+			e.printStackTrace();
+		}   
+	}
+
 }
 

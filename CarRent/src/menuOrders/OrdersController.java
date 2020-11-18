@@ -315,6 +315,7 @@ public class OrdersController implements Initializable {
 				lblAmount.setText(amount+"€");
 				
 				exchange.setDataInOrders(IDCar,IDCust,amount,IDLoc,dateFrom,dateTo);
+				resetForm();
 				exchange.createBill(amount,exchange.getHightestID(),LocalDate.now());
 				setHeaderData();
 		        lblErrorText.setText("Order was succesful and bill has been created!");
@@ -365,12 +366,14 @@ public class OrdersController implements Initializable {
 	
 	public void changeTOpnlOrderCreate(ActionEvent actionEvent) {		
         	pnlOrderCreate.setVisible(true);
-			pnlOrderCheck.setVisible(false);    
+			pnlOrderCheck.setVisible(false);   
+			lblErrorTextConclude.setText("");
 	}
 
 	public void changeTOpnlOrderCheck(ActionEvent actionEvent) {
 		pnlOrderCreate.setVisible(false);
 		pnlOrderCheck.setVisible(true);
+		lblErrorTextConclude.setText("");
 	}
 	
 	
@@ -381,6 +384,7 @@ public class OrdersController implements Initializable {
 	
 	
 	public void loadComboBoxOrder() {
+		
 		comboBoxListOrders.getItems().clear();
 		try {
 			ResultSet rsOrders = connectDB.createStatement().executeQuery("SELECT IDReservation,Date, startDate, endDate from orders where completed=0");
@@ -395,30 +399,33 @@ public class OrdersController implements Initializable {
 	}
 	
 	public void setConcludeDataOrder() {
+		
 		if(comboBoxListOrders.getValue() != null) {
 		selectedOrderDataList = new ArrayList<String>();
 		int IDReservation = getIDFromComboBox(comboBoxListOrders);
 		
 		selectedOrderDataList = exchange.getOrderData(IDReservation);
-		
+		System.out.println(selectedOrderDataList);
 		lblLastname.setText(selectedOrderDataList.get(0));
 		lblBrand.setText(selectedOrderDataList.get(1));
 		lblCity.setText(selectedOrderDataList.get(2));
 		lblAmountConfirm.setText(selectedOrderDataList.get(3));
-		}
-		}
+		lblErrorTextConclude.setText("");
+		}	
+	}
 	
 	public void concludeDataOrder() {
 		if(comboBoxListOrders.getValue() != null) {
 			int IDReservation = getIDFromComboBox(comboBoxListOrders);
-			int IDCar = getIDFromComboBox(ComboBoxCar);
-			exchange.setOrderOnComplete(IDReservation, IDCar );
+			exchange.setOrderOnComplete(IDReservation );
 			lblErrorTextConclude.setText("Order has been signed as completed!");
 			lblLastname.setText("");
 			lblBrand.setText("");
 			lblCity.setText("");
 			lblAmountConfirm.setText("");
+			comboBoxListOrders.getSelectionModel().clearSelection();
 			loadComboBoxOrder();
+			setHeaderData();
 		}else {
 			lblErrorTextConclude.setText("Please select a not completed Order before submitting!");
 		}			
