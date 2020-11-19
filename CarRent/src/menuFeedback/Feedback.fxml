@@ -8,6 +8,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -156,7 +157,7 @@
       </VBox>
       <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
          <children>
-            <Pane fx:id="pnlLockScreen" prefHeight="554.0" prefWidth="793.0" visible="false">
+            <Pane fx:id="pnlLockScreen" prefHeight="554.0" prefWidth="793.0">
                <children>
                   <Label layoutX="57.0" layoutY="25.0" prefHeight="35.0" prefWidth="237.0" text="Car rents Feedback" textFill="#e7e5e5">
                      <font>
@@ -205,10 +206,10 @@
                   <Label fx:id="lblErrorText" layoutX="335.0" layoutY="303.0" prefHeight="17.0" prefWidth="196.0" textFill="RED" />
                </children>
             </Pane>
-            <Pane fx:id="pnlFeedbackForm" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="793.0">
+            <Pane fx:id="pnlFeedbackForm" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="793.0" visible="false">
                <children>
-                  <Button fx:id="btnSubmit" layoutX="327.0" layoutY="518.0" mnemonicParsing="false" onAction="#checkIfAllSelected" prefHeight="45.0" prefWidth="149.0" text="Submit Feedback" />
-                  <Text fill="WHITE" layoutX="100.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evaluate our company based on the following criteria by choosing the answer  that is most suitable, according to your judgment, to the degree of your satisfaction." wrappingWidth="544.697265625">
+                  <Button fx:id="btnSubmit" layoutX="327.0" layoutY="518.0" mnemonicParsing="false" onAction="#submitFeedbackForm" prefHeight="45.0" prefWidth="149.0" text="Submit Feedback" />
+                  <Text fill="WHITE" layoutX="100.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evaluate our company based on the following criteria by choosing the answer  that is most suitable, according to your judgment, to the degree of your satisfaction." wrappingWidth="544.697265625">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -218,24 +219,27 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtFieldContractNumber" layoutX="104.0" layoutY="85.0" />
-                  <ComboBox fx:id="comboBoxPorpuse" layoutX="318.0" layoutY="85.0" prefWidth="150.0" promptText="Choose" />
-                  <Label layoutX="104.0" layoutY="67.0" text="Contract Number" textFill="WHITE">
+                  <TextField fx:id="txtFieldContractNumber" layoutX="104.0" layoutY="75.0" />
+                  <ComboBox fx:id="comboBoxPorpuse" layoutX="318.0" layoutY="75.0" prefWidth="150.0" promptText="Choose" />
+                  <Label layoutX="104.0" layoutY="57.0" text="Contract Number:" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <tooltip>
+                        <Tooltip text="Please enter the number at the top right (Reservation Number) in the rent contract" />
+                     </tooltip>
+                  </Label>
+                  <Label layoutX="318.0" layoutY="57.0" prefHeight="20.0" prefWidth="131.0" text="Purpose of rental:" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="318.0" layoutY="67.0" prefHeight="20.0" prefWidth="131.0" text="Purpose of rental" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="100.0" layoutY="126.0" prefHeight="27.0" prefWidth="156.0" text="Feedback Criteria" textFill="WHITE">
+                  <Label layoutX="100.0" layoutY="115.0" prefHeight="27.0" prefWidth="156.0" text="Feedback Criteria" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <GridPane gridLinesVisible="true" layoutX="32.0" layoutY="195.0" prefHeight="314.0" prefWidth="748.0">
+                  <GridPane gridLinesVisible="true" layoutX="31.0" layoutY="180.0" prefHeight="301.0" prefWidth="740.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="145.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="154.0" />
@@ -301,53 +305,59 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
-                        <RadioButton fx:id="rButtonProcedureVerySatisfactory" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <RadioButton fx:id="rButton11" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <toggleGroup>
                               <ToggleGroup fx:id="firstChoiceGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="rButtonProcedureSatisfactory" layoutX="208.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="trButtonProcedureNeutral" layoutX="323.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="rButtonProcedureDissatisfactory" layoutX="441.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="rButtonProcedureVeryDissatisfactory" layoutX="558.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                        <RadioButton fx:id="rButtonLevelVerySatisfactory" layoutX="208.0" layoutY="75.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <RadioButton fx:id="rButton12" layoutX="208.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="rButton13" layoutX="323.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="rButton14" layoutX="441.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="rButton15" layoutX="558.0" layoutY="75.0" mnemonicParsing="false" toggleGroup="$firstChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <RadioButton fx:id="rButton21" layoutX="208.0" layoutY="75.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <toggleGroup>
                               <ToggleGroup fx:id="secondChoiceGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="rButtonLevelSatisfactory" layoutX="208.0" layoutY="124.0" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <RadioButton fx:id="rButtonLevelNeutral" layoutX="323.0" layoutY="124.0" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <RadioButton fx:id="rButtonLevelDissatisfactory" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <RadioButton fx:id="rButtonLevelVeryDissatisfactory" layoutX="558.0" layoutY="124.0" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                        <RadioButton fx:id="rButtonExpectationsVerySatisfactory" layoutX="218.0" layoutY="129.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <RadioButton fx:id="rButton22" layoutX="208.0" layoutY="124.0" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <RadioButton fx:id="rButton23" layoutX="323.0" layoutY="124.0" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <RadioButton fx:id="rButton24" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <RadioButton fx:id="rButton" layoutX="558.0" layoutY="124.0" mnemonicParsing="false" toggleGroup="$secondChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <RadioButton fx:id="rButton31" layoutX="218.0" layoutY="129.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <toggleGroup>
                               <ToggleGroup fx:id="thirdChoiceGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="rButtonExpectationsSatisfactory" layoutX="218.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <RadioButton fx:id="rButtonExpectationsNeutral" layoutX="340.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <RadioButton fx:id="rButtonExpectationsDissatisfactory" layoutX="460.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                        <RadioButton fx:id="rButtonExpectationsVeryDissatisfactory" layoutX="571.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-                        <RadioButton fx:id="rButtonProcessVerySatisfactory" layoutX="218.0" layoutY="180.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <RadioButton fx:id="rButton32" layoutX="218.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <RadioButton fx:id="rButton33" layoutX="340.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <RadioButton fx:id="rButton34" layoutX="460.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <RadioButton fx:id="rButton35" layoutX="571.0" layoutY="180.0" mnemonicParsing="false" toggleGroup="$thirdChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                        <RadioButton fx:id="rButton41" layoutX="218.0" layoutY="180.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <toggleGroup>
                               <ToggleGroup fx:id="fourthChoiceGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="rButtonProcessSatisfactory" layoutX="218.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <RadioButton fx:id="rButtonProcessNeutral" layoutX="340.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <RadioButton fx:id="rButtonProcessDissatisfactory" layoutX="460.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                        <RadioButton fx:id="rButtonProcessVeryDissatisfactory" layoutX="571.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-                        <RadioButton fx:id="rButtonImpressionVerySatisfactory" layoutX="218.0" layoutY="231.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <RadioButton fx:id="rButton42" layoutX="218.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <RadioButton fx:id="rButton43" layoutX="340.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <RadioButton fx:id="rButton44" layoutX="460.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <RadioButton fx:id="rButton45" layoutX="571.0" layoutY="231.0" mnemonicParsing="false" toggleGroup="$fourthChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                        <RadioButton fx:id="rButton51" layoutX="218.0" layoutY="231.0" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <toggleGroup>
                               <ToggleGroup fx:id="fifthChoiceGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="rButtonImpressionSatisfactory" layoutX="218.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <RadioButton fx:id="rButtonImpressionNeutral" layoutX="340.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <RadioButton fx:id="rButtonImpressionDissatisfactory" layoutX="460.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-                        <RadioButton fx:id="rButtonImpressionVeryDissatisfactory" layoutX="571.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                        <RadioButton fx:id="rButton52" layoutX="218.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <RadioButton fx:id="rButton53" layoutX="340.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <RadioButton fx:id="rButton54" layoutX="460.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <RadioButton fx:id="rButton55" layoutX="571.0" layoutY="281.0" mnemonicParsing="false" toggleGroup="$fifthChoiceGroup" GridPane.columnIndex="5" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
+                  <Label fx:id="lblErrorTextFeedbackform" alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="493.0" prefHeight="17.0" prefWidth="404.0" textFill="RED" />
+                  <Button fx:id="btnUnlockUI" layoutX="620.0" layoutY="13.0" mnemonicParsing="false" onAction="#openLoginFormAndUIUnlockButton" prefHeight="25.0" prefWidth="112.0" text="Unlock UI" />
+                  <TextField fx:id="txtFieldIDStaffUnlock" layoutX="620.0" layoutY="55.0" prefHeight="25.0" prefWidth="112.0" promptText="IDStaff" visible="false" />
+                  <PasswordField fx:id="passwordFieldPasswordUnlockUI" layoutX="620.0" layoutY="88.0" prefHeight="25.0" prefWidth="112.0" promptText="Password" visible="false" />
+                  <Button fx:id="btnUnlockUIhere" layoutX="618.0" layoutY="13.0" mnemonicParsing="false" onAction="#unlockScreen" prefHeight="25.0" prefWidth="117.0" text="Unlock UI here!" visible="false" />
+                  <Label fx:id="lblErrorTextFeedbackformUnlock" alignment="CENTER" contentDisplay="CENTER" layoutX="597.0" layoutY="113.0" prefHeight="17.0" prefWidth="179.0" textFill="RED" />
                </children>
             </Pane>
          </children>

@@ -343,11 +343,55 @@ public class DataExchange {
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		}
-		
-		
+		}	
 		return StaffIDAndPasswordValid;
 	}
 	
+	public boolean checkIfDataForCustomer(int IDReservation) {
+		boolean dataExisting=false;
+		String checkFeedbackDataExists ="select IDReservation from feedback where IDReservation="+IDReservation;
+		
+		Statement statement;
+		try {
+			statement = connectDB.createStatement();
+			ResultSet queryDataExists = statement.executeQuery(checkFeedbackDataExists);
+			while (queryDataExists.next()) {  
+				dataExisting= true;
+		 }
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}	
+		
+		return dataExisting;
+	}
+	public void sendFeedbackData(int IDReservation, String vehicleProcedure, String levelCustomerService, String expectations, String rentalProcedure, String overallImpression) {
+		int IDCus = 0;
+		String getIDCus="select IDCus from orders where IDReservation="+IDReservation;
+		Statement statement ;
+		try {
+			statement = connectDB.createStatement();
+			ResultSet queryResultIDCus = statement.executeQuery(getIDCus);
+	           
+	           while (queryResultIDCus.next()){
+	        	   IDCus = queryResultIDCus.getInt("IDCus") ;  
+	           }
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String insertFields ="INSERT INTO feedback(`IDCus`,`IDReservation`, `vehicleProcedure`, `levelCustomerService`, `expectations`, `rentalProcedure`, `overallImpression`) VALUES ('";
+        String insertValues = IDCus + "','"+ IDReservation + "','"+ vehicleProcedure +"','"+ levelCustomerService +"','"+ expectations +"','"+ rentalProcedure +"','"+ overallImpression +"')";
+        String insertToFeedback = insertFields + insertValues;
+        
+        try {
+			 statement = connectDB.createStatement();
+			 statement.executeUpdate(insertToFeedback);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}     
+	}
 }
 
