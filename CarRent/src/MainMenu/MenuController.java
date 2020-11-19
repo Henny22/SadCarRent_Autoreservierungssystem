@@ -196,13 +196,7 @@ public class MenuController implements Initializable {
         }
     }
 	
-	public void changeTheme(ActionEvent actionEvent) {
 	
-		if (actionEvent.getSource() == btnDarkMode) {	 
-        }
-		if (actionEvent.getSource() == btnLightMode) {
-        }
-		
-	}
+	
 	
 }
