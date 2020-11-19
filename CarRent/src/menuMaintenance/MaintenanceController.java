@@ -158,8 +158,15 @@ public class MaintenanceController implements Initializable {
         }
         if(actionEvent.getSource()==btnFeedback)
         {
-            
-        }
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuFeedback/Feedback.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }  
+    
         
         if (actionEvent.getSource() == btnSignout) {
             try{
@@ -170,7 +177,7 @@ public class MaintenanceController implements Initializable {
                   e.getCause();
                 }
         }
-    }
+	}      
 	
 	public void setOtherTextfieldEditable() {
 	if(comboBoxService.getValue() != null) {

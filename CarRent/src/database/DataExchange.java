@@ -322,5 +322,32 @@ public class DataExchange {
 		}   
 	}
 
+	
+	// 
+	//
+	//********************************************************** FeedbackController Controller **************************************************************************************
+	//
+	//
+	
+	public boolean checkValidStaffData(int StaffID, String Password) {
+		boolean StaffIDAndPasswordValid= false;
+		String checkStaffIDAndPassword ="select * from staffaccounts where IDStaff="+StaffID + " and Password='"+Password+"'";
+		
+		Statement statement;
+		try {
+			statement = connectDB.createStatement();
+			ResultSet queryStaffIDAndPassword = statement.executeQuery(checkStaffIDAndPassword);
+			while (queryStaffIDAndPassword.next()) {  
+				StaffIDAndPasswordValid= true;
+		 }
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		
+		return StaffIDAndPasswordValid;
+	}
+	
 }
 

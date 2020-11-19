@@ -2,8 +2,9 @@ package MainMenu;
 
 
 import java.net.URL;
+
 import java.sql.Connection;
-import java.sql.ResultSet;
+
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -20,8 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class MenuController implements Initializable {
 	
@@ -129,7 +128,7 @@ public class MenuController implements Initializable {
                   e.printStackTrace();
                   e.getCause();
                 }
-        } 
+        }
         if(actionEvent.getSource()==btnMaintenance)
         {
             //pnlOrders.setStyle("-fx-background-color : #464F67");
@@ -144,9 +143,15 @@ public class MenuController implements Initializable {
         }
         if(actionEvent.getSource()==btnFeedback)
         {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
-            pnlOrders.toFront();
-        }
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuFeedback/Feedback.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }  
+    
         
         if (actionEvent.getSource() == btnSignout) {
             try{
@@ -157,7 +162,7 @@ public class MenuController implements Initializable {
                   e.getCause();
                 }
         }
-    }
+	}    
 	
 	public void setHeaderData() {
 		

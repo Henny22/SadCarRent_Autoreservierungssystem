@@ -153,7 +153,7 @@
       </VBox>
       <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
          <children>
-            <Pane fx:id="pnlMaintenanceCreate" prefHeight="554.0" prefWidth="793.0" visible="false">
+            <Pane fx:id="pnlMaintenanceCreate" prefHeight="554.0" prefWidth="793.0">
                <children>
                   <TextField fx:id="filterField" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #e7e5e5;" />
                   <Label layoutX="57.0" layoutY="25.0" prefHeight="35.0" prefWidth="277.0" text="Car rents Maintencance" textFill="#e7e5e5">
@@ -254,7 +254,7 @@
                      </font></Button>
                </children>
             </Pane>
-            <Pane fx:id="pnlMaintenanceCheck" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="793.0">
+            <Pane fx:id="pnlMaintenanceCheck" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="793.0" visible="false">
                <children>
                   <TextField fx:id="filterField1" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #e7e5e5;" />
                   <Label layoutX="57.0" layoutY="25.0" prefHeight="35.0" prefWidth="196.0" text="Car rents Orders" textFill="#e7e5e5">

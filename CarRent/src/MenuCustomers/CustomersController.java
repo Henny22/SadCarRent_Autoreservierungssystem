@@ -162,9 +162,15 @@ public class CustomersController implements Initializable{
         }
         if(actionEvent.getSource()==btnFeedback)
         {
-            pnlOrders.setStyle("-fx-background-color : #464F67");
-            pnlOrders.toFront();
-        }
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuFeedback/Feedback.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }  
+    
         
         if (actionEvent.getSource() == btnSignout) {
             try{
@@ -175,7 +181,7 @@ public class CustomersController implements Initializable{
                   e.getCause();
                 }
         }
-    }
+	}    
 	
 	public void searchBarOnAction(ActionEvent e){    
 		FilteredList<ModelTable> filteredData = new FilteredList<>(oblist, b-> true);

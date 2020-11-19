@@ -144,7 +144,8 @@ public class OrdersController implements Initializable {
     private Label labelHold1;
     @FXML
     private Button btnMaintenance;
-    
+    @FXML
+    private Label lblErrorTextDate;
     ObservableList<String> oblist = FXCollections.observableArrayList();
     
     DataExchange exchange = new DataExchange();
@@ -253,8 +254,15 @@ public class OrdersController implements Initializable {
         }
         if(actionEvent.getSource()==btnFeedback)
         {
-            
-        }
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuFeedback/Feedback.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }  
+    
         
         if (actionEvent.getSource() == btnSignout) {
             try{
@@ -265,7 +273,7 @@ public class OrdersController implements Initializable {
                   e.getCause();
                 }
         }
-    }
+	}    
 	
 	
 	
@@ -274,25 +282,33 @@ public class OrdersController implements Initializable {
 	}
 	
 	public void loadTotalAmount(){
+		if(ComboBoxCar.getValue() != null && ComboBoxCustomer.getValue() != null && ComboBoxCategory.getValue() != null && ComboBoxLocation.getValue() != null && datePickerTo.getValue() != null)
+		{
+		if( datePickerFrom.getValue().isBefore(datePickerTo.getValue()) || datePickerFrom.getValue().equals(datePickerTo.getValue())   ) {
 		String firstCharComboBoxComboBoxCar = ComboBoxCar.getValue();
 			
-		LocalDate dateFrom = datePickerFrom.getValue();
-		LocalDate dateTo = datePickerTo.getValue();
-		
+			
 		long daysFrom = datePickerFrom.getValue().toEpochDay();
 		long daysTo = datePickerTo.getValue().toEpochDay();
 		
 		int  rentDuration  = (int) Math.abs(daysFrom-daysTo)+1;
 		
-		if(ComboBoxCar.getValue() != null && dateFrom.compareTo(dateTo)<=0)  {
+				
+		 
 			double amount = exchange.getSelectedCarRate(Integer.parseInt(String.valueOf(firstCharComboBoxComboBoxCar.charAt(0))));
 			amount = amount *rentDuration;
 			lblAmount.setText(amount+"€");
+			lblErrorTextDate.setText("");
+			lblErrorText.setText("");
 		}else {
-			lblAmount.setText("Car not selected or wrong date!");
-		}
+			lblAmount.setText("wrong date! Please change before confirming");
+		} 
+	}else {
+		lblAmount.setText("Amount is being calculated by your choosen inputs! ");
+		lblErrorText.setText("");
 	}
-	
+		
+	}
 	public void sendData() {
 		if (ComboBoxCustomer.getValue() != null && ComboBoxCategory.getValue() != null && ComboBoxCar.getValue() != null && ComboBoxLocation.getValue() != null && datePickerFrom.getValue() != null && datePickerTo.getValue() != null ) {
 			lblErrorText.setVisible(false);
@@ -321,10 +337,12 @@ public class OrdersController implements Initializable {
 		        lblErrorText.setText("Order was succesful and bill has been created!");
 		        lblErrorText.setVisible(true);
 			} else {
+				lblErrorText.setVisible(true);
 				lblErrorText.setText("Not a valid Date!");
 			}
 			}
 		else {
+			lblErrorText.setVisible(true);
 			lblErrorText.setText("Please select products before submitting!");
 			}
 		}

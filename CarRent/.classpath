@@ -6,27 +6,51 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx.base.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx.controls.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx.fxml.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx.graphics.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx.media.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx.swing.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx.web.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/javafx-sdk-11.0.2/lib/javafx-swt.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/henny/git/SadCarRent_Autoreservierungssystem/CarRent/src/essentials/mysql-connector-java-8.0.21.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.fx.ide.jdt.core.JAVAFX_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/mysql-connector-java-8.0.21/mysql-connector-java-8.0.21.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/barcodes-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/font-asian-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/forms-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/hyph-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/io-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/kernel-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/layout-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/pdfa-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/pdftest-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/sign-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/styled-xml-parser-7.1.13.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Hendrik/Documents/IText/svg-7.1.13.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
