@@ -2,6 +2,7 @@ package MainMenu;
 
 
 import java.net.URL;
+import login.Main;
 
 import java.sql.Connection;
 
@@ -78,6 +79,11 @@ public class MenuController implements Initializable {
 		
 		@FXML
 		private Button btnMaintenance;
+		
+		@FXML
+		private Button btnDarkMode;
+		@FXML
+		private Button btnLightMode;
 		
 		DataExchange exchange = new DataExchange();
 	
@@ -190,5 +196,13 @@ public class MenuController implements Initializable {
         }
     }
 	
-	 
+	public void changeTheme(ActionEvent actionEvent) {
+	
+		if (actionEvent.getSource() == btnDarkMode) {	 
+        }
+		if (actionEvent.getSource() == btnLightMode) {
+        }
+		
+	}
+	
 }

@@ -224,6 +224,8 @@
                         <Image url="@../images/icons8_Search_52px.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="btnDarkMode" layoutX="157.0" layoutY="288.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Dark Mode" />
+                  <Button fx:id="btnLightMode" layoutX="344.0" layoutY="288.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="106.0" text="Light mode" />
                </children>
             </Pane>
          </children>
