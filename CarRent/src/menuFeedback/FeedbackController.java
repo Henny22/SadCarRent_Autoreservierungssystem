@@ -1,5 +1,5 @@
 package menuFeedback;
-
+import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 import database.DataExchange;
@@ -21,10 +21,12 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import login.Main;
+import menuSettings.SettingsController;
 
 public class FeedbackController  implements Initializable {
-
 	
+	@FXML
+    private AnchorPane AnchorPane;
 	@FXML
 	private TextField txtFieldStaffID;
 	@FXML
@@ -144,6 +146,16 @@ public class FeedbackController  implements Initializable {
 	 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		if(SettingsController.getStylesheet() != null) {
+			if(SettingsController.getStylesheet().equals("darkmode")) {
+			AnchorPane.getStylesheets().clear();
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			}
+			else if(SettingsController.getStylesheet().equals("lightmode")) {
+			AnchorPane.getStylesheets().clear();
+			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
+			}
+			}
 		comboBoxPorpuse.setItems(FXCollections.observableArrayList("Business","Personal/Leisure","Replacement Car","Other"));
 		
 	}
@@ -222,7 +234,17 @@ public class FeedbackController  implements Initializable {
                   e.getCause();
                 }
         }
-	}   
+        
+        if (actionEvent.getSource() == btnSettings) {
+            try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuSettings/Settings.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
+	}  
 	
 	public void lockScreenAndChangeToPanelFeedbackForm() {
 		

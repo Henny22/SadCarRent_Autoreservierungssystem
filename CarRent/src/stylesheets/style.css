@@ -3,6 +3,12 @@
 -fx-background-color : #05071F;
 -fx-text-fill : #e7e5e5;
 }
+#StackPane, #AnchorPane, #tableTableview{
+	-fx-background-color : #02030A; 
+}
+#VBox{
+-fx-background-color : #05071F; 	
+}
 .button:hover{
 -fx-background-color : #86879c;
 }

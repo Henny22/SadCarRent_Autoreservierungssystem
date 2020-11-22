@@ -1,7 +1,12 @@
 .button
 {
--fx-background-color : #05071F;
--fx-text-fill : #e7e5e5;
+-fx-background-color : #2d98da;
+}
+#StackPane, #AnchorPane, #tableTableview{
+-fx-background-color:#a5b1c2;
+}
+#VBox{
+-fx-background-color : #2d98da; 	
 }
 .button:hover{
 -fx-background-color : #86879c;
@@ -15,6 +20,9 @@
     -fx-background-color: #02030A;
 }
 
+.label{
+	-fx-text-fill: #000000;
+}
 .scroll-bar:horizontal, .scroll-bar:vertical{
     -fx-background-color:transparent;
 }
@@ -42,7 +50,6 @@
 }
 
 .table-view .column-header{
-    
     -fx-text-fill: #e7e5e5;
 }
 
@@ -57,7 +64,7 @@
 }
 
 .table-view .table-cell{
-    -fx-background-color: #02030A;
+    -fx-background-color: #a5b1c2;
     -fx-text-fill: #e7e5e5;
     -fx-alignment: center;
 }
@@ -70,6 +77,6 @@
 }
 
 .table-view .column-header * {
-    -fx-background-color: #02030A;
+    -fx-background-color: #a5b1c2;
 }
 

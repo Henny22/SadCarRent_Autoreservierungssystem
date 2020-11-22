@@ -1,6 +1,6 @@
  package menuCars;
 
-
+import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,6 +29,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.Main;
+import menuSettings.SettingsController;
 import universal.ModelTable;
 
 public class CarsController implements Initializable{
@@ -78,6 +79,8 @@ public class CarsController implements Initializable{
     private Pane pnlOrders;
     @FXML
     private Button btnMaintenance;
+    @FXML
+    private AnchorPane AnchorPane;
     
     DataExchange exchange = new DataExchange();
     
@@ -93,6 +96,17 @@ public class CarsController implements Initializable{
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		if(SettingsController.getStylesheet() != null) {
+			if(SettingsController.getStylesheet().equals("darkmode")) {
+			AnchorPane.getStylesheets().clear();
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			}
+			else if(SettingsController.getStylesheet().equals("lightmode")) {
+			AnchorPane.getStylesheets().clear();
+			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
+			}
+			}
+		
 		tableColumnIDCar.setCellValueFactory(new PropertyValueFactory<>("IDCar"));
 		tableColumnBrand.setCellValueFactory(new PropertyValueFactory<>("Brand"));
 		tableColumnModel.setCellValueFactory(new PropertyValueFactory<>("Model"));
@@ -185,7 +199,17 @@ public class CarsController implements Initializable{
                   e.getCause();
                 }
         }
-	}    
+        
+        if (actionEvent.getSource() == btnSettings) {
+            try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuSettings/Settings.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
+	}  
 
 	public void searchBarOnAction(ActionEvent e){    
 		FilteredList<ModelTable> filteredData = new FilteredList<>(oblist, b-> true);

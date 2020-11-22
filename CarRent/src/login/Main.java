@@ -16,7 +16,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
     
-     private static Stage guiStage;
+     public static Stage guiStage;
     
     public static Stage getStage(){
         return guiStage;

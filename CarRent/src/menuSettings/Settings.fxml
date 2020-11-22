@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.MenuController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuSettings.SettingsController">
    <children>
       <VBox fx:id="VBox" alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -154,7 +154,7 @@
             <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
                <children>
                   <TextField fx:id="filterField" layoutX="590.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="search" style="-fx-background-color: #02030A; -fx-border-color: #B7C3D7; -fx-border-radius: 2em; -fx-text-fill: #e7e5e5;" />
-                  <Label layoutX="57.0" layoutY="25.0" text="Car rents Overview" textFill="#e7e5e5">
+                  <Label layoutX="57.0" layoutY="25.0" text="Car rents Settings" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -224,6 +224,8 @@
                         <Image url="@../images/icons8_Search_52px.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="btnDarkMode" layoutX="157.0" layoutY="288.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="106.0" text="Dark Mode" />
+                  <Button fx:id="btnLightMode" layoutX="344.0" layoutY="288.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="106.0" text="Light mode" />
                </children>
             </Pane>
          </children>
