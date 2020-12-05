@@ -23,8 +23,7 @@ import javafx.stage.Stage;
 import login.Main;
 
 public class AddNewCarController implements Initializable {
-	@FXML
-	private TextField txtfieldAvailability;
+	
 	@FXML
 	private TextField txtfieldBrand;
 	@FXML
@@ -61,13 +60,12 @@ public class AddNewCarController implements Initializable {
 	public void addNewCar() {
 		if (textAreaCarDescription.getText().isEmpty() == false && txtfieldBrand.getText().isEmpty() == false
 				&& txtfieldModel.getText().isEmpty() == false &&  txtfieldRate.getText().isEmpty() == false 
-				&& txtfieldNoOfSeats.getText().isEmpty() == false && txtfieldAvailability.getText().isEmpty() == false 
-				&& txtfieldAvailability.getText().matches("[0-1]") && txtfieldNoOfSeats.getText().matches("[0-9]") 
+				&& txtfieldNoOfSeats.getText().isEmpty() == false && txtfieldNoOfSeats.getText().matches("[0-9]") 
 				&&  txtfieldRate.getText().matches("[0-9]*")){
 		if (DataExchangeLogin.getIsAdministrator() == true) {
 			int IDCat = getIDFromComboBox(comboBoxCarCategory);	
 			int highestIDCar = exchange.getHighestIDCar();   
-			exchange.addNewCar(highestIDCar,textAreaCarDescription.getText(), txtfieldBrand.getText(), txtfieldModel.getText(), IDCat , txtfieldRate.getText() , txtfieldNoOfSeats.getText() , txtfieldAvailability.getText());
+			exchange.addNewCar(highestIDCar,textAreaCarDescription.getText(), txtfieldBrand.getText(), txtfieldModel.getText(), IDCat , txtfieldRate.getText() , txtfieldNoOfSeats.getText() );
 			labelMessage.setText("Car has been inserted in to the Database!");
 		}else {
 			labelMessage.setText("You are not authorized to do this action!");
@@ -101,6 +99,5 @@ public class AddNewCarController implements Initializable {
 		textAreaCarDescription.setText("");	
 		txtfieldRate.setText("");
 		txtfieldNoOfSeats.setText("");	
-		txtfieldAvailability.setText("");
 	 }
 }

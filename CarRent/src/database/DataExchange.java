@@ -248,9 +248,9 @@ public class DataExchange {
 		return highestIDCar;
 	}
 	
-	public void addNewCar(int highestIDCar, String textAreaCarDescription,  String txtfieldBrand, String txtfieldModel, int IDCat , String txtfieldRate , String txtfieldNoOfSeats , String txtfieldAvailability) {
-		String insertFields ="INSERT INTO cars(`IDCar`,`car_description`, `brand`, `model`, `IDCat`, `rate`, `no_of_seats`, `Availability`) VALUES ('";
-        String insertValues =highestIDCar + "','"+textAreaCarDescription + "','"+ txtfieldBrand +"','"+ txtfieldModel +"','"+ IDCat +"','"+ txtfieldRate +"','"+ txtfieldNoOfSeats +"','"+ txtfieldAvailability +"')";
+	public void addNewCar(int highestIDCar, String textAreaCarDescription,  String txtfieldBrand, String txtfieldModel, int IDCat , String txtfieldRate , String txtfieldNoOfSeats ) {
+		String insertFields ="INSERT INTO cars(`IDCar`,`car_description`, `brand`, `model`, `IDCat`, `rate`, `no_of_seats`) VALUES ('";
+        String insertValues =highestIDCar + "','"+textAreaCarDescription + "','"+ txtfieldBrand +"','"+ txtfieldModel +"','"+ IDCat +"','"+ txtfieldRate +"','"+ txtfieldNoOfSeats +"')";
         String insertToCars = insertFields + insertValues;
 		try {
 			 Statement statement = connectDB.createStatement();
@@ -355,16 +355,18 @@ public class DataExchange {
 		try {
 			statement = connectDB.createStatement();
 			ResultSet queryDataExists = statement.executeQuery(checkFeedbackDataExists);
-			while (queryDataExists.next()) {  
-				dataExisting= true;
-		 }
+		if(queryDataExists.next() == true) {
+			dataExisting= true;
+		}else {
+			dataExisting= false;
+		}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}	
-		
 		return dataExisting;
 	}
+		
 	public void sendFeedbackData(int IDReservation, String vehicleProcedure, String levelCustomerService, String expectations, String rentalProcedure, String overallImpression) {
 		int IDCus = 0;
 		String getIDCus="select IDCus from orders where IDReservation="+IDReservation;

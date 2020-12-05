@@ -3,7 +3,7 @@
 -fx-background-color : #05071F;
 -fx-text-fill : #e7e5e5;
 }
-#StackPane, #AnchorPane, #tableTableview{
+#StackPane, #AnchorPane, #tableTableview,#filterField{
 	-fx-background-color : #02030A; 
 }
 #VBox{

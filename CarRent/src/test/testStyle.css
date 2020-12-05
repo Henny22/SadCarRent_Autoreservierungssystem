@@ -1,9 +1,25 @@
 .button
 {
 -fx-background-color : #2d98da;
+-fx-text-fill : #000000;
 }
-#StackPane, #AnchorPane, #tableTableview{
+.text{
+-fx-font-color : #000000;	
+}
+#StackPane, #AnchorPane, #tableTableview,#filterField{
 -fx-background-color:#a5b1c2;
+}
+#labelTotalOrders{
+-fx-text-fill : #2a73ff;	
+}
+#labelDelivered{
+-fx-text-fill : #26bfbc;		
+}
+#labelPending{
+-fx-text-fill :	#fa5f7e;
+}
+#labelOnHold{
+-fx-text-fill :	#de0000;	
 }
 #VBox{
 -fx-background-color : #2d98da; 	
@@ -15,7 +31,9 @@
 {
 -fx-background-color : #1620A1;
 }
-
+#ScrollPane{
+	
+}
 .scroll-pane {
     -fx-background-color: #02030A;
 }

@@ -1,17 +1,15 @@
 package menuOrders;
 
 import javafx.scene.layout.AnchorPane;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-
 import database.DataExchange;
 import database.DatabaseConnection;
 import javafx.collections.FXCollections;
@@ -26,7 +24,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -141,7 +138,7 @@ public class OrdersController implements Initializable {
     @FXML
     private Label labelPending1;
     @FXML
-    private Label labelHold;
+    private Label labelOnHold;
     @FXML
     private Label labelHold1;
     @FXML
@@ -307,15 +304,12 @@ public class OrdersController implements Initializable {
 		{
 		if( datePickerFrom.getValue().isBefore(datePickerTo.getValue()) || datePickerFrom.getValue().equals(datePickerTo.getValue())   ) {
 		String firstCharComboBoxComboBoxCar = ComboBoxCar.getValue();
-			
-			
+					
 		long daysFrom = datePickerFrom.getValue().toEpochDay();
 		long daysTo = datePickerTo.getValue().toEpochDay();
 		
 		int  rentDuration  = (int) Math.abs(daysFrom-daysTo)+1;
 		
-				
-		 
 			double amount = exchange.getSelectedCarRate(Integer.parseInt(String.valueOf(firstCharComboBoxComboBoxCar.charAt(0))));
 			amount = amount *rentDuration;
 			lblAmount.setText(amount+"€");
@@ -327,8 +321,7 @@ public class OrdersController implements Initializable {
 	}else {
 		lblAmount.setText("Amount is being calculated by your choosen inputs! ");
 		lblErrorText.setText("");
-	}
-		
+	}		
 	}
 	public void sendData() {
 		if (ComboBoxCustomer.getValue() != null && ComboBoxCategory.getValue() != null && ComboBoxCar.getValue() != null && ComboBoxLocation.getValue() != null && datePickerFrom.getValue() != null && datePickerTo.getValue() != null ) {
@@ -444,7 +437,6 @@ public class OrdersController implements Initializable {
 		int IDReservation = getIDFromComboBox(comboBoxListOrders);
 		
 		selectedOrderDataList = exchange.getOrderData(IDReservation);
-		System.out.println(selectedOrderDataList);
 		lblLastname.setText(selectedOrderDataList.get(0));
 		lblBrand.setText(selectedOrderDataList.get(1));
 		lblCity.setText(selectedOrderDataList.get(2));
