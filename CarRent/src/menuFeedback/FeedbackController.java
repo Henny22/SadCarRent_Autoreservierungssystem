@@ -140,6 +140,8 @@ public class FeedbackController  implements Initializable {
 	private Button btnUnlockUIhere;
 	@FXML
 	private Label lblErrorTextFeedbackformUnlock;
+	@FXML
+	private Label lblConfirmFeedbackform;
 	
 	DataExchange exchange = new DataExchange();
 	ObservableList<String> oblist = FXCollections.observableArrayList();
@@ -310,6 +312,8 @@ public class FeedbackController  implements Initializable {
 	}
 	
 	public void submitFeedbackForm() {
+		lblConfirmFeedbackform.setText("");
+		lblErrorTextFeedbackform.setText("");
 		String vehicleProcedure = null, levelCustomerService= null, expectations= null, rentalProcedure= null, overallImpression= null;
 		if(txtFieldContractNumber.getText().isEmpty() == false && comboBoxPorpuse.getValue() != null && firstChoiceGroup.getSelectedToggle() != null && secondChoiceGroup.getSelectedToggle() != null && thirdChoiceGroup.getSelectedToggle()!= null && fourthChoiceGroup.getSelectedToggle()!= null && fifthChoiceGroup.getSelectedToggle()!= null) {
 			int IDReservation = Integer.parseInt(txtFieldContractNumber.getText());
@@ -377,7 +381,7 @@ public class FeedbackController  implements Initializable {
 			}
 			exchange.sendFeedbackData(IDReservation,vehicleProcedure,levelCustomerService,expectations,rentalProcedure,overallImpression);
 			resetForm();
-			lblErrorTextFeedbackform.setText("Feedback has been submitted. Please contact Staff!");
+			lblConfirmFeedbackform.setText("Feedback has been submitted. Please contact Staff!");
 			}else {
 				lblErrorTextFeedbackform.setText("Feedback has been already submitted for this order. Please contact Staff!");
 			}

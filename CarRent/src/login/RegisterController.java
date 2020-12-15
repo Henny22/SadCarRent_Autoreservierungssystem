@@ -49,6 +49,8 @@ public class RegisterController  implements Initializable  {
      private Label labelPasswordNotMatch;
      @FXML
      private Label labelAlreadyRegistered;
+     @FXML
+     private Label labelSuccesRegistered;
      
      boolean NumberInStuff, NumberInUserData; 
      boolean existNumberInStuff = false, existNumberInUserData = false;
@@ -105,14 +107,15 @@ public class RegisterController  implements Initializable  {
     	 int dataCase = exchangeLogin_Register.checkEmployeeInDatabase(staffNumber);
     	 int jobInt= exchangeLogin_Register.checkIFEmployeeAdministrator(staffNumber);
     	 
-    	
+    	 labelSuccesRegistered.setText("");
+    	 labelAlreadyRegistered.setText("");
     	 if (dataCase == 2) {
     		 labelPasswordNotMatch.setText("");
-             labelAlreadyRegistered.setText("You are already registered. Please try to login!");
+    		 labelAlreadyRegistered.setText("You are already registered. Please try to login!");
          }else if (dataCase == 1){
         	 exchangeLogin_Register.registerUser(staffNumber,username,password,jobInt);
         	 
-        	 labelAlreadyRegistered.setText("User has been registered successfully. Try to login now!");
+        	 labelSuccesRegistered.setText("User has been registered successfully. Try to login now!");
          }else if (dataCase == 0){
              labelAlreadyRegistered.setText("We couldn't find this Staff Number. Please try to conntact HR!");
          }

@@ -92,6 +92,10 @@ public class MaintenanceController implements Initializable {
 	private Label lblErrorTextConclude;
 	@FXML
 	private Button btnSettings;
+	@FXML
+	private Label lblConfirmText;
+	@FXML
+	private Label lblTextConclude;
 	
 	ObservableList<String> oblist = FXCollections.observableArrayList();
 	
@@ -225,13 +229,15 @@ public class MaintenanceController implements Initializable {
 	}
 	
 	public void confirmMaintenanceContract() {
+		lblConfirmText.setText("");
+		lblErrorText.setText("");
 		if (ComboBoxCars.getValue() != null && comboBoxCompany.getValue() != null && comboBoxService.getValue() != null && datePickerFrom.getValue() != null &&  datePickerTo.getValue() != null && datePickerFrom.getValue().isBefore(datePickerTo.getValue()) && txtFieldAmount.getText().matches("^[0-9.]+$")) {
 			//
 			if(comboBoxService.getValue() == "Other" && txtFieldReason.getText().isEmpty() == false ) {
 				String otherString = comboBoxService.getValue()+": "+txtFieldReason.getText() ;
 				exchange.createMaintenanceContract(getIDFromComboBox(ComboBoxCars),comboBoxCompany.getValue() , otherString, datePickerFrom.getValue(), datePickerTo.getValue(), Double.parseDouble(txtFieldAmount.getText()));
 				resetForm();
-				lblErrorText.setText("Maintenanced contract has been submitted.");
+				lblConfirmText.setText("Maintenanced contract has been submitted.");
 				loadComboBoxCars();
 			}			
 			else if(comboBoxService.getValue().equals("Other")==false ){
@@ -334,10 +340,12 @@ public class MaintenanceController implements Initializable {
 		}
 		
 		public void concludeMaintenenceContract() {
+			lblTextConclude.setText("");
+			lblErrorTextConclude.setText("");
 			if(comboBoxListMaintenance.getValue() != null) {
 				int IDMaintenance = getIDFromComboBox(comboBoxListMaintenance);
 				exchange.setMainteneneOnComplete(IDMaintenance);
-				lblErrorTextConclude.setText("Maintenance contract has been signed as completed!");
+				lblTextConclude.setText("Maintenance contract has been signed as completed!");
 				lblDateFromConfirm.setText("");
 				lblDateToConfirm.setText("");
 				lblAmountConfirm.setText("");

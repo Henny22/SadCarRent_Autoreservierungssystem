@@ -113,7 +113,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnDataEvaluations" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Data evaluations">
+            <Button fx:id="btnDataEvaluations" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Webview">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -233,7 +233,7 @@
                      <font>
                         <Font name="System Bold" size="17.0" />
                      </font></Button>
-                  <Label fx:id="lblErrorText" alignment="CENTER" layoutX="208.0" layoutY="408.0" prefHeight="21.0" prefWidth="378.0" textFill="#0700ff">
+                  <Label fx:id="lblErrorText" alignment="CENTER" layoutX="208.0" layoutY="408.0" prefHeight="21.0" prefWidth="378.0" textFill="RED">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -246,6 +246,11 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
+                  <Label fx:id="lblConfirmText" alignment="CENTER" layoutX="208.0" layoutY="408.0" prefHeight="21.0" prefWidth="378.0" textFill="#0700ff">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Pane fx:id="pnlMaintenanceCheck" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="793.0" visible="false">
@@ -346,6 +351,11 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
+                  <Label fx:id="lblTextConclude" alignment="CENTER" layoutX="204.0" layoutY="403.0" prefHeight="35.0" prefWidth="494.0" textFill="#0700ff">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

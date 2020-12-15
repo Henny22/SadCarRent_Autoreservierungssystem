@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
@@ -41,15 +42,22 @@ public class DataEvaluationsController implements Initializable {
 	private Button btnSettings;
 	@FXML
 	private Button btnDataEvaluations;
-
 	@FXML
-	private Button btnLoadWebView;
+	private Tab tabTab1;
+	@FXML
+	private Tab tabTab2;
+	@FXML
+	private WebView webviewWebview1;
+	@FXML
+	private TextField textFieldTab1;
+	@FXML
+	private WebView webviewWebview2;
+	@FXML
+	private TextField textFieldTab2;
+	@FXML
+	private TabPane tabPaneTabPane1;
 	
-	private static String url;
 	
-	public static String getURL() {
-		return url;
-	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -152,20 +160,19 @@ public class DataEvaluationsController implements Initializable {
         }
 	}  
 	
-	public void loadWebview() {
-		 try{   
-	            Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/WebView.fxml"));
-	            Stage stage = new Stage();
-	            stage.setTitle("Web View");
-	            //stage.initStyle(StageStyle.UNDECORATED);
-	            stage.setScene(new Scene(root, 940, 623));
-	           //stage.initModality(Modality.APPLICATION_MODAL);
-	            stage.show();
-
-	        }catch(Exception e){
-	          e.printStackTrace();
-	          e.getCause();
-	        }
+	public void loadTab(KeyEvent e){		
+	    if(e.getCode().toString().equals("ENTER") && tabPaneTabPane1.getSelectionModel().getSelectedIndex() == 0 )
+	    {
+	    	WebEngine engine = webviewWebview1.getEngine();
+			 engine.load(textFieldTab1.getText());	
+			 engine.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+	    }
+	    if(e.getCode().toString().equals("ENTER") && tabPaneTabPane1.getSelectionModel().getSelectedIndex() == 1 )
+	    {
+	    	WebEngine engine = webviewWebview2.getEngine();
+			 engine.load(textFieldTab2.getText());	
+			 engine.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+	    }
 	}
 	
 }

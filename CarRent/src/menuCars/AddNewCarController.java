@@ -40,6 +40,8 @@ public class AddNewCarController implements Initializable {
 	private Button btnClose;
 	@FXML
 	private Label labelMessage;
+	@FXML
+	private Label lblMessage;
 	DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
     
@@ -58,6 +60,8 @@ public class AddNewCarController implements Initializable {
 	}
 
 	public void addNewCar() {
+		lblMessage.setText("");
+		labelMessage.setText("");
 		if (textAreaCarDescription.getText().isEmpty() == false && txtfieldBrand.getText().isEmpty() == false
 				&& txtfieldModel.getText().isEmpty() == false &&  txtfieldRate.getText().isEmpty() == false 
 				&& txtfieldNoOfSeats.getText().isEmpty() == false && txtfieldNoOfSeats.getText().matches("[0-9]") 
@@ -66,7 +70,8 @@ public class AddNewCarController implements Initializable {
 			int IDCat = getIDFromComboBox(comboBoxCarCategory);	
 			int highestIDCar = exchange.getHighestIDCar();   
 			exchange.addNewCar(highestIDCar,textAreaCarDescription.getText(), txtfieldBrand.getText(), txtfieldModel.getText(), IDCat , txtfieldRate.getText() , txtfieldNoOfSeats.getText() );
-			labelMessage.setText("Car has been inserted in to the Database!");
+		
+			lblMessage.setText("Car has been inserted in to the Database!");
 		}else {
 			labelMessage.setText("You are not authorized to do this action!");
 		}

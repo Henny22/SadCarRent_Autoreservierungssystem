@@ -14,21 +14,11 @@
    <left>
       <AnchorPane prefHeight="400.0" prefWidth="217.0" style="-fx-background-color: #525252;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="101.0" fitWidth="120.0" layoutX="51.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="196.0" fitWidth="194.0" layoutX="12.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/icons8_car_64px.png" />
+                  <Image url="@../images/769227fa-65b4-48d8-be73-38d69bdd1292_200x200.png" />
                </image>
             </ImageView>
-            <Label layoutX="27.0" layoutY="48.0" prefHeight="36.0" prefWidth="163.0" text="Sad Car Rent " textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="20.0" layoutY="240.0" prefHeight="36.0" prefWidth="163.0" text="Staff Login" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="25.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </left>
@@ -47,7 +37,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Label fx:id="labelStatus" alignment="CENTER" layoutX="7.0" layoutY="217.0" prefHeight="17.0" prefWidth="251.0" textFill="RED">
+            <Label fx:id="labelStatus" alignment="CENTER" layoutX="21.0" layoutY="219.0" prefHeight="17.0" prefWidth="251.0" textFill="RED">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

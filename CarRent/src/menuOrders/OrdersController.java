@@ -2,6 +2,8 @@ package menuOrders;
 
 import javafx.scene.layout.AnchorPane;
 
+
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -145,6 +147,8 @@ public class OrdersController implements Initializable {
     private Button btnMaintenance;
     @FXML
     private Label lblErrorTextDate;
+    @FXML
+    private Label lblConfirmText;
     ObservableList<String> oblist = FXCollections.observableArrayList();
     
     DataExchange exchange = new DataExchange();
@@ -324,6 +328,8 @@ public class OrdersController implements Initializable {
 	}		
 	}
 	public void sendData() {
+		lblConfirmText.setText("");
+		lblErrorText.setText("");
 		if (ComboBoxCustomer.getValue() != null && ComboBoxCategory.getValue() != null && ComboBoxCar.getValue() != null && ComboBoxLocation.getValue() != null && datePickerFrom.getValue() != null && datePickerTo.getValue() != null ) {
 			lblErrorText.setVisible(false);
 			
@@ -346,10 +352,10 @@ public class OrdersController implements Initializable {
 				
 				exchange.setDataInOrders(IDCar,IDCust,amount,IDLoc,dateFrom,dateTo);
 				resetForm();
-				exchange.createBill(amount,exchange.getHightestID(),LocalDate.now());
+				exchange.createInvoice(amount,exchange.getHightestID(),LocalDate.now(),IDCust, IDCat,IDCar,IDLoc,dateFrom,dateTo);
 				setHeaderData();
-		        lblErrorText.setText("Order was succesful and bill has been created!");
-		        lblErrorText.setVisible(true);
+				lblConfirmText.setText("Order was succesful and bill has been created!");
+		      
 			} else {
 				lblErrorText.setVisible(true);
 				lblErrorText.setText("Not a valid Date!");
@@ -360,6 +366,8 @@ public class OrdersController implements Initializable {
 			lblErrorText.setText("Please select products before submitting!");
 			}
 		}
+	
+	
 	
 	public int getIDFromComboBox(ComboBox<String> cb) {
 		String selectedValues = (String) cb.getValue();
@@ -392,6 +400,8 @@ public class OrdersController implements Initializable {
 		 datePickerTo.getEditor().clear();
 		 lblAmount.setText("");
 		 lblErrorText.setText("");	
+		 
+		 lblConfirmText.setText("");
 	 }
 	
 	

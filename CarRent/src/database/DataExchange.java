@@ -1,17 +1,19 @@
 package database;
 
+import java.io.IOException;
 import java.sql.Connection;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-
-
+import java.time.format.DateTimeFormatter;
 
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import menuOrders.createInvoice;
 
 public class DataExchange {
 
@@ -150,8 +152,9 @@ public class DataExchange {
 		return maxIDReservation;
 	}
 	
-	public void createBill(double amount, int IDOrder, LocalDate date) {
+	public void createInvoice(double amount, int IDOrder, LocalDate date ,int IDCust, int IDCat, int IDCar, int IDLoc, LocalDate dateFrom, LocalDate dateTo) {
 
+		//fil data into database
 		String insertFields ="INSERT INTO bills(`Total_amt`, `ID_order`, `BillDate`) VALUES ('";
         String insertValues =amount + "','"+ IDOrder +"','"+ date +"')";
         String insertToBils = insertFields + insertValues;
@@ -162,7 +165,92 @@ public class DataExchange {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}   
+		} 
+		
+		//get data from database to create Word Invoice
+		String [] invoiceData = new String [20];
+		
+		//Data Customer
+				try {
+					Statement statement = connectDB.createStatement();
+					ResultSet queryResultCustomerData = statement.executeQuery("select Firstname,Lastname,Street,StreetNo,City,Postalcode,Country from customers where IDCus="+IDCust);
+					invoiceData[0] = Integer.toString(IDCust);
+					while (queryResultCustomerData.next()) {  // loop 
+						invoiceData[1] = queryResultCustomerData.getString("Firstname");
+						invoiceData[2] = queryResultCustomerData.getString("Lastname");
+						invoiceData[3] = queryResultCustomerData.getString("Street");
+						invoiceData[4] = queryResultCustomerData.getString("StreetNo");
+						invoiceData[5] = queryResultCustomerData.getString("City");
+						invoiceData[6] = Integer.toString(queryResultCustomerData.getInt("Postalcode"));
+						invoiceData[7] = queryResultCustomerData.getString("Country");
+					       }		
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		//Data Location
+				try {
+					Statement statement = connectDB.createStatement();
+					ResultSet queryResultLocationData = statement.executeQuery("select Street,StreetNo,City,Country from locations where IDLoc="+IDLoc);
+					invoiceData[8] = Integer.toString(IDLoc);
+					while (queryResultLocationData.next()) {  // loop 
+						invoiceData[9] = queryResultLocationData.getString("Street");
+						invoiceData[10] = queryResultLocationData.getString("StreetNo");
+						invoiceData[11] = queryResultLocationData.getString("City");
+						invoiceData[12] = queryResultLocationData.getString("Country");
+					       }		
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		//Data Category
+				try {
+					Statement statement = connectDB.createStatement();
+					ResultSet queryResultCategoryData = statement.executeQuery("select label from category where IDCat="+IDCat);
+					
+					while (queryResultCategoryData.next()) {  // loop 
+						invoiceData[13] = queryResultCategoryData.getString("Label");
+					       }		
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}	
+				
+		//Data Car
+				try {
+					Statement statement = connectDB.createStatement();
+					ResultSet queryResultCarData = statement.executeQuery("select brand,model from cars where IDCar="+IDCar);
+					invoiceData[14] = Integer.toString(IDCar);
+					while (queryResultCarData.next()) {  // loop 
+						invoiceData[15] = queryResultCarData.getString("brand");
+						invoiceData[16] = queryResultCarData.getString("model");
+					       }		
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+
+		        invoiceData[17] = Double.toString(amount);
+		        invoiceData[18] = dateFrom.format(formatter);
+		        invoiceData[19] = dateTo.format(formatter);
+		        
+		        createInvoice invoice1 = new createInvoice ();
+		        try {
+					invoice1.createWord(invoiceData);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	}
+	
+	public void createBillData(int IDCust, int IDCat, int IDCar, int IDLoc, LocalDate dateFrom, LocalDate dateTo, double amount) {
+		
+		
+		
 	}
 	
 	public void setOrderOnComplete(int IDReservation) {

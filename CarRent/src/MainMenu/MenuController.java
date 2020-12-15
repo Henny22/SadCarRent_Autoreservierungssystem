@@ -96,6 +96,9 @@ public class MenuController implements Initializable {
 		private AnchorPane AnchorPane;
 		@FXML
 		private Label labelOnHold;
+		@FXML
+		private Button btnOpenAppointmentForm;
+		
 		DataExchange exchange = new DataExchange();
 	
 		
@@ -238,6 +241,14 @@ public class MenuController implements Initializable {
         }
     }
 	
-	
+	public void openAppointmentForm() {
+		 try{
+		        Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/ScheduleAppointment.fxml"));
+		        Main.getStage().setScene(new Scene(root, 767, 580));
+		        }catch(Exception e){
+		          e.printStackTrace();
+		          e.getCause();
+		        }
+	}
 	
 }
