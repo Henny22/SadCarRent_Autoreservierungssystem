@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
@@ -47,21 +48,51 @@ public class DataEvaluationsController implements Initializable {
 	@FXML
 	private Tab tabTab2;
 	@FXML
+	private Tab tabTab3;
+	@FXML
+	private Tab tabTab4;
+	@FXML
+	private Tab tabTab5;
+	@FXML
+	private Tab tabTabAdd;
+	@FXML
 	private WebView webviewWebview1;
 	@FXML
 	private TextField textFieldTab1;
 	@FXML
 	private WebView webviewWebview2;
 	@FXML
+	private WebView webviewWebview3;
+	@FXML
+	private WebView webviewWebview4;
+	@FXML
+	private WebView webviewWebview5;
+	
+	@FXML
 	private TextField textFieldTab2;
 	@FXML
+	private TextField textFieldTab3;
+	@FXML
+	private TextField textFieldTab4;
+	@FXML
+	private TextField textFieldTab5;
+	@FXML
 	private TabPane tabPaneTabPane1;
+	@FXML
+	private Button btnAddTab;
+	@FXML
+	private Button btnRemoveTab;
+	@FXML
+	private Label lblErrorTabs;
 	
+	int tabCounter=0;
 	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-			
+		tabPaneTabPane1.getTabs().remove(tabTab3);
+		tabPaneTabPane1.getTabs().remove(tabTab4);
+		tabPaneTabPane1.getTabs().remove(tabTab5);
 	}
 
 	public void handleClicks(ActionEvent actionEvent) {
@@ -173,6 +204,56 @@ public class DataEvaluationsController implements Initializable {
 			 engine.load(textFieldTab2.getText());	
 			 engine.executeScript("window.scrollTo(0, document.body.scrollHeight);");
 	    }
+	    if(e.getCode().toString().equals("ENTER") && tabPaneTabPane1.getSelectionModel().getSelectedIndex() == 2 )
+	    {
+	    	WebEngine engine = webviewWebview3.getEngine();
+			 engine.load(textFieldTab3.getText());	
+			 engine.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+			 textFieldTab3.selectAll();
+			 textFieldTab3.requestFocus();
+	    }
+	    if(e.getCode().toString().equals("ENTER") && tabPaneTabPane1.getSelectionModel().getSelectedIndex() == 3 )
+	    {
+	    	WebEngine engine = webviewWebview4.getEngine();
+			 engine.load(textFieldTab4.getText());	
+			 engine.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+	    }
+	    if(e.getCode().toString().equals("ENTER") && tabPaneTabPane1.getSelectionModel().getSelectedIndex() == 4 )
+	    {
+	    	WebEngine engine = webviewWebview5.getEngine();
+			 engine.load(textFieldTab5.getText());	
+			 engine.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+	    }
+	    
+	}
+	
+	public void addTab() {
+		
+		if(tabCounter==0) {
+			tabPaneTabPane1.getTabs().addAll(tabTab3);
+			btnAddTab.setLayoutX(155);
+			tabPaneTabPane1.getSelectionModel().select(tabTab3);	
+			tabPaneTabPane1.requestLayout();	
+		} else if (tabCounter==1) {
+			tabPaneTabPane1.getTabs().addAll(tabTab4);
+			btnAddTab.setLayoutX(197);
+			tabPaneTabPane1.getSelectionModel().select(tabTab4);
+			tabPaneTabPane1.requestLayout();	
+		} else if (tabCounter==2) {
+			tabPaneTabPane1.getTabs().addAll(tabTab5);
+			btnAddTab.setVisible(false);
+			tabPaneTabPane1.getSelectionModel().select(tabTab5);
+			tabPaneTabPane1.requestLayout();	
+		} 
+		
+	tabCounter+=1;
+	
+	
+		
+	}
+	
+	public void removeTab() {
+		
 	}
 	
 }

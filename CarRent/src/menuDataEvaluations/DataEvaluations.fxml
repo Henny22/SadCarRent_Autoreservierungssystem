@@ -164,9 +164,9 @@
                     <tabs>
                       <Tab fx:id="tabTab1" text="Tab 1">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="793.0">
                                  <children>
-                                    <WebView fx:id="webviewWebview1" layoutY="24.0" prefHeight="435.0" prefWidth="758.0" />
+                                    <WebView fx:id="webviewWebview1" layoutY="24.0" prefHeight="435.0" prefWidth="827.0" />
                                     <TextField fx:id="textFieldTab1" onKeyPressed="#loadTab" prefHeight="25.0" prefWidth="758.0" text="https://" />
                                  </children>
                               </AnchorPane>
@@ -182,8 +182,52 @@
                               </AnchorPane>
                         </content>
                       </Tab>
+                      <Tab fx:id="tabTab3" text="Tab 3">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <WebView fx:id="webviewWebview3" layoutY="24.0" prefHeight="434.0" prefWidth="758.0" />
+                                    <TextField fx:id="textFieldTab3" layoutX="1.0" onKeyPressed="#loadTab" prefHeight="25.0" prefWidth="758.0" text="https://" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab fx:id="tabTab4" closable="false" text="Tab 4">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <WebView fx:id="webviewWebview4" layoutY="24.0" prefHeight="434.0" prefWidth="758.0" />
+                                    <TextField fx:id="textFieldTab4" layoutX="1.0" onKeyPressed="#loadTab" prefHeight="25.0" prefWidth="758.0" text="https://" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab fx:id="tabTab5" text="Tab 5">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <WebView fx:id="webviewWebview5" layoutY="24.0" prefHeight="434.0" prefWidth="758.0" />
+                                    <TextField fx:id="textFieldTab5" layoutX="1.0" onKeyPressed="#loadTab" prefHeight="25.0" prefWidth="758.0" text="https://" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
                     </tabs>
                   </TabPane>
+                  <Button fx:id="btnAddTab" layoutX="112.0" layoutY="84.0" mnemonicParsing="false" onAction="#addTab" prefHeight="24.0" prefWidth="41.0" style="-fx-background-color: #c7c8c9;">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_plus_math_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="btnRemoveTab" layoutX="338.0" layoutY="29.0" mnemonicParsing="false" onAction="#removeTab" text="remove tab" />
+                  <Label fx:id="lblErrorTabs" layoutX="276.0" layoutY="86.0" prefHeight="17.0" prefWidth="369.0" text="Only 5 Tabs can be opened. Sorry for this inconvenience!" textFill="RED" visible="false">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

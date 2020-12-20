@@ -96,6 +96,8 @@ public class MaintenanceController implements Initializable {
 	private Label lblConfirmText;
 	@FXML
 	private Label lblTextConclude;
+	@FXML
+	private Button btnDataEvaluations;
 	
 	ObservableList<String> oblist = FXCollections.observableArrayList();
 	
@@ -199,6 +201,16 @@ public class MaintenanceController implements Initializable {
         if (actionEvent.getSource() == btnSettings) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/menuSettings/Settings.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
+        
+        if ( actionEvent.getSource() == btnDataEvaluations) {
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();

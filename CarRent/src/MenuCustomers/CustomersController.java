@@ -1,6 +1,7 @@
 package MenuCustomers;
 
 import javafx.scene.layout.AnchorPane;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -84,6 +85,8 @@ public class CustomersController implements Initializable{
 	    
 	    @FXML
 	    private TableColumn <ModelTable,String> tableColumnStreet;
+	    @FXML
+        private Button btnDataEvaluations;
 	
 	    ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
 	    	    
@@ -186,6 +189,7 @@ public class CustomersController implements Initializable{
                 }
         }  
     
+    
         
         if (actionEvent.getSource() == btnSignout) {
             try{
@@ -200,6 +204,17 @@ public class CustomersController implements Initializable{
         if (actionEvent.getSource() == btnSettings) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/menuSettings/Settings.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        } 
+        
+        
+        if ( actionEvent.getSource() == btnDataEvaluations) {
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();

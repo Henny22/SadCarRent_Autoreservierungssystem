@@ -72,8 +72,6 @@ public class CarsController implements Initializable{
     @FXML
     private Button btnSettings;
     @FXML
-    private Button btnDataEvaulations;
-    @FXML
     private TextField filterField;
     @FXML
     private Pane pnlOrders;
@@ -81,6 +79,8 @@ public class CarsController implements Initializable{
     private Button btnMaintenance;
     @FXML
     private AnchorPane AnchorPane;
+    @FXML
+    private Button btnDataEvaluations;
     
     DataExchange exchange = new DataExchange();
     
@@ -203,6 +203,15 @@ public class CarsController implements Initializable{
         if (actionEvent.getSource() == btnSettings) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/menuSettings/Settings.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
+        if ( actionEvent.getSource() == btnDataEvaluations) {
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();

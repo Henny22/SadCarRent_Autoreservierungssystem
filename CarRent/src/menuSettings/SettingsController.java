@@ -45,6 +45,8 @@ public class SettingsController implements Initializable {
 	private Button btnLightMode;
 	@FXML
 	private AnchorPane AnchorPane;
+	@FXML
+	private Button btnDataEvaluations;
 	
 	private static String styleSheet;		
 	public static String getStylesheet() {
@@ -146,7 +148,17 @@ public class SettingsController implements Initializable {
         if (actionEvent.getSource() == btnSettings) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/menuSettings/Settings.fxml"));
-                Main.getStage().setScene(new Scene(root, 520, 400));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
+        
+        if ( actionEvent.getSource() ==btnDataEvaluations) {
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvualations.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
                   e.getCause();

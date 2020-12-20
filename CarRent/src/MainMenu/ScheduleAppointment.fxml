@@ -70,11 +70,11 @@
                </font>
             </Label>
             <Line endX="112.0" layoutX="40.0" layoutY="78.0" startX="2.0" />
-            <Label fx:id="lblFrom" alignment="CENTER" contentDisplay="CENTER" layoutX="73.0" layoutY="39.0" prefHeight="25.0" prefWidth="52.0">
+            <TextField fx:id="txtFieldFrom" alignment="CENTER" editable="false" layoutX="52.0" layoutY="32.0" prefHeight="39.0" prefWidth="89.0" style="-fx-background-color: #EDEDED;">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
-            </Label>
+            </TextField>
          </children>
       </Pane>
       <Pane layoutX="569.0" layoutY="202.0" prefHeight="78.0" prefWidth="176.0" style="-fx-background-color: #EDEDED;">
@@ -85,11 +85,11 @@
                </font>
             </Label>
             <Line endX="97.0" layoutX="44.0" layoutY="78.0" startX="-10.0" />
-            <Label fx:id="lblTo" alignment="CENTER" contentDisplay="CENTER" layoutX="61.0" layoutY="36.0" prefHeight="25.0" prefWidth="52.0">
+            <TextField fx:id="txtFieldTo" alignment="CENTER" editable="false" layoutX="43.0" layoutY="29.0" prefHeight="39.0" prefWidth="89.0" style="-fx-background-color: #EDEDED;">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
-            </Label>
+            </TextField>
          </children>
       </Pane>
       <Button fx:id="btnCancel" layoutX="363.0" layoutY="512.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="39.0" prefWidth="146.0" style="-fx-background-radius: 5em; -fx-border-color: #1b6cd7; -fx-border-radius: 5em;" text="Cancel" textFill="#1b6cd7">
@@ -97,7 +97,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="569.0" layoutY="512.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: #1b6cd7; -fx-background-radius: 5em;" text="Schedule appointment" textFill="WHITE">
+      <Button layoutX="569.0" layoutY="512.0" mnemonicParsing="false" onAction="#createAppointment" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: #1b6cd7; -fx-background-radius: 5em;" text="Schedule appointment" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -169,6 +169,11 @@
          </font>
       </Button>
       <Label fx:id="lblErrorMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="364.0" layoutY="486.0" prefHeight="17.0" prefWidth="345.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblConfirmMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="364.0" layoutY="486.0" prefHeight="17.0" prefWidth="345.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

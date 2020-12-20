@@ -55,6 +55,12 @@ public class LoginSystemController implements Initializable {
     private Button buttonCancel;
     
     
+    public static int staffID=0;
+    
+    public static int getstaffID() {
+    	return staffID;
+    }
+    
       
      DatabaseConnection connectNow = new DatabaseConnection();
      Connection connectDB = connectNow.getConnection();
@@ -73,6 +79,7 @@ public class LoginSystemController implements Initializable {
     	if(textFieldUsername.getText().isEmpty() == false && textFieldPassword.getText().isEmpty() == false){
     		if (exchangeLogin.validateLogin(textFieldUsername.getText(),textFieldPassword.getText()) == true){
                     exchangeLogin.getIsAdministrator(textFieldUsername.getText(),textFieldPassword.getText());
+                    staffID = exchangeLogin.getStaffID(textFieldUsername.getText(),textFieldPassword.getText());
     				loginMainMenu();
             }else {
                    labelStatus.setText("Invalid login. Please try again");

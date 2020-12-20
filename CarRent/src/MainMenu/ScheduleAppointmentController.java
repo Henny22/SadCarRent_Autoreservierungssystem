@@ -3,6 +3,7 @@ package MainMenu;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import database.DataExchange;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import login.LoginSystemController;
 import login.Main;
 
 public class ScheduleAppointmentController implements Initializable  {
@@ -25,10 +27,6 @@ public class ScheduleAppointmentController implements Initializable  {
 	private DatePicker datePickerAppointment;
 	@FXML
 	private TextField txtFieldDescription;
-	@FXML
-	private Label lblFrom;
-	@FXML
-	private Label lblTo;
 	@FXML
 	private Button btn7AM;
 	@FXML
@@ -55,8 +53,15 @@ public class ScheduleAppointmentController implements Initializable  {
 	private Button btn6PM;
 	@FXML
 	private Label lblErrorMessage;
+	@FXML
+	private TextField txtFieldFrom;
+	@FXML
+	private TextField txtFieldTo;
+	@FXML
+	private Label lblConfirmMessage;
 	
 	
+	DataExchange exchange= new DataExchange();
 	@FXML
 	private Button btnCancel;
 	@FXML
@@ -64,8 +69,8 @@ public class ScheduleAppointmentController implements Initializable  {
 	
 	boolean fromSet=false;
 	boolean toSet=false;
-	int weightingFrom=0;
-	int weightingTo=0;
+	int from=0;
+	int to=0;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -75,128 +80,146 @@ public class ScheduleAppointmentController implements Initializable  {
 	public void getFromTo(ActionEvent actionEvent) {	
 		lblErrorMessage.setText("");
 		if (actionEvent.getSource() == btn7AM && fromSet==false) {
-			lblFrom.setText("7:00");
-			weightingFrom=7;
+			txtFieldFrom.setText("7:00");
+			from=7;
 			fromSet=true;
         }
 		
 		if (actionEvent.getSource() == btn8AM && fromSet==false) {
-			lblFrom.setText("8:00");
-			weightingFrom=8;
+			txtFieldFrom.setText("8:00");
+			from=8;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn8AM) {
-        	lblTo.setText("8:00");
-        	weightingTo=8;
+        	txtFieldTo.setText("8:00");
+        	to=8;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn9AM && fromSet==false) {
-			lblFrom.setText("9:00");
-			weightingFrom=9;
+			txtFieldFrom.setText("9:00");
+			from=9;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn9AM) {
-        	lblTo.setText("9:00");
-        	weightingTo=9;
+        	txtFieldTo.setText("9:00");
+        	to=9;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn10AM && fromSet==false) {
-			lblFrom.setText("10:00");
-			weightingFrom=10;
+			txtFieldFrom.setText("10:00");
+			from=10;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn10AM) {
-        	lblTo.setText("10:00");
-        	weightingTo=10;
+        	txtFieldTo.setText("10:00");
+        	to=10;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn11AM && fromSet==false) {
-			lblFrom.setText("11:00");
-			weightingFrom=11;
+			txtFieldFrom.setText("11:00");
+			from=11;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn11AM) {
-        	lblTo.setText("11:00");
-        	weightingTo=11;
+        	txtFieldTo.setText("11:00");
+        	to=11;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn12PM && fromSet==false) {
-			lblFrom.setText("12:00");
-			weightingFrom=12;
+			txtFieldFrom.setText("12:00");
+			from=12;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn12PM) {
-        	lblTo.setText("12:00");
-        	weightingTo=12;
+        	txtFieldTo.setText("12:00");
+        	to=12;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn1PM && fromSet==false) {
-			lblFrom.setText("13:00");
-			weightingFrom=13;
+			txtFieldFrom.setText("13:00");
+			from=13;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn1PM) {
-        	lblTo.setText("13:00");
-        	weightingTo=13;
+        	txtFieldTo.setText("13:00");
+        	to=13;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn2PM && fromSet==false) {
-			lblFrom.setText("14:00");
-			weightingFrom=14;
+			txtFieldFrom.setText("14:00");
+			from=14;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn2PM) {
-        	lblTo.setText("14:00");
-        	weightingTo=14;
+        	txtFieldTo.setText("14:00");
+        	to=14;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn3PM && fromSet==false) {
-			lblFrom.setText("15:00");
-			weightingFrom=15;
+			txtFieldFrom.setText("15:00");
+			from=15;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn3PM) {
-        	lblTo.setText("15:00");
-        	weightingTo=15;
+        	txtFieldTo.setText("15:00");
+        	to=15;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn4PM && fromSet==false) {
-			lblFrom.setText("16:00");
-			weightingFrom=16;
+			txtFieldFrom.setText("16:00");
+			from=16;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn4PM) {
-        	lblTo.setText("16:00");
-        	weightingTo=16;
+        	txtFieldTo.setText("16:00");
+        	to=16;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn5PM && fromSet==false) {
-			lblFrom.setText("17:00");
-			weightingFrom=17;
+			txtFieldFrom.setText("17:00");
+			from=17;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn5PM) {
-        	lblTo.setText("17:00");
-        	weightingTo=17;
+        	txtFieldTo.setText("17:00");
+        	to=17;
         	toSet=true;
         }
 		
 		if (actionEvent.getSource() == btn6PM && fromSet==false) {
-			lblFrom.setText("18:00");
-			weightingFrom=18;
+			txtFieldFrom.setText("18:00");
+			from=18;
 			fromSet=true;
         }else if(actionEvent.getSource() == btn6PM) {
-        	lblTo.setText("18:00");
-        	weightingTo=18;
+        	txtFieldTo.setText("18:00");
+        	to=18;
         	toSet=true;
         }
 		
-		if(weightingTo<=weightingFrom && fromSet == true && toSet == true) {
+		if(from>=to && fromSet == true && toSet == true) {
 			lblErrorMessage.setText("Please choose the right time. Try it again!");
-			fromSet=false;
-			toSet=false;
-			lblFrom.setText("");
-			lblTo.setText("");
+			
+			resetForm();
 		}
+	}
+	
+	public void resetForm() {
+		fromSet=false;
+		toSet=false;
+		datePickerAppointment.getEditor().clear();
+		txtFieldDescription.setText("");
+		txtFieldFrom.setText("");
+		lblErrorMessage.setText("");
+		txtFieldTo.setText("");
+	}
+	
+	public void createAppointment() {
+	if (txtFieldFrom.getText().isEmpty()== false && txtFieldTo.getText().isEmpty()== false && datePickerAppointment.getValue() != null && txtFieldDescription.getText().isEmpty()== false ) {
+		exchange.sendAppointmentData(LoginSystemController.getstaffID(),datePickerAppointment.getValue(), from, to, txtFieldDescription.getText());
+		lblConfirmMessage.setText("Appointment has been created!");
+		resetForm();
+	}else {
+		lblErrorMessage.setText("Please fil out the form. Try it again!");
+	}
 	}
 	
 	public void cancelButtonOnAction(ActionEvent event){

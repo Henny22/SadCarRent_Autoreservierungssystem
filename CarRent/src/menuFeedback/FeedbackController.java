@@ -248,6 +248,16 @@ public class FeedbackController  implements Initializable {
                   e.getCause();
                 }
         }
+        
+        if ( actionEvent.getSource() == btnDataEvaluations) {
+        	try{
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
+                Main.getStage().setScene(new Scene(root, 1050,576));
+                }catch(Exception e){
+                  e.printStackTrace();
+                  e.getCause();
+                }
+        }
 	}  
 	
 	public void lockScreenAndChangeToPanelFeedbackForm() {

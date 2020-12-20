@@ -51,6 +51,24 @@ public class DataExchangeLogin {
         return validLogin;
 	}
 	
+	public int getStaffID(String Username, String Password) {
+		String getStaffID = "SELECT IDStaff FROM staffaccounts WHERE Username ='" + Username +"' AND Password ='"+ Password+ "'";
+		int staffID=0;
+		try{
+	           Statement statement = connectDB.createStatement(); 
+	           ResultSet queryResultStaffID = statement.executeQuery(getStaffID);
+	           
+	           while (queryResultStaffID.next()){
+	        	  staffID = queryResultStaffID.getInt("IDStaff") ;
+	           }
+	           
+	        }catch (Exception e){
+	            e.printStackTrace();
+	            e.getCause();
+	        }
+	        return staffID;
+	}
+	
 	public void getIsAdministrator(String Username, String Password) {
 		
 				String checkIsAdministrator = "select Administrator from staffaccounts where Username='"+Username+"' and Password='"+Password+"'";

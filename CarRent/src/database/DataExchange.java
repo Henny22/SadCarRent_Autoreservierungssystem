@@ -23,12 +23,61 @@ public class DataExchange {
 	public DataExchange () {
 		
 	}
+	//
+	//********************************************************** MainMenu ***********************************************************************************
+	//
+	//
 	
 	
-		//
-		//********************************************************** General **************************************************************************************
-		//
-		//
+	public ArrayList<String> getCalendarData(int staffID, LocalDate date){
+		ArrayList<String> calendarDataList = new ArrayList<String>();
+		try {
+			ResultSet queryAppointsments = connectDB.createStatement().executeQuery("select startTime,endTime,description from appointments where date='"+date+"' and IDStaff="+staffID);
+			String dataAppointment;
+			while (queryAppointsments.next()) {  // loop
+				dataAppointment =String.valueOf(queryAppointsments.getInt("startTime"))+":00 - "+ String.valueOf(queryAppointsments.getInt("endtime"))+":00  : "+queryAppointsments.getString("description");;
+				calendarDataList.add(dataAppointment);	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		return calendarDataList;
+	}
+	
+	
+	//
+	//********************************************************** MainMenu --> ScheduleAppointmentController  *****************************************************
+	//
+	//
+	
+	public boolean checkAppointment(int IDStaff,LocalDate dateAppointment,int startTime,int endTime) {
+		boolean appointmentAvailable = false;
+		
+		
+		
+		return appointmentAvailable;
+	}
+	
+	
+	public void sendAppointmentData(int IDStaff, LocalDate dateAppointment, int startTime, int endTime, String description) {
+		String insertFields ="INSERT INTO appointments(`IDStaff`, `date`, `startTime`, `endTime`, `description`) VALUES ('";
+        String insertValues =IDStaff + "','"+ dateAppointment +"','"+ startTime +"','"+ endTime +"','"+ description +"')";
+        String insertToAppointments = insertFields + insertValues;
+		try {
+			 Statement statement = connectDB.createStatement();
+			 statement.executeUpdate(insertToAppointments);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   
+	}
+	
+	
+	
+	//
+	//********************************************************** General ******************************************************************************************
+	//
+	//
 	
 	public List<String> getHeaderData() {
 		List<String> dataHeaderList = new ArrayList<String>();
@@ -336,17 +385,21 @@ public class DataExchange {
 		return highestIDCar;
 	}
 	
-	public void addNewCar(int highestIDCar, String textAreaCarDescription,  String txtfieldBrand, String txtfieldModel, int IDCat , String txtfieldRate , String txtfieldNoOfSeats ) {
+	public boolean addNewCar(int highestIDCar, String textAreaCarDescription,  String txtfieldBrand, String txtfieldModel, int IDCat , String txtfieldRate , String txtfieldNoOfSeats ) {
+		boolean dataSubmitted= false;
 		String insertFields ="INSERT INTO cars(`IDCar`,`car_description`, `brand`, `model`, `IDCat`, `rate`, `no_of_seats`) VALUES ('";
         String insertValues =highestIDCar + "','"+textAreaCarDescription + "','"+ txtfieldBrand +"','"+ txtfieldModel +"','"+ IDCat +"','"+ txtfieldRate +"','"+ txtfieldNoOfSeats +"')";
         String insertToCars = insertFields + insertValues;
 		try {
 			 Statement statement = connectDB.createStatement();
 			 statement.executeUpdate(insertToCars);
+			 dataSubmitted=true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			dataSubmitted=false;
 		}   
+		return dataSubmitted;
 		}
 
 	// 

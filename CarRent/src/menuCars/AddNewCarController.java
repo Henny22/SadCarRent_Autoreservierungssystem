@@ -31,7 +31,7 @@ public class AddNewCarController implements Initializable {
 	@FXML
 	private ComboBox <String> comboBoxCarCategory;
 	@FXML
-	private TextArea textAreaCarDescription;
+	private TextField txtFieldDescription;
 	@FXML
 	private TextField txtfieldRate;
 	@FXML
@@ -39,9 +39,13 @@ public class AddNewCarController implements Initializable {
 	@FXML
 	private Button btnClose;
 	@FXML
-	private Label labelMessage;
+	private Label lblConfirmMessage;
 	@FXML
-	private Label lblMessage;
+	private Label labelErrorMessage;
+	@FXML
+	private Button btnSubmit;
+	@FXML
+	private Button btnReset;
 	DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
     
@@ -60,23 +64,32 @@ public class AddNewCarController implements Initializable {
 	}
 
 	public void addNewCar() {
-		lblMessage.setText("");
-		labelMessage.setText("");
-		if (textAreaCarDescription.getText().isEmpty() == false && txtfieldBrand.getText().isEmpty() == false
+		boolean dataSubmitted;
+		labelErrorMessage.setText("");
+		lblConfirmMessage.setText("");
+		if (txtFieldDescription.getText().isEmpty() == false && txtfieldBrand.getText().isEmpty() == false
 				&& txtfieldModel.getText().isEmpty() == false &&  txtfieldRate.getText().isEmpty() == false 
 				&& txtfieldNoOfSeats.getText().isEmpty() == false && txtfieldNoOfSeats.getText().matches("[0-9]") 
 				&&  txtfieldRate.getText().matches("[0-9]*")){
 		if (DataExchangeLogin.getIsAdministrator() == true) {
 			int IDCat = getIDFromComboBox(comboBoxCarCategory);	
 			int highestIDCar = exchange.getHighestIDCar();   
-			exchange.addNewCar(highestIDCar,textAreaCarDescription.getText(), txtfieldBrand.getText(), txtfieldModel.getText(), IDCat , txtfieldRate.getText() , txtfieldNoOfSeats.getText() );
-		
-			lblMessage.setText("Car has been inserted in to the Database!");
+			try {
+			dataSubmitted = exchange.addNewCar(highestIDCar,txtFieldDescription.getText(), txtfieldBrand.getText(), txtfieldModel.getText(), IDCat , txtfieldRate.getText() , txtfieldNoOfSeats.getText() );
+			if(dataSubmitted == true) {
+			lblConfirmMessage.setText("Car has been inserted in to the Database!");
+			}else {
+			labelErrorMessage.setText("Something went wrong!");	
+			}
+			} catch(Exception e) {
+				e.printStackTrace();
+
+			}
 		}else {
-			labelMessage.setText("You are not authorized to do this action!");
+			labelErrorMessage.setText("You are not authorized to do this action!");
 		}
 		}else {
-			labelMessage.setText("Please fil out this form correctly");
+			labelErrorMessage.setText("Please fil out this form correctly");
 		}
 	}
 	
@@ -101,8 +114,9 @@ public class AddNewCarController implements Initializable {
 	public void resetForm() {
 		txtfieldBrand.setText("");
 		txtfieldModel.setText("");	
-		textAreaCarDescription.setText("");	
+		txtFieldDescription.setText("");	
 		txtfieldRate.setText("");
 		txtfieldNoOfSeats.setText("");	
+		labelErrorMessage.setText("");
 	 }
 }

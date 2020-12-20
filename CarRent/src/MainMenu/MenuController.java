@@ -3,13 +3,20 @@ package MainMenu;
 
 import java.net.URL;
 
-
+import login.LoginSystemController;
 import login.Main;
 import menuSettings.SettingsController;
 
 import java.sql.Connection;
-
+import java.text.Format;
+import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import database.DataExchange;
@@ -99,12 +106,130 @@ public class MenuController implements Initializable {
 		@FXML
 		private Button btnOpenAppointmentForm;
 		
-		DataExchange exchange = new DataExchange();
-	
+		@FXML
+		private Label lblCurrentDate;
+		@FXML
+		private Label lblCurrentDay;
+		@FXML
+		private Label lblTextCurrentDay1;
+		@FXML
+		private Label lblTextCurrentDay2;
+		@FXML
+		private Label lblTextCurrentDay3;
+		@FXML
+		private Label lblTextCurrentDay4;
+		@FXML
+		private Label lblTextCurrentDay5;
+		@FXML
+		private Label lblNextDay;
+		@FXML
+		private Label lblTextNextDay1;
+		@FXML
+		private Label lblTextNextDay2;
+		@FXML
+		private Label lblTextNextDay3;
+		@FXML
+		private Label lblTextNextDay4;
+		@FXML
+		private Label lblTextNextDay5;
 		
+		
+		DataExchange exchange = new DataExchange();
+		Format dateFormat = new SimpleDateFormat("EEEE, dd/MM/yyyy");
+	    String todaysDate = dateFormat.format(new Date());
+	    DayOfWeek dayOfWeek = DayOfWeek.from(LocalDate.now());
+	    SimpleDateFormat sdf2 = new SimpleDateFormat("EEEE");
+		String currentDay = sdf2.format(new Date());
 
+		
+		public static int getDayNumberNew(LocalDate date) {
+		    DayOfWeek day = date.getDayOfWeek();
+		    return day.getValue();
+		}
+		
+		public static String getDayStringNew(LocalDate date, Locale locale) {
+		    DayOfWeek day = date.getDayOfWeek();
+		    return day.getDisplayName(TextStyle.FULL, locale);
+		}
+		
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		ArrayList<String> calendarDataListToday = new ArrayList<String>();
+		calendarDataListToday = (ArrayList<String>) exchange.getCalendarData(LoginSystemController.getstaffID(),LocalDate.now());
+		
+		ArrayList<String> calendarDataListTomorrow = new ArrayList<String>();
+		calendarDataListTomorrow = (ArrayList<String>) exchange.getCalendarData(LoginSystemController.getstaffID(), LocalDate.now().plusDays(1));
+		
+		if(calendarDataListToday.isEmpty()==false) {
+
+		switch(calendarDataListToday.size()) {
+		  case 1:
+			  lblTextCurrentDay1.setText(calendarDataListToday.get(0));
+		    break;
+		  case 2:
+			  lblTextCurrentDay1.setText(calendarDataListToday.get(0));
+			  lblTextCurrentDay2.setText(calendarDataListToday.get(1));
+		    break;
+		  case 3:
+			  lblTextCurrentDay1.setText(calendarDataListToday.get(0));
+			  lblTextCurrentDay2.setText(calendarDataListToday.get(1));
+			  lblTextCurrentDay3.setText(calendarDataListToday.get(2));
+		  case 4:
+			  lblTextCurrentDay1.setText(calendarDataListToday.get(0));
+			  lblTextCurrentDay2.setText(calendarDataListToday.get(1));
+			  lblTextCurrentDay3.setText(calendarDataListToday.get(2));
+			  lblTextCurrentDay4.setText(calendarDataListToday.get(3));
+		  case 5: 
+			  lblTextCurrentDay1.setText(calendarDataListToday.get(0));
+			  lblTextCurrentDay2.setText(calendarDataListToday.get(1));
+			  lblTextCurrentDay3.setText(calendarDataListToday.get(2));
+			  lblTextCurrentDay4.setText(calendarDataListToday.get(3));
+			  lblTextCurrentDay4.setText(calendarDataListToday.get(4));
+		  default:
+			  lblTextCurrentDay1.setText("");
+			  lblTextCurrentDay2.setText("");
+			  lblTextCurrentDay3.setText("");
+			  lblTextCurrentDay4.setText("");
+			  lblTextCurrentDay4.setText("");
+		}
+		}
+		
+		if(calendarDataListTomorrow.isEmpty()==false) {
+		switch(calendarDataListTomorrow.size()) {
+		  case 1:
+			  lblTextNextDay1.setText(calendarDataListTomorrow.get(0));
+		    break;
+		  case 2:
+			  lblTextNextDay1.setText(calendarDataListTomorrow.get(0));
+			  lblTextNextDay2.setText(calendarDataListTomorrow.get(1));
+		    break;
+		  case 3:
+			  lblTextNextDay1.setText(calendarDataListTomorrow.get(0));
+			  lblTextNextDay2.setText(calendarDataListTomorrow.get(1));
+			  lblTextNextDay3.setText(calendarDataListTomorrow.get(2));
+		  case 4:
+			  lblTextNextDay1.setText(calendarDataListTomorrow.get(0));
+			  lblTextNextDay2.setText(calendarDataListTomorrow.get(1));
+			  lblTextNextDay3.setText(calendarDataListTomorrow.get(2));
+			  lblTextNextDay4.setText(calendarDataListTomorrow.get(3));
+		  case 5: 
+			  lblTextNextDay1.setText(calendarDataListTomorrow.get(0));
+			  lblTextNextDay2.setText(calendarDataListTomorrow.get(1));
+			  lblTextNextDay3.setText(calendarDataListTomorrow.get(2));
+			  lblTextNextDay4.setText(calendarDataListTomorrow.get(3));
+			  lblTextNextDay5.setText(calendarDataListTomorrow.get(4));
+		  default:
+			  lblTextNextDay1.setText("");
+			  lblTextNextDay2.setText("");
+			  lblTextNextDay3.setText("");
+			  lblTextNextDay4.setText("");
+			  lblTextNextDay5.setText("");
+		}
+		}
+		
+	    lblCurrentDate.setText(todaysDate); 
+	    lblCurrentDay.setText(getDayStringNew(LocalDate.now(), Locale.ENGLISH ));
+	    lblNextDay.setText(getDayStringNew(LocalDate.now().plusDays(1), Locale.ENGLISH ));
 		if(SettingsController.getStylesheet() != null) {
 		if(SettingsController.getStylesheet().equals("darkmode")) {
 		AnchorPane.getStylesheets().clear();
@@ -250,5 +375,6 @@ public class MenuController implements Initializable {
 		          e.getCause();
 		        }
 	}
+	
 	
 }
