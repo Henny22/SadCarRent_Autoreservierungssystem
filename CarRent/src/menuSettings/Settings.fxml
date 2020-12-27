@@ -146,9 +146,6 @@
       </VBox>
       <StackPane fx:id="StackPane" layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
          <children>
-            <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
             <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
                <children>
                   <Label layoutX="57.0" layoutY="25.0" text="Car rents Settings" textFill="#e7e5e5">
@@ -156,8 +153,37 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="btnDarkMode" layoutX="157.0" layoutY="288.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="106.0" text="Dark Mode" />
-                  <Button fx:id="btnLightMode" layoutX="344.0" layoutY="288.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="106.0" text="Light mode" />
+                  <Button fx:id="btnDarkMode" layoutX="160.0" layoutY="168.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="106.0" text="Dark Mode">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="btnLightMode" layoutX="534.0" layoutY="168.0" mnemonicParsing="false" onAction="#changeTheme" prefHeight="25.0" prefWidth="106.0" text="Light mode">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Label layoutX="193.0" layoutY="113.0" text="Choose between these two Styles:" textFill="#e7e5e5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblSelectedDarkMode" layoutX="191.0" layoutY="202.0" text="Selected" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Label fx:id="lblSelectedLightMode" layoutX="564.0" layoutY="202.0" text="Selected" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <ImageView fitHeight="197.0" fitWidth="361.0" layoutX="408.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/lightmode.PNG" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="197.0" fitWidth="361.0" layoutX="22.0" layoutY="219.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/darkmode.PNG" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
          </children>

@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainMenu.ScheduleAppointmentController">
    <children>
-      <Pane layoutX="-3.0" prefHeight="580.0" prefWidth="313.0" style="-fx-background-color: #1b6cd7;">
+      <Pane layoutX="-3.0" prefHeight="580.0" prefWidth="313.0" style="-fx-background-color: #05071F;">
          <children>
             <ImageView fitHeight="67.0" fitWidth="69.0" layoutX="116.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -59,7 +59,7 @@
       <DatePicker fx:id="datePickerAppointment" layoutX="346.0" layoutY="103.0" prefHeight="25.0" prefWidth="398.0" />
       <Label layoutX="351.0" layoutY="87.0" text="Select date for yoir appointment:">
          <font>
-            <Font size="11.0" />
+            <Font name="System Bold" size="11.0" />
          </font>
       </Label>
       <Pane layoutX="346.0" layoutY="202.0" prefHeight="78.0" prefWidth="182.0" style="-fx-background-color: #EDEDED;">
@@ -92,12 +92,12 @@
             </TextField>
          </children>
       </Pane>
-      <Button fx:id="btnCancel" layoutX="363.0" layoutY="512.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="39.0" prefWidth="146.0" style="-fx-background-radius: 5em; -fx-border-color: #1b6cd7; -fx-border-radius: 5em;" text="Cancel" textFill="#1b6cd7">
+      <Button fx:id="btnCancel" layoutX="363.0" layoutY="512.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="39.0" prefWidth="146.0" style="-fx-background-radius: 5em; -fx-border-color: #05071F; -fx-border-radius: 5em;" text="Cancel" textFill="#05071f">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="569.0" layoutY="512.0" mnemonicParsing="false" onAction="#createAppointment" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: #1b6cd7; -fx-background-radius: 5em;" text="Schedule appointment" textFill="WHITE">
+      <Button layoutX="569.0" layoutY="512.0" mnemonicParsing="false" onAction="#createAppointment" prefHeight="39.0" prefWidth="146.0" style="-fx-background-color: #05071F; -fx-background-radius: 5em;" text="Schedule appointment" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -105,7 +105,7 @@
       <TextField fx:id="txtFieldDescription" layoutX="346.0" layoutY="162.0" prefHeight="25.0" prefWidth="398.0" />
       <Label layoutX="351.0" layoutY="146.0" text="Select description for your appointment:">
          <font>
-            <Font size="11.0" />
+            <Font name="System Bold" size="11.0" />
          </font>
       </Label>
       <Button fx:id="btn7AM" layoutX="347.0" layoutY="308.0" mnemonicParsing="false" onAction="#getFromTo" prefHeight="39.0" prefWidth="75.0" style="-fx-background-color: #EDEDED;" text="7:00">

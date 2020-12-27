@@ -1,6 +1,7 @@
 package MainMenu;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import database.DataExchange;
@@ -213,12 +214,15 @@ public class ScheduleAppointmentController implements Initializable  {
 	}
 	
 	public void createAppointment() {
+	if(datePickerAppointment.getValue().isBefore(LocalDate.now())==false){
 	if (txtFieldFrom.getText().isEmpty()== false && txtFieldTo.getText().isEmpty()== false && datePickerAppointment.getValue() != null && txtFieldDescription.getText().isEmpty()== false ) {
 		exchange.sendAppointmentData(LoginSystemController.getstaffID(),datePickerAppointment.getValue(), from, to, txtFieldDescription.getText());
 		lblConfirmMessage.setText("Appointment has been created!");
 		resetForm();
 	}else {
 		lblErrorMessage.setText("Please fil out the form. Try it again!");
+	}} else {
+		lblErrorMessage.setText("You cant create appointment in the past!");
 	}
 	}
 	

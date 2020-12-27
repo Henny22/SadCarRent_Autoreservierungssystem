@@ -16,12 +16,14 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import login.Main;
+import menuSettings.SettingsController;
 
 public class DataEvaluationsController implements Initializable {
 
@@ -81,9 +83,9 @@ public class DataEvaluationsController implements Initializable {
 	@FXML
 	private Button btnAddTab;
 	@FXML
-	private Button btnRemoveTab;
-	@FXML
 	private Label lblErrorTabs;
+	@FXML
+    private AnchorPane AnchorPane;
 	
 	int tabCounter=0;
 	
@@ -93,10 +95,22 @@ public class DataEvaluationsController implements Initializable {
 		tabPaneTabPane1.getTabs().remove(tabTab3);
 		tabPaneTabPane1.getTabs().remove(tabTab4);
 		tabPaneTabPane1.getTabs().remove(tabTab5);
+		
+		if(SettingsController.getStylesheet() != null) {
+			if(SettingsController.getStylesheet().equals("darkmode")) {
+			AnchorPane.getStylesheets().clear();
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			}
+			else if(SettingsController.getStylesheet().equals("lightmode")) {
+			AnchorPane.getStylesheets().clear();
+			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
+			} 
+			}
 	}
 
-	public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnOrders) {
+public void handleClicks(ActionEvent actionEvent) {
+        
+		if (actionEvent.getSource() == btnOrders) {
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -105,6 +119,7 @@ public class DataEvaluationsController implements Initializable {
                   e.getCause();
                 }     
         }
+        
         if (actionEvent.getSource() == btnCustomers) {
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));       
@@ -113,9 +128,8 @@ public class DataEvaluationsController implements Initializable {
                   e.printStackTrace();
                   e.getCause();
                 }
-        	// pnlMenus.setStyle("-fx-background-color : #53639F");
-            //pnlMenus.toFront();
         }
+        
         if (actionEvent.getSource() == btnOverview) {
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/Menu.fxml"));       
@@ -125,10 +139,9 @@ public class DataEvaluationsController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnCars)
         {
-            //pnlOrders.setStyle("-fx-background-color : #464F67");
-            //pnlOrders.toFront();
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -137,10 +150,9 @@ public class DataEvaluationsController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnMaintenance)
         {
-            //pnlOrders.setStyle("-fx-background-color : #464F67");
-            //pnlOrders.toFront();
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuMaintenance/Maintenance.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -149,6 +161,7 @@ public class DataEvaluationsController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnFeedback)
         {
         	try{
@@ -160,7 +173,6 @@ public class DataEvaluationsController implements Initializable {
                 }
         }  
     
-        
         if (actionEvent.getSource() == btnSignout) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
@@ -180,9 +192,10 @@ public class DataEvaluationsController implements Initializable {
                   e.getCause();
                 }
         }
-        if ( actionEvent.getSource() ==btnDataEvaluations) {
+        
+     if ( actionEvent.getSource() == btnDataEvaluations) {
         	try{
-            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvualations.fxml"));
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -252,8 +265,6 @@ public class DataEvaluationsController implements Initializable {
 		
 	}
 	
-	public void removeTab() {
-		
-	}
+	
 	
 }

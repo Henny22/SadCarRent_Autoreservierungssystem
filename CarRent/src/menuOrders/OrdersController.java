@@ -210,8 +210,9 @@ public class OrdersController implements Initializable {
 		labelPending1.setText(headerDataList.get(2));
 	}
 	
-	public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnOrders) {
+public void handleClicks(ActionEvent actionEvent) {
+        
+		if (actionEvent.getSource() == btnOrders) {
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -220,6 +221,7 @@ public class OrdersController implements Initializable {
                   e.getCause();
                 }     
         }
+        
         if (actionEvent.getSource() == btnCustomers) {
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));       
@@ -228,9 +230,8 @@ public class OrdersController implements Initializable {
                   e.printStackTrace();
                   e.getCause();
                 }
-        	// pnlMenus.setStyle("-fx-background-color : #53639F");
-            //pnlMenus.toFront();
         }
+        
         if (actionEvent.getSource() == btnOverview) {
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/Menu.fxml"));       
@@ -240,10 +241,9 @@ public class OrdersController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnCars)
         {
-            //pnlOrders.setStyle("-fx-background-color : #464F67");
-            //pnlOrders.toFront();
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -252,10 +252,9 @@ public class OrdersController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnMaintenance)
         {
-            //pnlOrders.setStyle("-fx-background-color : #464F67");
-            //pnlOrders.toFront();
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuMaintenance/Maintenance.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -264,6 +263,7 @@ public class OrdersController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnFeedback)
         {
         	try{
@@ -275,7 +275,6 @@ public class OrdersController implements Initializable {
                 }
         }  
     
-        
         if (actionEvent.getSource() == btnSignout) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
@@ -296,7 +295,7 @@ public class OrdersController implements Initializable {
                 }
         }
         
-        if ( actionEvent.getSource() == btnDataEvaluations) {
+     if ( actionEvent.getSource() == btnDataEvaluations) {
         	try{
             	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
@@ -335,7 +334,9 @@ public class OrdersController implements Initializable {
 	}else {
 		lblAmount.setText("Amount is being calculated by your choosen inputs! ");
 		lblErrorText.setText("");
-	}		
+	}	
+		
+		
 	}
 	public void sendData() {
 		lblConfirmText.setText("");
@@ -428,12 +429,7 @@ public class OrdersController implements Initializable {
 		lblErrorTextConclude.setText("");
 	}
 	
-	
-	
-	
 	//-------------> Panel CompleteOrder
-	
-	
 	
 	public void loadComboBoxOrder() {
 		

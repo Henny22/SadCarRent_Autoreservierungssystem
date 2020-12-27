@@ -122,8 +122,9 @@ public class MaintenanceController implements Initializable {
 		comboBoxService.setItems(FXCollections.observableArrayList("Yearly check up","Engine & Exhaust","Exterior","Tire change","Other"));
 	}
 
-	public void handleClicks(ActionEvent actionEvent) {
-        if (actionEvent.getSource() == btnOrders) {
+public void handleClicks(ActionEvent actionEvent) {
+        
+		if (actionEvent.getSource() == btnOrders) {
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuOrders/Orders.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -132,6 +133,7 @@ public class MaintenanceController implements Initializable {
                   e.getCause();
                 }     
         }
+        
         if (actionEvent.getSource() == btnCustomers) {
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuCustomers/Customers.fxml"));       
@@ -140,9 +142,8 @@ public class MaintenanceController implements Initializable {
                   e.printStackTrace();
                   e.getCause();
                 }
-        	// pnlMenus.setStyle("-fx-background-color : #53639F");
-            //pnlMenus.toFront();
         }
+        
         if (actionEvent.getSource() == btnOverview) {
             try{
                 Parent root = FXMLLoader.load(getClass().getResource("/MainMenu/Menu.fxml"));       
@@ -152,10 +153,9 @@ public class MaintenanceController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnCars)
         {
-            //pnlOrders.setStyle("-fx-background-color : #464F67");
-            //pnlOrders.toFront();
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuCars/Cars.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -164,10 +164,9 @@ public class MaintenanceController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnMaintenance)
         {
-            //pnlOrders.setStyle("-fx-background-color : #464F67");
-            //pnlOrders.toFront();
         	try{
                 Parent root = FXMLLoader.load(getClass().getResource("/menuMaintenance/Maintenance.fxml"));       
                 Main.getStage().setScene(new Scene(root,1050,576));
@@ -176,6 +175,7 @@ public class MaintenanceController implements Initializable {
                   e.getCause();
                 }
         }
+        
         if(actionEvent.getSource()==btnFeedback)
         {
         	try{
@@ -187,7 +187,6 @@ public class MaintenanceController implements Initializable {
                 }
         }  
     
-        
         if (actionEvent.getSource() == btnSignout) {
             try{
             	Parent root = FXMLLoader.load(getClass().getResource("/login/LoginSystem.fxml"));
@@ -208,7 +207,7 @@ public class MaintenanceController implements Initializable {
                 }
         }
         
-        if ( actionEvent.getSource() == btnDataEvaluations) {
+     if ( actionEvent.getSource() == btnDataEvaluations) {
         	try{
             	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
