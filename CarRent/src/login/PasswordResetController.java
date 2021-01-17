@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 
 public class PasswordResetController implements Initializable {
 
-	 private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
+	 	private static final String CHAR_LOWER = "abcdefghijklmnopqrstuvwxyz";
 	    private static final String CHAR_UPPER = CHAR_LOWER.toUpperCase();
 	    private static final String NUMBER = "0123456789";
 
@@ -50,7 +50,6 @@ public class PasswordResetController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -76,7 +75,7 @@ public class PasswordResetController implements Initializable {
 		}else {
 			   labelShowNewPassword.setText("Something went wrong. Please fil out the form correctly!"); 
 		}
-				}
+	}
 
    public static String generateRandomString(int length) {
        if (length < 1) throw new IllegalArgumentException();
@@ -98,4 +97,5 @@ public class PasswordResetController implements Initializable {
                content.putString(value);
                clipboard.setContent(content);         
    }
+   
 }

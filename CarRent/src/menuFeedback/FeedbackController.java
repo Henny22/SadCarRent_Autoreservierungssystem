@@ -1,5 +1,7 @@
 package menuFeedback;
+
 import javafx.scene.layout.AnchorPane;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import database.DataExchange;
@@ -17,7 +19,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import login.Main;
@@ -54,7 +55,7 @@ public class FeedbackController  implements Initializable {
 	@FXML
 	private Button btnSignout;
 	@FXML
-	private Button btnDataEvaluations;
+	private Button btnWebview;
 	@FXML
 	private Button btnSettings;
 	@FXML
@@ -148,20 +149,17 @@ public class FeedbackController  implements Initializable {
 	 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-	
-	 	if(SettingsController.getStylesheet() != null) {
+		if(SettingsController.getStylesheet() != null) {
 			if(SettingsController.getStylesheet().equals("darkmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/darkmode.css").toExternalForm());
 			}
 			else if(SettingsController.getStylesheet().equals("lightmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
-			} 
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/lightmode.css").toExternalForm());
 			}
-	
-		comboBoxPorpuse.setItems(FXCollections.observableArrayList("Business","Personal/Leisure","Replacement Car","Other"));	
-		
+			}
+		comboBoxPorpuse.setItems(FXCollections.observableArrayList("Business","Personal/Leisure","Replacement Car","Other"));		
 	}
 	
 public void handleClicks(ActionEvent actionEvent) {
@@ -249,9 +247,9 @@ public void handleClicks(ActionEvent actionEvent) {
                 }
         }
         
-     if ( actionEvent.getSource() == btnDataEvaluations) {
+     if ( actionEvent.getSource() == btnWebview) {
         	try{
-            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
+        		Parent root = FXMLLoader.load(getClass().getResource("/menuWebView/Webview.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -261,11 +259,18 @@ public void handleClicks(ActionEvent actionEvent) {
 	}  
 	
 	public void lockScreenAndChangeToPanelFeedbackForm() {
-		
+		if(txtFieldStaffID.getText().isEmpty() == false && passwordFieldPassword.getText().isEmpty() == false ) {
 		boolean isValid = exchange.checkValidStaffData(Integer.parseInt(txtFieldStaffID.getText()),passwordFieldPassword.getText());
+		if (isValid == true) {
 		checkScreenUnlocks(isValid);
-		txtFieldStaffID.setText("");
-		passwordFieldPassword.setText("");
+		}
+		else {
+			lblErrorText.setText("Invalid login. Please try again");	
+		}
+		}
+		else {	
+			lblErrorText.setText("Please enter username and password!");
+		}
 	}
 
 	public void checkScreenUnlocks(boolean isValid) {
@@ -280,7 +285,7 @@ public void handleClicks(ActionEvent actionEvent) {
 			btnSignout.setDisable(true);
 			btnMaintenance.setDisable(true);
 			btnSettings.setDisable(true);
-			btnDataEvaluations.setDisable(true);
+			btnWebview.setDisable(true);
 		}else {
 			pnlLockScreen.setVisible(true);
 			pnlFeedbackForm.setVisible(false);
@@ -292,13 +297,14 @@ public void handleClicks(ActionEvent actionEvent) {
 			btnSignout.setDisable(false);
 			btnMaintenance.setDisable(false);
 			btnSettings.setDisable(false);
-			btnDataEvaluations.setDisable(false);
+			btnWebview.setDisable(false);
 		}
 	}
 	
 	public void unlockScreen() {
 		if(txtFieldIDStaffUnlock.getText().isEmpty() == false && passwordFieldPasswordUnlockUI.getText().isEmpty() == false ) {
-			if(exchange.checkValidStaffData(Integer.parseInt(txtFieldIDStaffUnlock.getText()),passwordFieldPasswordUnlockUI.getText()) == true) {
+			boolean isValid = exchange.checkValidStaffData(Integer.parseInt(txtFieldIDStaffUnlock.getText()),passwordFieldPasswordUnlockUI.getText());
+			if( isValid == true) {
 				checkScreenUnlocks(false);
 				txtFieldIDStaffUnlock.setText("");
 				passwordFieldPasswordUnlockUI.setText("");
@@ -306,9 +312,16 @@ public void handleClicks(ActionEvent actionEvent) {
 				btnUnlockUIhere.setVisible(false);
 				txtFieldIDStaffUnlock.setVisible(false);
 				passwordFieldPasswordUnlockUI.setVisible(false);
+				lblErrorText.setText("");
+				txtFieldStaffID.setText("");
+				passwordFieldPassword.setText("");
+				lblErrorTextFeedbackformUnlock.setText("");
 			}else {
-				lblErrorTextFeedbackformUnlock.setText("Login wrong. Cant Unlock!");
-			}
+				lblErrorTextFeedbackformUnlock.setText("Invalid login. Please try again");
+			}		
+		}
+		else {
+			lblErrorTextFeedbackformUnlock.setText("Please enter username and password!");
 			
 		}
 	}
@@ -395,8 +408,7 @@ public void handleClicks(ActionEvent actionEvent) {
 			}else {
 				lblErrorTextFeedbackform.setText("Feedback has been already submitted for this order. Please contact Staff!");
 			}
-		}else {
-		
+		}else {	
 			lblErrorTextFeedbackform.setText("Please fil out the form correctly!");
 		}		
 	}
@@ -409,10 +421,6 @@ public void handleClicks(ActionEvent actionEvent) {
 		thirdChoiceGroup.getSelectedToggle().setSelected(false);
 		fourthChoiceGroup.getSelectedToggle().setSelected(false);
 		fifthChoiceGroup.getSelectedToggle().setSelected(false);
-	}
-	
-	
-	
-		
-	}
+	}	
+}
 

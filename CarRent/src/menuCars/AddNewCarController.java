@@ -17,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import login.Main;
@@ -46,6 +45,7 @@ public class AddNewCarController implements Initializable {
 	private Button btnSubmit;
 	@FXML
 	private Button btnReset;
+	
 	DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
     

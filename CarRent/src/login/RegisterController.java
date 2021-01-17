@@ -22,16 +22,6 @@ import javafx.scene.control.TextField;
 
 
 public class RegisterController  implements Initializable  {
-
-	// int case :
-		// case= 0 not found in Stuff & UserData
-		// case= 1 found in Staff & not in UserData
-		// case= 2 found in Staff & UserData
-	enum EmployeeInDatabase{
-		foundNotInStaffAndFoundUserData,
-		foundInStaffAndNotFoundInUserData,
-		foundInStaffAndUserData
-	}
 	
 	 @FXML
      private TextField textFieldStaffNumber;
@@ -62,7 +52,6 @@ public class RegisterController  implements Initializable  {
      
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -93,10 +82,15 @@ public class RegisterController  implements Initializable  {
     		 labelPasswordNotMatch.setText("Password does not match"); 
          }
     }else {
-    	labelAlreadyRegistered.setText("Username is already taken! Please choose another one");	
+    	labelAlreadyRegistered.setText("Username is already taken! Please choose another one!");	
     }
      }
      
+     
+     	// dataCase:
+  		// dataCase= 0 not found in Stuff & UserData
+  		// dataCase= 1 found in Staff & not in UserData
+  		// dataCase= 2 found in Staff & UserData
      public void registerUser(){
          if(textFieldStaffNumber.getText().matches("[0-9]*"))
          {

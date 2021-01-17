@@ -22,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@../stylesheets/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuFeedback.FeedbackController">
+<AnchorPane fx:id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" stylesheets="@../stylesheets/darkmode.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="menuFeedback.FeedbackController">
    <children>
       <VBox fx:id="VBox" alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" AnchorPane.bottomAnchor="1.0" AnchorPane.topAnchor="-1.0">
          <children>
@@ -34,11 +34,6 @@
                   <Insets bottom="10.0" top="50.0" />
                </VBox.margin>
             </ImageView>
-            <Label fx:id="labelUser" text="Username" textFill="#e7e5e5">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </Label>
             <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Overview" textFill="#e7e5e5">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
@@ -117,7 +112,7 @@
                   <Insets left="50.0" />
                </padding>
             </Button>
-            <Button fx:id="btnDataEvaluations" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Webview">
+            <Button fx:id="btnWebview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" text="Webview">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -203,7 +198,10 @@
                         <Font name="System Bold" size="17.0" />
                      </font>
                   </Button>
-                  <Label fx:id="lblErrorText" layoutX="335.0" layoutY="303.0" prefHeight="17.0" prefWidth="196.0" textFill="RED" />
+                  <Label fx:id="lblErrorText" layoutX="280.0" layoutY="303.0" prefHeight="19.0" prefWidth="301.0" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
                </children>
             </Pane>
             <Pane fx:id="pnlFeedbackForm" layoutX="10.0" layoutY="10.0" prefHeight="554.0" prefWidth="793.0" visible="false">
@@ -214,7 +212,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Label layoutX="57.0" layoutY="25.0" prefHeight="35.0" prefWidth="196.0" text="Car rents Orders" textFill="#e7e5e5">
+                  <Label layoutX="57.0" layoutY="25.0" prefHeight="35.0" prefWidth="196.0" text="Car rents Feedback" textFill="#e7e5e5">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -360,7 +358,7 @@
                   <TextField fx:id="txtFieldIDStaffUnlock" layoutX="620.0" layoutY="55.0" prefHeight="25.0" prefWidth="112.0" promptText="IDStaff" visible="false" />
                   <PasswordField fx:id="passwordFieldPasswordUnlockUI" layoutX="620.0" layoutY="88.0" prefHeight="25.0" prefWidth="112.0" promptText="Password" visible="false" />
                   <Button fx:id="btnUnlockUIhere" layoutX="618.0" layoutY="13.0" mnemonicParsing="false" onAction="#unlockScreen" prefHeight="25.0" prefWidth="117.0" text="Unlock UI here!" visible="false" />
-                  <Label fx:id="lblErrorTextFeedbackformUnlock" alignment="CENTER" contentDisplay="CENTER" layoutX="597.0" layoutY="113.0" prefHeight="17.0" prefWidth="179.0" textFill="RED" />
+                  <Label fx:id="lblErrorTextFeedbackformUnlock" alignment="CENTER" contentDisplay="CENTER" layoutX="556.0" layoutY="113.0" prefHeight="17.0" prefWidth="220.0" textFill="RED" />
                   <Label fx:id="lblConfirmFeedbackform" alignment="CENTER" contentDisplay="CENTER" layoutX="206.0" layoutY="493.0" prefHeight="17.0" prefWidth="404.0" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />

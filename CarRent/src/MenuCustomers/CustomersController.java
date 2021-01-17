@@ -53,36 +53,27 @@ public class CustomersController implements Initializable{
 		@FXML
 		private Button btnRegister;
 		@FXML
-		private Button btnDataEvualations;
+		private Button btnWebview;
 		@FXML
 		private Button btnMaintenance;
 		@FXML
-	    private AnchorPane AnchorPane;
-		
+	    private AnchorPane AnchorPane;	
 		@FXML
 	    private Pane pnlMenus;
-	    
 	    @FXML
 	    private Pane pnlOrders;
-	    
 	    @FXML
 	    private TextField filterField;
-		
 	 	@FXML
 	    private TableView <ModelTable>tableTableview;
-	    
 	    @FXML
 	    private TableColumn <ModelTable,String> tableColumnCustomerID;
-	    
 	    @FXML
 	    private TableColumn <ModelTable,String> tableColumnFirstname;
-	    
 	    @FXML
 	    private TableColumn <ModelTable,String> tableColumnLastname;
-	    
 	    @FXML
-	    private TableColumn <ModelTable,String> tableColumnEmail;
-	    
+	    private TableColumn <ModelTable,String> tableColumnEmail;   
 	    @FXML
 	    private TableColumn <ModelTable,String> tableColumnStreet;
 	    @FXML
@@ -98,11 +89,11 @@ public class CustomersController implements Initializable{
 		if(SettingsController.getStylesheet() != null) {
 			if(SettingsController.getStylesheet().equals("darkmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/darkmode.css").toExternalForm());
 			}
 			else if(SettingsController.getStylesheet().equals("lightmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/lightmode.css").toExternalForm());
 			}
 			}
 		
@@ -209,9 +200,9 @@ public void handleClicks(ActionEvent actionEvent) {
                 }
         }
         
-     if ( actionEvent.getSource() == btnDataEvaluations) {
+     if ( actionEvent.getSource() == btnWebview) {
         	try{
-            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
+        		Parent root = FXMLLoader.load(getClass().getResource("/menuWebView/Webview.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -250,19 +241,18 @@ public void handleClicks(ActionEvent actionEvent) {
 						}
 					});
 				});
-
+		       
 		        //Packe die FilteredList in eine SortedList.
 				SortedList<ModelTable> sortedData = new SortedList<>(filteredData);
 				
 				// Verbinde die SortedList mit der TablewView. Sonst sortieren nicht möglich
-				// 	  Otherwise, sorting the TableView would have no effect.
+		
 				sortedData.comparatorProperty().bind(tableTableview.comparatorProperty());
 				
 				// Füge die Sortierte (und gefilterte) liste zur Tabelle hinzu
 				tableTableview.setItems(sortedData);
 		    }
 
-	
 	public void openRegisterForm() {
 		 try{   
 	            Parent root = FXMLLoader.load(getClass().getResource("RegisterFormCustomerv2.fxml"));

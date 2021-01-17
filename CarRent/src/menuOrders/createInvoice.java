@@ -58,9 +58,8 @@ public class createInvoice {
 					run.setText(invoiceText[14]+" "+ invoiceText[13]+ " "+ invoiceText[15]+" "+ invoiceText[16]+ "                                "+ invoiceText[17]+"€"  );
 					
 					document.write(out);
-						
+					
 					out.close();
 				}
-	            System.out.println("createdWord" + "_" + invoiceText [0] + ".docx" + " written successfully");
 	        }
 }

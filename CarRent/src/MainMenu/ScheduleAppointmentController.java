@@ -73,9 +73,9 @@ public class ScheduleAppointmentController implements Initializable  {
 	int from=0;
 	int to=0;
 	@Override
+	
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
+			
 	}
 	
 	public void getFromTo(ActionEvent actionEvent) {	
@@ -214,20 +214,21 @@ public class ScheduleAppointmentController implements Initializable  {
 	}
 	
 	public void createAppointment() {
-	if(datePickerAppointment.getValue().isBefore(LocalDate.now())==false){
+	
 	if (txtFieldFrom.getText().isEmpty()== false && txtFieldTo.getText().isEmpty()== false && datePickerAppointment.getValue() != null && txtFieldDescription.getText().isEmpty()== false ) {
+	if(datePickerAppointment.getValue().isBefore(LocalDate.now())==false){
 		exchange.sendAppointmentData(LoginSystemController.getstaffID(),datePickerAppointment.getValue(), from, to, txtFieldDescription.getText());
 		lblConfirmMessage.setText("Appointment has been created!");
 		resetForm();
 	}else {
-		lblErrorMessage.setText("Please fil out the form. Try it again!");
-	}} else {
+		
 		lblErrorMessage.setText("You cant create appointment in the past!");
+	}} else {
+		lblErrorMessage.setText("Please fil out the form. Try it again!");
 	}
 	}
 	
 	public void cancelButtonOnAction(ActionEvent event){
-		
 		try{
 	            Parent root = FXMLLoader.load(getClass().getResource("/Mainmenu/Menu.fxml"));       
 	            Main.getStage().setScene(new Scene(root,1050,576));
@@ -235,7 +236,6 @@ public class ScheduleAppointmentController implements Initializable  {
 	              e.printStackTrace();
 	              e.getCause();
 	            }
-       
     }
 
 }

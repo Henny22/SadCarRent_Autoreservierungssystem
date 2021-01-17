@@ -97,7 +97,7 @@ public class MaintenanceController implements Initializable {
 	@FXML
 	private Label lblTextConclude;
 	@FXML
-	private Button btnDataEvaluations;
+	private Button btnWebview;
 	
 	ObservableList<String> oblist = FXCollections.observableArrayList();
 	
@@ -109,11 +109,11 @@ public class MaintenanceController implements Initializable {
 		if(SettingsController.getStylesheet() != null) {
 			if(SettingsController.getStylesheet().equals("darkmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/darkmode.css").toExternalForm());
 			}
 			else if(SettingsController.getStylesheet().equals("lightmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/lightmode.css").toExternalForm());
 			}
 			}
 		loadComboBoxCars();
@@ -207,9 +207,9 @@ public void handleClicks(ActionEvent actionEvent) {
                 }
         }
         
-     if ( actionEvent.getSource() == btnDataEvaluations) {
+     if ( actionEvent.getSource() == btnWebview) {
         	try{
-            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
+        		Parent root = FXMLLoader.load(getClass().getResource("/menuWebView/Webview.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -254,7 +254,7 @@ public void handleClicks(ActionEvent actionEvent) {
 			else if(comboBoxService.getValue().equals("Other")==false ){
 				exchange.createMaintenanceContract(getIDFromComboBox(ComboBoxCars),comboBoxCompany.getValue() , comboBoxService.getValue(), datePickerFrom.getValue(), datePickerTo.getValue(), Double.parseDouble(txtFieldAmount.getText()));
 				resetForm();
-				lblErrorText.setText("Maintenanced contract has been submitted.");
+				lblConfirmText.setText("Maintenanced contract has been submitted.");
 				loadComboBoxCars();
 			}
 			
@@ -306,12 +306,19 @@ public void handleClicks(ActionEvent actionEvent) {
 	public void changeTOpnlMaintenanceCreate(ActionEvent actionEvent) {		
 		pnlMaintenanceCreate.setVisible(true);
 		pnlMaintenanceCheck.setVisible(false);   
+		lblErrorTextConclude.setText("");
+		lblConfirmText.setText("");
+		lblErrorText.setText("");
+		lblTextConclude.setText("");
 }
 
 	public void changeTOpnlMaintenanceCheck(ActionEvent actionEvent) {
 		pnlMaintenanceCreate.setVisible(false);
 		pnlMaintenanceCheck.setVisible(true);
-		
+		lblErrorTextConclude.setText("");
+		lblConfirmText.setText("");
+		lblErrorText.setText("");
+		lblTextConclude.setText("");
 	}
 	
 	

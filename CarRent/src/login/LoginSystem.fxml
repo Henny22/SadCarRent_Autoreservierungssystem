@@ -27,11 +27,11 @@
          <children>
             <Label layoutX="10.0" layoutY="131.0" prefHeight="17.0" prefWidth="69.0" text="Username:" visible="false" />
             <Label layoutX="14.0" layoutY="167.0" prefHeight="17.0" prefWidth="73.0" text="Password:" visible="false" />
-            <TextField fx:id="textFieldUsername" layoutX="92.0" layoutY="129.0" prefHeight="23.0" prefWidth="158.0" text="1">
+            <TextField fx:id="textFieldUsername" layoutX="92.0" layoutY="129.0" prefHeight="23.0" prefWidth="158.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></TextField>
-            <PasswordField fx:id="textFieldPassword" layoutX="92.0" layoutY="178.0" prefHeight="23.0" prefWidth="158.0" text="1" />
+            <PasswordField fx:id="textFieldPassword" layoutX="92.0" layoutY="178.0" prefHeight="23.0" prefWidth="158.0" />
             <Button fx:id="buttonLogin" layoutX="34.0" layoutY="242.0" mnemonicParsing="false" onAction="#validateLogin" prefHeight="29.0" prefWidth="222.0" style="-fx-background-color: #E96151;" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />

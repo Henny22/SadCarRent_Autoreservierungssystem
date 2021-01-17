@@ -1,9 +1,6 @@
 package menuOrders;
 
 import javafx.scene.layout.AnchorPane;
-
-
-
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -37,91 +34,65 @@ public class OrdersController implements Initializable {
 
 	DatabaseConnection connectNow = new DatabaseConnection();
     Connection connectDB = connectNow.getConnection();
+    
     @FXML
     private AnchorPane AnchorPane;
     @FXML
-    private ComboBox<String> ComboBoxCustomer;
-	
+    private ComboBox<String> ComboBoxCustomer;	
     @FXML
     private ComboBox<String> ComboBoxCategory;
-    
     @FXML
-    private ComboBox<String> ComboBoxCar;
-    
+    private ComboBox<String> ComboBoxCar; 
     @FXML
     private ComboBox <String>ComboBoxLocation;
-    
     @FXML
     private Button btnReset;
-    
     @FXML
     private Button btnConfirm;
-    
     @FXML
     private Button btnRegister;
-    
     @FXML
     private Label lblAmount;
-    
     @FXML
     private DatePicker datePickerFrom;
-    
     @FXML
     private DatePicker datePickerTo;
-    
     @FXML
     private Label lblErrorText;
-    
     @FXML
     private Label labelTotalOrders;
     @FXML
-    private Label labelTotalOrders1;
-    
+    private Label labelTotalOrders1;    
     @FXML
-    private Button btnOrders;
-    
+    private Button btnOrders;    
     @FXML
-    private Button btnCustomers;
-    
+    private Button btnCustomers;    
     @FXML
-    private Button btnOverview;
-    
+    private Button btnOverview;    
     @FXML
-    private Button btnFeedback;
-    
+    private Button btnFeedback;    
     @FXML
-    private Button btnDataEvaluations;
-    
+    private Button btnWebview;    
     @FXML
-    private Button btnSettings;
-    
+    private Button btnSettings;    
     @FXML
-    private Pane pnlOrderCreate;
-    
+    private Pane pnlOrderCreate;    
     @FXML
-    private Pane pnlOrderCheck;
-    
+    private Pane pnlOrderCheck;    
     @FXML
-    private Button btnSignout;
-    
+    private Button btnSignout;    
     @FXML
-    private Button btnCars;
-    
+    private Button btnCars;    
     @FXML
-    private Button btnOrderWrite;
-    
+    private Button btnOrderWrite;    
     @FXML
     private Button btnOrderConfirm;
-
     @FXML
-    private ComboBox<String> comboBoxListOrders;
-    
+    private ComboBox<String> comboBoxListOrders;    
     @FXML
-    private Button btnConclude;
-    
+    private Button btnConclude;    
     @FXML
-    private Label lblErrorTextConclude;
-    
+    private Label lblErrorTextConclude;    
     @FXML
     private Label lblLastname;
     @FXML
@@ -129,8 +100,7 @@ public class OrdersController implements Initializable {
     @FXML
     private Label lblCity;
     @FXML
-    private Label lblAmountConfirm;
-    
+    private Label lblAmountConfirm;    
     @FXML
     private Label labelDelivered;
     @FXML
@@ -149,6 +119,9 @@ public class OrdersController implements Initializable {
     private Label lblErrorTextDate;
     @FXML
     private Label lblConfirmText;
+    @FXML
+    private Label lblConclude;
+    
     ObservableList<String> oblist = FXCollections.observableArrayList();
     
     DataExchange exchange = new DataExchange();
@@ -159,16 +132,14 @@ public class OrdersController implements Initializable {
 		if(SettingsController.getStylesheet() != null) {
 			if(SettingsController.getStylesheet().equals("darkmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/darkmode.css").toExternalForm());
 			}
 			else if(SettingsController.getStylesheet().equals("lightmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/lightmode.css").toExternalForm());
 			}
-			}
-		setHeaderData();
-		//exchange.loadDataComboBoxes("select IDCus,Firstname,Lastname,Postalcode,Birthdate from customers",ComboBoxCustomer,oblist.add("IDCus","Firstname"));
-		// TODO Code in DataExchange verallgemeinern
+			}		
+	
 		try {
 			ResultSet rsCustomer = connectDB.createStatement().executeQuery("select IDCus,Firstname,Lastname,Postalcode,Birthdate from customers");
 			ResultSet rsCategory = connectDB.createStatement().executeQuery("Select IDCat,Label,Cat_Description from category");
@@ -193,6 +164,8 @@ public class OrdersController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
+		
+		setHeaderData();	
 	}
 	
 	public void setHeaderData() {
@@ -295,9 +268,9 @@ public void handleClicks(ActionEvent actionEvent) {
                 }
         }
         
-     if ( actionEvent.getSource() == btnDataEvaluations) {
+     if ( actionEvent.getSource() == btnWebview) {
         	try{
-            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
+        		Parent root = FXMLLoader.load(getClass().getResource("/menuWebView/Webview.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -405,7 +378,6 @@ public void handleClicks(ActionEvent actionEvent) {
 		
 	public void resetForm() {
 		 ComboBoxCustomer.getSelectionModel().clearSelection();
-		 //: TODO ComboBoxCategory.getSelectionModel().clearSelection();
 		 ComboBoxCar.getSelectionModel().clearSelection();	
 		 ComboBoxLocation.getSelectionModel().clearSelection();
 		 datePickerTo.getEditor().clear();
@@ -421,12 +393,18 @@ public void handleClicks(ActionEvent actionEvent) {
         	pnlOrderCreate.setVisible(true);
 			pnlOrderCheck.setVisible(false);   
 			lblErrorTextConclude.setText("");
+			lblConclude.setText("");
+			 lblErrorText.setText("");	
+			 lblConfirmText.setText("");
 	}
 
 	public void changeTOpnlOrderCheck(ActionEvent actionEvent) {
 		pnlOrderCreate.setVisible(false);
 		pnlOrderCheck.setVisible(true);
 		lblErrorTextConclude.setText("");
+		lblConclude.setText("");
+		lblErrorText.setText(""); 
+		 lblConfirmText.setText("");
 	}
 	
 	//-------------> Panel CompleteOrder
@@ -440,7 +418,6 @@ public void handleClicks(ActionEvent actionEvent) {
 				comboBoxListOrders.getItems().addAll(rsOrders.getInt("IDReservation")+ " | Order Date: "+ rsOrders.getString("Date")+ " | Rent start: " +rsOrders.getString("startDate")+ " | Rent end: " +rsOrders.getString("endDate")); 
 			       }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -462,10 +439,12 @@ public void handleClicks(ActionEvent actionEvent) {
 	}
 	
 	public void concludeDataOrder() {
+		lblErrorTextConclude.setText("");;
+		lblConclude.setText("");
 		if(comboBoxListOrders.getValue() != null) {
 			int IDReservation = getIDFromComboBox(comboBoxListOrders);
 			exchange.setOrderOnComplete(IDReservation );
-			lblErrorTextConclude.setText("Order has been signed as completed!");
+			lblConclude.setText("Order has been signed as completed!");
 			lblLastname.setText("");
 			lblBrand.setText("");
 			lblCity.setText("");

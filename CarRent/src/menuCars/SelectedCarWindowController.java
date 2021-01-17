@@ -114,8 +114,4 @@ public class SelectedCarWindowController implements Initializable{
 			e.getCause();
 		}
      }
-	
-	
-
-
 }

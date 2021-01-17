@@ -1,6 +1,5 @@
-package menuDataEvaluations;
+package menuWebView;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,13 +18,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import login.Main;
 import menuSettings.SettingsController;
 
-public class DataEvaluationsController implements Initializable {
+public class WebViewController implements Initializable {
 
 	@FXML
 	private Button btnOrders;
@@ -44,7 +40,7 @@ public class DataEvaluationsController implements Initializable {
 	@FXML
 	private Button btnSettings;
 	@FXML
-	private Button btnDataEvaluations;
+	private Button btnWebview;
 	@FXML
 	private Tab tabTab1;
 	@FXML
@@ -95,16 +91,15 @@ public class DataEvaluationsController implements Initializable {
 		tabPaneTabPane1.getTabs().remove(tabTab3);
 		tabPaneTabPane1.getTabs().remove(tabTab4);
 		tabPaneTabPane1.getTabs().remove(tabTab5);
-		
 		if(SettingsController.getStylesheet() != null) {
 			if(SettingsController.getStylesheet().equals("darkmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/style.css").toExternalForm());
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/darkmode.css").toExternalForm());
 			}
 			else if(SettingsController.getStylesheet().equals("lightmode")) {
 			AnchorPane.getStylesheets().clear();
-			AnchorPane.getStylesheets().add(getClass().getResource("/test/testStyle.css").toExternalForm());
-			} 
+			AnchorPane.getStylesheets().add(getClass().getResource("/stylesheets/lightmode.css").toExternalForm());
+			}
 			}
 	}
 
@@ -193,9 +188,9 @@ public void handleClicks(ActionEvent actionEvent) {
                 }
         }
         
-     if ( actionEvent.getSource() == btnDataEvaluations) {
+     if ( actionEvent.getSource() == btnWebview) {
         	try{
-            	Parent root = FXMLLoader.load(getClass().getResource("/menuDataEvaluations/DataEvaluations.fxml"));
+            	Parent root = FXMLLoader.load(getClass().getResource("/menuWebView/Webview.fxml"));
                 Main.getStage().setScene(new Scene(root, 1050,576));
                 }catch(Exception e){
                   e.printStackTrace();
@@ -240,8 +235,7 @@ public void handleClicks(ActionEvent actionEvent) {
 	    
 	}
 	
-	public void addTab() {
-		
+	public void addTab() {	
 		if(tabCounter==0) {
 			tabPaneTabPane1.getTabs().addAll(tabTab3);
 			btnAddTab.setLayoutX(155);
@@ -257,14 +251,7 @@ public void handleClicks(ActionEvent actionEvent) {
 			btnAddTab.setVisible(false);
 			tabPaneTabPane1.getSelectionModel().select(tabTab5);
 			tabPaneTabPane1.requestLayout();	
-		} 
-		
-	tabCounter+=1;
-	
-	
-		
-	}
-	
-	
-	
+		} 	
+		tabCounter+=1;		
+	}	
 }
